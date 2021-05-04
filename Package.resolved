@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ClippingBezier",
+        "repositoryURL": "https://github.com/adamwulf/ClippingBezier.git",
+        "state": {
+          "branch": null,
+          "revision": "9cde6dd3396ad59d3636e4c6e3f55847de48bf30",
+          "version": "1.2.0"
+        }
+      },
+      {
+        "package": "MMSwiftToolbox",
+        "repositoryURL": "https://github.com/adamwulf/MMSwiftToolbox.git",
+        "state": {
+          "branch": "main",
+          "revision": "9f546153d4db9b8e2d44fe5ba83d8d24c1232cb7",
+          "version": null
+        }
+      },
+      {
+        "package": "PerformanceBezier",
+        "repositoryURL": "https://github.com/adamwulf/PerformanceBezier.git",
+        "state": {
+          "branch": null,
+          "revision": "5737bfcfe7b69ea79a02853f75ae838892f5db51",
+          "version": "1.3.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
