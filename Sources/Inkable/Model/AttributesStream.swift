@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class ToolEvent: DrawEvent {
+open class ToolEvent: DrawEvent {
     public var style: AttributesStream.ToolStyle
 
     public init(style: AttributesStream.ToolStyle) {
@@ -38,7 +38,7 @@ public class ToolEvent: DrawEvent {
     }
 }
 
-public class AttributesStream: ProducerConsumer {
+open class AttributesStream: ProducerConsumer {
 
     public typealias Produces = BezierStream.Produces
     public typealias Consumes = BezierStream.Produces

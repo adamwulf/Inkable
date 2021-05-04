@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class LineSmoother: Smoother {
+open class LineSmoother: Smoother {
 
     public init() {
         // noop

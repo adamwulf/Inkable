@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class BezierStream: ProducerConsumer {
+open class BezierStream: ProducerConsumer {
 
     public struct Produces {
         public var paths: [UIBezierPath]

@@ -8,7 +8,7 @@
 import UIKit
 import ClippingBezier
 
-public class ClippedBezierStream: ProducerConsumer {
+open class ClippedBezierStream: ProducerConsumer {
 
     public typealias OrderedIndexSet = OrderedSet<Int>
 

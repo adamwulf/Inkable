@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class AntigrainSmoother: Smoother {
+open class AntigrainSmoother: Smoother {
 
     let smoothFactor: CGFloat
 

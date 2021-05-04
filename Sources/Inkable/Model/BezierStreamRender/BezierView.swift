@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class BezierView: UIView, Consumer {
+open class BezierView: UIView, Consumer {
 
     public typealias Consumes = BezierStream.Produces
 

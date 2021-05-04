@@ -10,7 +10,7 @@ import UIKit
 /// Input: An array of touch events from one or more touches representing one or more collections.
 /// A `TouchPathStream` represents all of the different `TouchPathStream.Point` that share the same `touchIdentifier`
 /// Output: A OrderedTouchPoints for each stroke of touch event data, which coalesces the events into current point data for that stroke
-public class TouchPathStream: ProducerConsumer {
+open class TouchPathStream: ProducerConsumer {
 
     public struct Produces {
         public var paths: [TouchPath]

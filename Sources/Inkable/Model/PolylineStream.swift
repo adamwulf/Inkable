@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class PolylineStream: ProducerConsumer {
+open class PolylineStream: ProducerConsumer {
 
     public struct Produces {
         public var lines: [Polyline]

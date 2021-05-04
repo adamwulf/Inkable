@@ -13,7 +13,7 @@ public typealias EstimationUpdateIndex = NSNumber
 
 // Probably need to do something like this linked issue when encoding/decoding
 // https://stackoverflow.com/questions/59364986/swift-decode-encode-an-array-of-generics-with-different-types
-public class DrawEvent: Codable {
+open class DrawEvent: Codable {
     public typealias Identifier = String
 
     enum CodingKeys: CodingKey {
@@ -38,7 +38,7 @@ public class DrawEvent: Codable {
     }
 }
 
-public class TouchEvent: DrawEvent {
+open class TouchEvent: DrawEvent {
 
     /// An identifier unique to the touch that created this event. Events with the same
     /// touch will also have the same touchIdentifier

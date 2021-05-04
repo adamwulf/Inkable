@@ -19,7 +19,7 @@ import CoreGraphics
 /// the same point, so that it can output a series of points [A, B, C]
 ///
 /// The output points also know if they are predicted, expecting updates, or is finished
-public class TouchPath {
+open class TouchPath {
 
     // MARK: - Public Properties
     public private(set) var touchIdentifier: String
@@ -155,7 +155,7 @@ extension TouchPath: Hashable {
 }
 
 extension TouchPath {
-    public class Point: Codable {
+    open class Point: Codable {
 
         public private(set) var events: [TouchEvent]
         public var event: TouchEvent {

@@ -8,7 +8,7 @@
 import UIKit
 
 // Processes events for mutiple touches
-public class TouchEventStream: Producer {
+open class TouchEventStream: Producer {
     // How do I keep Customer generic here?
     public typealias Produces = [DrawEvent]
 

@@ -9,7 +9,7 @@ import UIKit
 import MMSwiftToolbox
 import PerformanceBezier
 
-public class NaiveClippedDrawRectView: ClippedBezierView {
+open class NaiveClippedDrawRectView: ClippedBezierView {
 
     private var model: ClippedBezierStream.Produces = ClippedBezierStream.Produces.empty
 

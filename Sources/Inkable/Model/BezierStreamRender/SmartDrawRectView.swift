@@ -8,7 +8,7 @@
 import UIKit
 import MMSwiftToolbox
 
-public class SmartDrawRectView: BezierView {
+open class SmartDrawRectView: BezierView {
 
     public typealias Consumes = BezierStream.Produces
 
