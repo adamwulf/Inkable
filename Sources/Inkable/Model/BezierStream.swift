@@ -18,7 +18,7 @@ open class BezierStream: ProducerConsumer {
             self.deltas = deltas
         }
 
-        static var empty: Produces {
+        public static var empty: Produces {
             return Produces(paths: [], deltas: [])
         }
     }
