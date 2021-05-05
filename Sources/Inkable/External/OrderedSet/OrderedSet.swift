@@ -73,6 +73,37 @@ public struct OrderedSet<E: Hashable>: Equatable, Collection {
         return inserted
     }
 
+    @discardableResult
+    public mutating func append(contentsOf elements: [Element]) -> Bool {
+        var insertedAny = false
+        for newElement in elements {
+            let insertedOne = set.insert(newElement).inserted
+            if insertedOne {
+                array.append(newElement)
+            }
+            insertedAny = insertedAny || insertedOne
+        }
+        return insertedAny
+    }
+
+    @discardableResult
+    public mutating func insert(_ newElement: Element, at index: Index) -> Bool {
+        let inserted = set.insert(newElement).inserted
+        if inserted {
+            array.insert(newElement, at: index)
+        }
+        return inserted
+    }
+
+    @discardableResult
+    public mutating func insert(contentsOf elements: [Element], at index: Index) -> Bool {
+        let inserted = elements.filter({ set.insert($0).inserted })
+        if !inserted.isEmpty {
+            array.insert(contentsOf: inserted, at: index)
+        }
+        return !inserted.isEmpty
+    }
+
     /// Remove and return the element at the beginning of the ordered set.
     public mutating func removeFirst() -> Element {
         let firstElement = array.removeFirst()
@@ -101,6 +132,12 @@ extension OrderedSet {
 
     public mutating func remove(_ element: Element) {
         guard let index = index(of: element) else { return }
+        array.remove(at: index)
+        set.remove(element)
+    }
+
+    public mutating func remove(at index: Index) {
+        let element = array[index]
         array.remove(at: index)
         set.remove(element)
     }
