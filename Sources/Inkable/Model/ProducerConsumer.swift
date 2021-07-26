@@ -36,6 +36,10 @@ extension ProducerConsumer {
         addConsumer(consumer)
         return consumer
     }
+
+    public func nextStep(_ block: @escaping (Produces) -> Void) {
+        addConsumer(block)
+    }
 }
 
 class ExampleStream: Producer {

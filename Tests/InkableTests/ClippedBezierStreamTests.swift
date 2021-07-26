@@ -109,4 +109,42 @@ class ClippedBezierStreamTests: XCTestCase {
         XCTAssertEqual(clippedOutput.deltas[6], .replacedBezierPath(index: 1, withPathIndexes: IndexSet(5..<7)))
         XCTAssertEqual(clippedOutput.deltas[7], .invalidatedBezierPath(index: 2))
     }
+
+    func testClippTwoLines2() throws {
+        let simpleEvents = Event.events(from: CGPoint(x: 100, y: 100), to: CGPoint(x: 200, y: 100)) +
+            Event.events(from: CGPoint(x: 100, y: 200), to: CGPoint(x: 200, y: 200)) +
+            Event.events(from: CGPoint(x: 150, y: 50), to: CGPoint(x: 150, y: 250))
+        let touchEvents = TouchEvent.newFrom(simpleEvents)
+
+        attributeStream.styleOverride = { delta in
+            switch delta {
+            case .addedBezierPath(let index):
+                return index < 2 ? Self.pen : Self.eraser
+            default:
+                return nil
+            }
+        }
+
+        let touchPathStream = TouchPathStream()
+        touchPathStream
+            .nextStep(PolylineStream())
+            .nextStep(BezierStream(smoother: AntigrainSmoother()))
+            .nextStep(attributeStream)
+            .nextStep(ClippedBezierStream())
+            .nextStep { clippedOutput in
+                XCTAssertEqual(clippedOutput.paths.count, 7)
+                XCTAssertEqual(clippedOutput.deltas.count, 8)
+
+                XCTAssertEqual(clippedOutput.deltas[0], .addedBezierPath(index: 0))
+                XCTAssertEqual(clippedOutput.deltas[1], .completedBezierPath(index: 0))
+                XCTAssertEqual(clippedOutput.deltas[2], .addedBezierPath(index: 1))
+                XCTAssertEqual(clippedOutput.deltas[3], .completedBezierPath(index: 1))
+                XCTAssertEqual(clippedOutput.deltas[4], .addedBezierPath(index: 2))
+                XCTAssertEqual(clippedOutput.deltas[5], .replacedBezierPath(index: 0, withPathIndexes: IndexSet(3..<5)))
+                XCTAssertEqual(clippedOutput.deltas[6], .replacedBezierPath(index: 1, withPathIndexes: IndexSet(5..<7)))
+                XCTAssertEqual(clippedOutput.deltas[7], .invalidatedBezierPath(index: 2))
+            }
+
+        touchPathStream.consume(touchEvents)
+    }
 }
