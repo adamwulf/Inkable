@@ -1,6 +1,6 @@
 # Inkable
  
- ## Data Flow chart
+## Data Flow chart
  
  The flow chart below describes how UITouch events are processed into Bezier paths. The code is extremely modular
 allowing for easy customization at any point of the algorithm. 
@@ -113,7 +113,11 @@ The below should also implement undo/redo
 - [ ] Implement naive DistanceThinning filtering
 - [ ] Implement optimized DistanceThinning filtering
 
+
+## Inspiration
+
+The code is a Swift rewrite and successor to [DrawUI](https://github.com/adamwulf/DrawUI). Its [archived objective-c branch](https://github.com/adamwulf/DrawUI/tree/archived/objective-c) contains features that will likely show up here at some point.
  
- ## Support
+## Support
  
 Has Inkable saved you time? Become a [Github Sponsor](https://github.com/sponsors/adamwulf) and buy me a coffee ☕️ 😄
