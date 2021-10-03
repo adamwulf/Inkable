@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sP7-PE-svj">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="vLv-so-AUA">
+            <objects>
+                <tabBarController id="sP7-PE-svj" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8g6-dI-yPt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="gGA-17-E7E"/>
+                        <segue destination="8Sh-bC-g2X" kind="relationship" relationship="viewControllers" id="gT6-c2-0wM"/>
+                        <segue destination="RGc-eH-SHM" kind="relationship" relationship="viewControllers" id="6lZ-qK-Rpr"/>
+                        <segue destination="YFq-8d-a6D" kind="relationship" relationship="viewControllers" id="5em-mF-4gv"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o6x-Rq-qpR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1857" y="208"/>
+        </scene>
+        <!--Debug-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="DebugViewController" customModule="DrawUIExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ws6-cd-wAk" customClass="DebugView" customModule="DrawUIExample" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <viewLayoutGuide key="safeArea" id="wof-Dh-4Ni"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cda-CR-GYy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ws6-cd-wAk" firstAttribute="trailing" secondItem="cda-CR-GYy" secondAttribute="trailing" id="Kc9-qJ-X5o"/>
+                            <constraint firstAttribute="bottom" secondItem="Ws6-cd-wAk" secondAttribute="bottom" id="Rfl-sO-gjQ"/>
+                            <constraint firstItem="Ws6-cd-wAk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="YUR-Vh-Kp1"/>
+                            <constraint firstItem="Ws6-cd-wAk" firstAttribute="leading" secondItem="cda-CR-GYy" secondAttribute="leading" id="wcS-Ts-44T"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Debug" id="qHK-5d-EwE"/>
+                    <connections>
+                        <outlet property="debugView" destination="Ws6-cd-wAk" id="POl-Tt-2q6"/>
+                        <outlet property="view" destination="8bC-Xf-vdC" id="IrY-jj-sYu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-622" y="-238"/>
+        </scene>
+        <!--Naive Bezier-->
+        <scene sceneID="zGv-TZ-59T">
+            <objects>
+                <viewController id="8Sh-bC-g2X" userLabel="Naive Bezier" customClass="BezierViewController" customModule="DrawUIExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Idv-ej-oKN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LI0-x3-xff" customClass="NaiveDrawRectView" customModule="Inkable">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZMy-S6-X7X">
+                                        <rect key="frame" x="31.5" y="64" width="351" height="32"/>
+                                        <segments>
+                                            <segment title="Pen"/>
+                                            <segment title="Marker"/>
+                                            <segment title="Highlighter"/>
+                                            <segment title="Eraser"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="toolDidChange:" destination="8Sh-bC-g2X" eventType="valueChanged" id="MHL-iX-VnQ"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="DH7-Pj-vix"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ZMy-S6-X7X" firstAttribute="centerX" secondItem="LI0-x3-xff" secondAttribute="centerX" id="1aQ-uy-vwc"/>
+                                    <constraint firstItem="ZMy-S6-X7X" firstAttribute="top" secondItem="DH7-Pj-vix" secondAttribute="top" constant="20" id="394-0r-KhW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="f0A-NO-UKJ"/>
+                        <color key="backgroundColor" red="0.78931863741441211" green="0.78931863741441211" blue="0.78931863741441211" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="LI0-x3-xff" firstAttribute="leading" secondItem="Idv-ej-oKN" secondAttribute="leading" id="2Cr-hI-Wfw"/>
+                            <constraint firstItem="LI0-x3-xff" firstAttribute="top" secondItem="Idv-ej-oKN" secondAttribute="top" id="Ehy-rr-Sz9"/>
+                            <constraint firstAttribute="bottom" secondItem="LI0-x3-xff" secondAttribute="bottom" id="jjk-Na-NCV"/>
+                            <constraint firstAttribute="trailing" secondItem="LI0-x3-xff" secondAttribute="trailing" id="q3Q-CW-j4b"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="NaiveDrawRect" id="xx5-P8-cAu"/>
+                    <connections>
+                        <outlet property="pathView" destination="LI0-x3-xff" id="q40-7z-W7u"/>
+                        <outlet property="toolPicker" destination="ZMy-S6-X7X" id="1J3-pU-mJm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XnE-I2-dIb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-623" y="480"/>
+        </scene>
+        <!--Smart Bezier-->
+        <scene sceneID="g4G-8K-SJx">
+            <objects>
+                <viewController id="RGc-eH-SHM" userLabel="Smart Bezier" customClass="BezierViewController" customModule="DrawUIExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dN3-UW-cDC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ESC-cj-5Je" customClass="SmartDrawRectView" customModule="Inkable">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XsJ-CP-Rr9">
+                                        <rect key="frame" x="31.5" y="64" width="351" height="32"/>
+                                        <segments>
+                                            <segment title="Pen"/>
+                                            <segment title="Marker"/>
+                                            <segment title="Highlighter"/>
+                                            <segment title="Eraser"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="toolDidChange:" destination="RGc-eH-SHM" eventType="valueChanged" id="TSW-Fm-32s"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="jqD-V8-tvf"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="XsJ-CP-Rr9" firstAttribute="top" secondItem="jqD-V8-tvf" secondAttribute="top" constant="20" id="KUp-MI-uS8"/>
+                                    <constraint firstItem="XsJ-CP-Rr9" firstAttribute="centerX" secondItem="ESC-cj-5Je" secondAttribute="centerX" id="Vc2-ZT-qKh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="z8N-Vc-yoA"/>
+                        <color key="backgroundColor" red="0.79483167430000001" green="0.79483167430000001" blue="0.79483167430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ESC-cj-5Je" firstAttribute="top" secondItem="dN3-UW-cDC" secondAttribute="top" id="4SS-vA-8n4"/>
+                            <constraint firstItem="ESC-cj-5Je" firstAttribute="leading" secondItem="dN3-UW-cDC" secondAttribute="leading" id="RPj-K2-6BM"/>
+                            <constraint firstAttribute="bottom" secondItem="ESC-cj-5Je" secondAttribute="bottom" id="TqP-QK-YPn"/>
+                            <constraint firstAttribute="trailing" secondItem="ESC-cj-5Je" secondAttribute="trailing" id="vYB-TY-Ddc"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="SmartDrawRect" id="deK-Yr-jRf"/>
+                    <connections>
+                        <outlet property="pathView" destination="ESC-cj-5Je" id="rTe-tk-fUu"/>
+                        <outlet property="toolPicker" destination="XsJ-CP-Rr9" id="FNL-db-38X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GQv-dP-fOg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="100" y="480"/>
+        </scene>
+        <!--Naive Clipped Bezier-->
+        <scene sceneID="Hhq-m8-unP">
+            <objects>
+                <viewController id="YFq-8d-a6D" userLabel="Naive Clipped Bezier" customClass="ClippedBezierViewController" customModule="DrawUIExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MWj-sE-IuV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Kw-zX-fJD" customClass="NaiveClippedDrawRectView" customModule="Inkable">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8Ed-jg-xCa">
+                                        <rect key="frame" x="31.5" y="64" width="351" height="32"/>
+                                        <segments>
+                                            <segment title="Pen"/>
+                                            <segment title="Marker"/>
+                                            <segment title="Highlighter"/>
+                                            <segment title="Eraser"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="toolDidChange:" destination="YFq-8d-a6D" eventType="valueChanged" id="YaV-Iv-b12"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="js8-gG-O05"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="8Ed-jg-xCa" firstAttribute="top" secondItem="js8-gG-O05" secondAttribute="top" constant="20" id="K0N-da-2kK"/>
+                                    <constraint firstItem="8Ed-jg-xCa" firstAttribute="centerX" secondItem="0Kw-zX-fJD" secondAttribute="centerX" id="xcG-IW-CLp"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fzm-yF-NcF"/>
+                        <color key="backgroundColor" red="0.78931863739999997" green="0.78931863739999997" blue="0.78931863739999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0Kw-zX-fJD" secondAttribute="trailing" id="FNp-1h-YgU"/>
+                            <constraint firstItem="0Kw-zX-fJD" firstAttribute="top" secondItem="MWj-sE-IuV" secondAttribute="top" id="ZXj-EB-gxo"/>
+                            <constraint firstItem="0Kw-zX-fJD" firstAttribute="leading" secondItem="MWj-sE-IuV" secondAttribute="leading" id="rHi-Y1-fpR"/>
+                            <constraint firstAttribute="bottom" secondItem="0Kw-zX-fJD" secondAttribute="bottom" id="yAn-ZV-GYn"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Naive Clipped" id="aPu-iL-lXH"/>
+                    <connections>
+                        <outlet property="pathView" destination="0Kw-zX-fJD" id="fWd-Uz-NSP"/>
+                        <outlet property="toolPicker" destination="8Ed-jg-xCa" id="DT3-iR-dj8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zpU-kL-I7F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-623" y="1208"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
