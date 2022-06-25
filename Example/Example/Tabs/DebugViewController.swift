@@ -14,7 +14,7 @@ class DebugViewController: BaseViewController {
     let lineStream = PolylineStream()
     let bezierStream = BezierStream(smoother: AntigrainSmoother())
     let attributeStream = AttributesStream()
-    @IBOutlet var debugView: DebugView!
+    @IBOutlet var debugView: DebugView?
 
     let savitzkyGolay = NaiveSavitzkyGolay()
     let douglasPeucker = NaiveDouglasPeucker()
@@ -54,5 +54,11 @@ class DebugViewController: BaseViewController {
     @objc override func didRequestClear(_ sender: UIView) {
         self.debugView?.reset()
         super.didRequestClear(sender)
+    }
+}
+
+extension DebugViewController: SettingsViewControllerDelegate {
+    func settingsChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool) {
+
     }
 }

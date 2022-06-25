@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C5054471270A5C42009E4FA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054470270A5C42009E4FA9 /* AppDelegate.swift */; };
 		C5054473270A5C42009E4FA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054472270A5C42009E4FA9 /* SceneDelegate.swift */; };
-		C5054475270A5C42009E4FA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054474270A5C42009E4FA9 /* ViewController.swift */; };
 		C5054478270A5C42009E4FA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5054476270A5C42009E4FA9 /* Main.storyboard */; };
 		C505447A270A5C45009E4FA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5054479270A5C45009E4FA9 /* Assets.xcassets */; };
 		C505447D270A5C45009E4FA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C505447B270A5C45009E4FA9 /* LaunchScreen.storyboard */; };
@@ -21,13 +20,14 @@
 		C54CD17628678D2400870745 /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17128678BDF00870745 /* BezierView.swift */; };
 		C54CD17728678D2700870745 /* NaiveDrawRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17028678BDF00870745 /* NaiveDrawRectView.swift */; };
 		C54CD17828678D2900870745 /* SmartDrawRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17228678BDF00870745 /* SmartDrawRectView.swift */; };
+		C54CD17A2867BB0C00870745 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD1792867BB0C00870745 /* SplitViewController.swift */; };
+		C54CD17C2867BB3300870745 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17B2867BB3300870745 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C505446D270A5C42009E4FA9 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5054470270A5C42009E4FA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5054472270A5C42009E4FA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C5054474270A5C42009E4FA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C5054477270A5C42009E4FA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C5054479270A5C45009E4FA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C505447C270A5C45009E4FA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +40,8 @@
 		C54CD17028678BDF00870745 /* NaiveDrawRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaiveDrawRectView.swift; sourceTree = "<group>"; };
 		C54CD17128678BDF00870745 /* BezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
 		C54CD17228678BDF00870745 /* SmartDrawRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartDrawRectView.swift; sourceTree = "<group>"; };
+		C54CD1792867BB0C00870745 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		C54CD17B2867BB3300870745 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +82,8 @@
 				C5054498270A5D51009E4FA9 /* DebugView.swift */,
 				C5054470270A5C42009E4FA9 /* AppDelegate.swift */,
 				C5054472270A5C42009E4FA9 /* SceneDelegate.swift */,
-				C5054474270A5C42009E4FA9 /* ViewController.swift */,
+				C54CD17B2867BB3300870745 /* SettingsViewController.swift */,
+				C54CD1792867BB0C00870745 /* SplitViewController.swift */,
 				C5054476270A5C42009E4FA9 /* Main.storyboard */,
 				C5054479270A5C45009E4FA9 /* Assets.xcassets */,
 				C505447B270A5C45009E4FA9 /* LaunchScreen.storyboard */,
@@ -201,7 +204,7 @@
 			files = (
 				C54CD17828678D2900870745 /* SmartDrawRectView.swift in Sources */,
 				C505448D270A5C85009E4FA9 /* BezierViewController.swift in Sources */,
-				C5054475270A5C42009E4FA9 /* ViewController.swift in Sources */,
+				C54CD17A2867BB0C00870745 /* SplitViewController.swift in Sources */,
 				C505448A270A5C85009E4FA9 /* BaseViewController.swift in Sources */,
 				C5054471270A5C42009E4FA9 /* AppDelegate.swift in Sources */,
 				C54CD17728678D2700870745 /* NaiveDrawRectView.swift in Sources */,
@@ -209,6 +212,7 @@
 				C5054473270A5C42009E4FA9 /* SceneDelegate.swift in Sources */,
 				C505448B270A5C85009E4FA9 /* DebugViewController.swift in Sources */,
 				C54CD17628678D2400870745 /* BezierView.swift in Sources */,
+				C54CD17C2867BB3300870745 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
