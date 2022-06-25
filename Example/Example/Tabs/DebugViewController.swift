@@ -16,6 +16,10 @@ class DebugViewController: BaseViewController {
     let attributeStream = AttributesStream()
     @IBOutlet var debugView: DebugView?
 
+    let pointsView = PointsView(frame: .zero)
+    var linesView: UIView?
+    var curvesView: UIView?
+
     let savitzkyGolay = NaiveSavitzkyGolay()
     let douglasPeucker = NaiveDouglasPeucker()
     let pointDistance = NaivePointDistance()
@@ -28,6 +32,7 @@ class DebugViewController: BaseViewController {
         }
         touchEventStream.addConsumer(touchPathStream)
         touchPathStream.addConsumer(lineStream)
+        touchPathStream.addConsumer(pointsView)
         var strokeOutput = PolylineStream.Produces(lines: [], deltas: [])
         lineStream.addConsumer { (input) in
             strokeOutput = input
@@ -48,6 +53,9 @@ class DebugViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addSubview(pointsView)
+        pointsView.layoutHuggingParent(safeArea: true)
+
         debugView?.addGestureRecognizer(touchEventStream.gesture)
     }
 
@@ -59,6 +67,6 @@ class DebugViewController: BaseViewController {
 
 extension DebugViewController: SettingsViewControllerDelegate {
     func settingsChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool) {
-
+        pointsView.isHidden = !pointsEnabled
     }
 }

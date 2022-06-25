@@ -26,6 +26,14 @@ open class TouchPath {
     public var points: [Point] {
         return confirmedPoints + predictedPoints
     }
+    public var bounds: CGRect {
+        return points.reduce(.null) { partialResult, point -> CGRect in
+            return CGRect(x: min(partialResult.origin.x, point.event.location.x),
+                          y: min(partialResult.origin.y, point.event.location.y),
+                          width: max(partialResult.origin.x, point.event.location.x),
+                          height: max(partialResult.origin.y, point.event.location.y))
+        }
+    }
     public var isComplete: Bool {
         let phase = confirmedPoints.last?.event.phase
         return (phase == .ended || phase == .cancelled) && predictedPoints.isEmpty && expectingUpdate.isEmpty

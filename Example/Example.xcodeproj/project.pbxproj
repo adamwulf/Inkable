@@ -22,6 +22,7 @@
 		C54CD17828678D2900870745 /* SmartDrawRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17228678BDF00870745 /* SmartDrawRectView.swift */; };
 		C54CD17A2867BB0C00870745 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD1792867BB0C00870745 /* SplitViewController.swift */; };
 		C54CD17C2867BB3300870745 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17B2867BB3300870745 /* SettingsViewController.swift */; };
+		C54CD17F2867C3EA00870745 /* PointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17E2867C3EA00870745 /* PointsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		C54CD17228678BDF00870745 /* SmartDrawRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartDrawRectView.swift; sourceTree = "<group>"; };
 		C54CD1792867BB0C00870745 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		C54CD17B2867BB3300870745 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C54CD17E2867C3EA00870745 /* PointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		C505446F270A5C42009E4FA9 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				C54CD17D2867C3E000870745 /* View Layers */,
 				C54CD16F28678BDF00870745 /* BezierStreamRender */,
 				C505448E270A5C91009E4FA9 /* Tabs */,
 				C5054498270A5D51009E4FA9 /* DebugView.swift */,
@@ -125,6 +128,14 @@
 				C54CD17228678BDF00870745 /* SmartDrawRectView.swift */,
 			);
 			path = BezierStreamRender;
+			sourceTree = "<group>";
+		};
+		C54CD17D2867C3E000870745 /* View Layers */ = {
+			isa = PBXGroup;
+			children = (
+				C54CD17E2867C3EA00870745 /* PointsView.swift */,
+			);
+			path = "View Layers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +224,7 @@
 				C505448B270A5C85009E4FA9 /* DebugViewController.swift in Sources */,
 				C54CD17628678D2400870745 /* BezierView.swift in Sources */,
 				C54CD17C2867BB3300870745 /* SettingsViewController.swift in Sources */,
+				C54CD17F2867C3EA00870745 /* PointsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
