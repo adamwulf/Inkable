@@ -68,6 +68,7 @@ class BezierView: UIView, Consumer {
 
     func reset() {
         model = Consumes(paths: [], deltas: [])
+        setNeedsDisplay()
     }
 
     // MARK: - Draw

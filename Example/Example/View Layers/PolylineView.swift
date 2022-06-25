@@ -68,6 +68,7 @@ class PolylineView: UIView, Consumer {
 
     func reset() {
         model = Consumes(lines: [], deltas: [])
+        setNeedsDisplay()
     }
 
     // MARK: - Draw

@@ -27,9 +27,6 @@ class DebugViewController: BaseViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 
-        touchEventStream.addConsumer { (updatedEvents) in
-            self.allEvents.append(contentsOf: updatedEvents)
-        }
         touchEventStream.addConsumer(touchPathStream)
         touchPathStream.addConsumer(lineStream)
         touchPathStream.addConsumer(pointsView)
@@ -61,18 +58,26 @@ class DebugViewController: BaseViewController {
         eventView.addGestureRecognizer(touchEventStream.gesture)
     }
 
-    @objc override func didRequestClear(_ sender: UIView) {
+    override func reset() {
         self.pointsView.reset()
         self.linesView.reset()
         self.curvesView.reset()
-        super.didRequestClear(sender)
+        super.reset()
     }
 }
 
 extension DebugViewController: SettingsViewControllerDelegate {
-    func settingsChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool) {
+    func visibilityChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool) {
         pointsView.isHidden = !pointsEnabled
         linesView.isHidden = !linesEnabled
         curvesView.isHidden = !curvesEnabled
+    }
+
+    func smoothingChanged(savitzkyGolayEnabled: Bool) {
+        savitzkyGolay.enabled = savitzkyGolayEnabled
+        // reprocess all events
+        let events = allEvents
+        reset()
+        touchEventStream.process(events: events)
     }
 }

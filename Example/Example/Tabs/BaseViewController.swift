@@ -54,6 +54,11 @@ class BaseViewController: UIViewController, UIDocumentPickerDelegate {
         clearButton.addTarget(self, action: #selector(didRequestClear), for: .touchUpInside)
     }
 
+    func reset() {
+        allEvents = []
+        touchEventStream.reset()
+    }
+
     // MARK: - UIDocumentPickerDelegate
 
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
@@ -100,7 +105,6 @@ extension BaseViewController {
     }
 
     @objc func didRequestClear(_ sender: UIView) {
-        allEvents = []
-        touchEventStream.reset()
+        reset()
     }
 }

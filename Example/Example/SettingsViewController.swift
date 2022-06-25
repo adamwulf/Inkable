@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 @objc protocol SettingsViewControllerDelegate {
-    func settingsChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool)
+    func visibilityChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool)
+    func smoothingChanged(savitzkyGolayEnabled: Bool)
 }
 
 class SettingsViewController: UITableViewController {
@@ -19,6 +20,7 @@ class SettingsViewController: UITableViewController {
     private var pointsEnabled: Bool = true
     private var linesEnabled: Bool = true
     private var curvesEnabled: Bool = true
+    private var savitzkyGolayEnabled: Bool = true
 
     private static let SimpleCell = "SimpleCell"
 
@@ -29,11 +31,26 @@ class SettingsViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if section == 0 {
+            return 3
+        } else if section == 1 {
+            return 1
+        }
+        assertionFailure()
+        return 0
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Visibility"
+        } else if section == 1 {
+            return "Smoothing"
+        }
+        return nil
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,18 +60,23 @@ class SettingsViewController: UITableViewController {
         }
         var content = cell.defaultContentConfiguration()
 
-        if indexPath.row == 0 {
-            content.text = "Points"
-            cell.accessoryType = pointsEnabled ? .checkmark : .none
-        } else if indexPath.row == 1 {
-            content.text = "Lines"
-            cell.accessoryType = linesEnabled ? .checkmark : .none
-        } else if indexPath.row == 2 {
-            content.text = "Curves"
-            cell.accessoryType = curvesEnabled ? .checkmark : .none
-        } else {
-            assertionFailure()
-            content.text = "Unknown"
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                content.text = "Points"
+                cell.accessoryType = pointsEnabled ? .checkmark : .none
+            } else if indexPath.row == 1 {
+                content.text = "Lines"
+                cell.accessoryType = linesEnabled ? .checkmark : .none
+            } else if indexPath.row == 2 {
+                content.text = "Curves"
+                cell.accessoryType = curvesEnabled ? .checkmark : .none
+            } else {
+                assertionFailure()
+                content.text = "Unknown"
+            }
+        } else if indexPath.section == 1 {
+            content.text = "Savitzky-Golay"
+            cell.accessoryType = savitzkyGolayEnabled ? .checkmark : .none
         }
 
         cell.contentConfiguration = content
@@ -65,16 +87,26 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        if indexPath.row == 0 {
-            pointsEnabled = !pointsEnabled
-        } else if indexPath.row == 1 {
-            linesEnabled = !linesEnabled
-        } else if indexPath.row == 2 {
-            curvesEnabled = !curvesEnabled
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                pointsEnabled = !pointsEnabled
+            } else if indexPath.row == 1 {
+                linesEnabled = !linesEnabled
+            } else if indexPath.row == 2 {
+                curvesEnabled = !curvesEnabled
+            }
+
+            settingsDelegate?.visibilityChanged(pointsEnabled: pointsEnabled,
+                                                linesEnabled: linesEnabled,
+                                                curvesEnabled: curvesEnabled)
+        } else if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                savitzkyGolayEnabled = !savitzkyGolayEnabled
+            }
+            settingsDelegate?.smoothingChanged(savitzkyGolayEnabled: savitzkyGolayEnabled)
         }
 
         tableView.reloadRows(at: [indexPath], with: .automatic)
 
-        settingsDelegate?.settingsChanged(pointsEnabled: pointsEnabled, linesEnabled: linesEnabled, curvesEnabled: curvesEnabled)
     }
 }
