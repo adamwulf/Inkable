@@ -14,7 +14,14 @@ public struct Polyline {
     public private(set) var isComplete: Bool
     public let touchIdentifier: String
     public var points: [Point]
-
+    public var bounds: CGRect {
+        return points.reduce(.null) { partialResult, point -> CGRect in
+            return CGRect(x: min(partialResult.origin.x, point.x),
+                          y: min(partialResult.origin.y, point.y),
+                          width: max(partialResult.origin.x, point.x),
+                          height: max(partialResult.origin.y, point.y))
+        }
+    }
     public init(touchPath: TouchPath) {
         isComplete = touchPath.isComplete
         touchIdentifier = touchPath.touchIdentifier

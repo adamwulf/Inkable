@@ -1,5 +1,5 @@
 //
-//  PointsView.swift
+//  PolylineView.swift
 //  Example
 //
 //  Created by Adam Wulf on 6/25/22.
@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 import Inkable
 
-class PointsView: UIView, Consumer {
+class PolylineView: UIView, Consumer {
 
-    typealias Consumes = TouchPathStream.Produces
+    typealias Consumes = PolylineStream.Produces
 
     // MARK: - Init
 
@@ -37,28 +37,28 @@ class PointsView: UIView, Consumer {
 
     // MARK: - TouchPathStream Consumer
 
-    private var model: Consumes = Consumes(paths: [], deltas: [])
+    private var model: Consumes = Consumes(lines: [], deltas: [])
 
-    func consume(_ input: TouchPathStream.Produces) {
+    func consume(_ input: PolylineStream.Produces) {
         let previousModel = model
         model = input
 
         for delta in input.deltas {
             switch delta {
-            case .addedTouchPath(let index):
-                let path = model.paths[index]
+            case .addedPolyline(let index):
+                let path = model.lines[index]
                 setNeedsDisplay(path.bounds)
-            case .updatedTouchPath(let index, _):
+            case .updatedPolyline(let index, _):
                 // We could only setNeedsDisplay for the rect of the modified elements of the path.
                 // For now, we'll set the entire path as needing display, but something to possibly revisit
-                let path = model.paths[index]
+                let path = model.lines[index]
                 setNeedsDisplay(path.bounds)
-                if index < previousModel.paths.count {
-                    let previous = previousModel.paths[index]
+                if index < previousModel.lines.count {
+                    let previous = previousModel.lines[index]
                     setNeedsDisplay(previous.bounds)
                 }
-            case .completedTouchPath(let index):
-                let path = model.paths[index]
+            case .completedPolyline(let index):
+                let path = model.lines[index]
                 setNeedsDisplay(path.bounds)
             case .unhandled(let event):
                 print("Unhandled event: \(event.identifier)")
@@ -67,7 +67,7 @@ class PointsView: UIView, Consumer {
     }
 
     func reset() {
-        model = Consumes(paths: [], deltas: [])
+        model = Consumes(lines: [], deltas: [])
     }
 
     // MARK: - Draw
@@ -75,27 +75,18 @@ class PointsView: UIView, Consumer {
     override func draw(_ rect: CGRect) {
         guard !isHidden else { return }
 
-        for path in model.paths {
-            for point in path.points {
-                var radius: CGFloat = 2
-                if point.event.isUpdate {
-                    radius = 1
-                    if !point.expectsUpdate {
-                        UIColor.red.setFill()
-                    } else {
-                        UIColor.green.setFill()
-                    }
-                } else if point.event.isPrediction {
-                    UIColor.blue.setFill()
+        for polyline in model.lines {
+            UIColor.red.setStroke()
+
+            let path = UIBezierPath()
+            for point in polyline.points {
+                if point.event.phase == .began {
+                    path.move(to: point.location)
                 } else {
-                    if !point.event.expectsUpdate {
-                        UIColor.red.setFill()
-                    } else {
-                        UIColor.green.setFill()
-                    }
+                    path.addLine(to: point.location)
                 }
-                UIBezierPath(ovalIn: CGRect(origin: point.event.location, size: CGSize.zero).expand(by: radius)).fill()
             }
+            path.stroke()
         }
     }
 }

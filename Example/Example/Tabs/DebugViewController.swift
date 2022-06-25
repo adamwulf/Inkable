@@ -16,8 +16,9 @@ class DebugViewController: BaseViewController {
     let attributeStream = AttributesStream()
     @IBOutlet var debugView: DebugView?
 
+    let eventView = UIView()
     let pointsView = PointsView(frame: .zero)
-    var linesView: UIView?
+    var linesView = PolylineView(frame: .zero)
     var curvesView: UIView?
 
     let savitzkyGolay = NaiveSavitzkyGolay()
@@ -38,6 +39,7 @@ class DebugViewController: BaseViewController {
             strokeOutput = input
         }
         lineStream.addConsumer(douglasPeucker)
+        lineStream.addConsumer(linesView)
         douglasPeucker.addConsumer(pointDistance)
         pointDistance.addConsumer(savitzkyGolay)
         savitzkyGolay.addConsumer(bezierStream)
@@ -53,10 +55,15 @@ class DebugViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addSubview(eventView)
         view.addSubview(pointsView)
-        pointsView.layoutHuggingParent(safeArea: true)
+        view.addSubview(linesView)
 
-        debugView?.addGestureRecognizer(touchEventStream.gesture)
+        eventView.layoutHuggingParent(safeArea: true)
+        pointsView.layoutHuggingParent(safeArea: true)
+        linesView.layoutHuggingParent(safeArea: true)
+
+        eventView.addGestureRecognizer(touchEventStream.gesture)
     }
 
     @objc override func didRequestClear(_ sender: UIView) {
@@ -68,5 +75,8 @@ class DebugViewController: BaseViewController {
 extension DebugViewController: SettingsViewControllerDelegate {
     func settingsChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool) {
         pointsView.isHidden = !pointsEnabled
+        linesView.isHidden = !linesEnabled
+        curvesView?.isHidden = !curvesEnabled
+        debugView?.isHidden = !curvesEnabled
     }
 }
