@@ -8,6 +8,7 @@
 import UIKit
 @testable import Inkable
 @testable import SwiftToolbox
+import ClippingBezier
 
 typealias Event = TouchEvent.Simple
 
