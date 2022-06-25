@@ -7,6 +7,7 @@
 
 import UIKit
 import Inkable
+import UniformTypeIdentifiers
 
 class BaseViewController: UIViewController, UIDocumentPickerDelegate {
 
@@ -93,7 +94,7 @@ extension BaseViewController {
     }
 
     @objc func didRequestImport(_ sender: UIView) {
-        let picker = UIDocumentPickerViewController(documentTypes: ["public.json", "public.text"], in: .import)
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.json, UTType.text])
         picker.delegate = self
         present(picker, animated: true, completion: nil)
     }
