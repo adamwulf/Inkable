@@ -15,10 +15,12 @@
 		C505447D270A5C45009E4FA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C505447B270A5C45009E4FA9 /* LaunchScreen.storyboard */; };
 		C505448A270A5C85009E4FA9 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054489270A5C85009E4FA9 /* BaseViewController.swift */; };
 		C505448B270A5C85009E4FA9 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054488270A5C85009E4FA9 /* DebugViewController.swift */; };
-		C505448C270A5C85009E4FA9 /* ClippedBezierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054486270A5C85009E4FA9 /* ClippedBezierViewController.swift */; };
 		C505448D270A5C85009E4FA9 /* BezierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054487270A5C85009E4FA9 /* BezierViewController.swift */; };
 		C5054493270A5D13009E4FA9 /* Inkable in Frameworks */ = {isa = PBXBuildFile; productRef = C5054492270A5D13009E4FA9 /* Inkable */; };
 		C5054499270A5D51009E4FA9 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054498270A5D51009E4FA9 /* DebugView.swift */; };
+		C54CD17628678D2400870745 /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17128678BDF00870745 /* BezierView.swift */; };
+		C54CD17728678D2700870745 /* NaiveDrawRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17028678BDF00870745 /* NaiveDrawRectView.swift */; };
+		C54CD17828678D2900870745 /* SmartDrawRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17228678BDF00870745 /* SmartDrawRectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,12 +32,14 @@
 		C5054479270A5C45009E4FA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C505447C270A5C45009E4FA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C505447E270A5C45009E4FA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5054486270A5C85009E4FA9 /* ClippedBezierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippedBezierViewController.swift; sourceTree = "<group>"; };
 		C5054487270A5C85009E4FA9 /* BezierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierViewController.swift; sourceTree = "<group>"; };
 		C5054488270A5C85009E4FA9 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		C5054489270A5C85009E4FA9 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C5054490270A5CB7009E4FA9 /* Inkable */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Inkable; path = ..; sourceTree = "<group>"; };
 		C5054498270A5D51009E4FA9 /* DebugView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebugView.swift; path = ../../../DrawUI/DrawUIExample/DebugView.swift; sourceTree = "<group>"; };
+		C54CD17028678BDF00870745 /* NaiveDrawRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaiveDrawRectView.swift; sourceTree = "<group>"; };
+		C54CD17128678BDF00870745 /* BezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
+		C54CD17228678BDF00870745 /* SmartDrawRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartDrawRectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 		C505446F270A5C42009E4FA9 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				C54CD16F28678BDF00870745 /* BezierStreamRender */,
 				C505448E270A5C91009E4FA9 /* Tabs */,
 				C5054498270A5D51009E4FA9 /* DebugView.swift */,
 				C5054470270A5C42009E4FA9 /* AppDelegate.swift */,
@@ -89,7 +94,6 @@
 			children = (
 				C5054489270A5C85009E4FA9 /* BaseViewController.swift */,
 				C5054487270A5C85009E4FA9 /* BezierViewController.swift */,
-				C5054486270A5C85009E4FA9 /* ClippedBezierViewController.swift */,
 				C5054488270A5C85009E4FA9 /* DebugViewController.swift */,
 			);
 			path = Tabs;
@@ -108,6 +112,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C54CD16F28678BDF00870745 /* BezierStreamRender */ = {
+			isa = PBXGroup;
+			children = (
+				C54CD17028678BDF00870745 /* NaiveDrawRectView.swift */,
+				C54CD17128678BDF00870745 /* BezierView.swift */,
+				C54CD17228678BDF00870745 /* SmartDrawRectView.swift */,
+			);
+			path = BezierStreamRender;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,14 +199,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C54CD17828678D2900870745 /* SmartDrawRectView.swift in Sources */,
 				C505448D270A5C85009E4FA9 /* BezierViewController.swift in Sources */,
 				C5054475270A5C42009E4FA9 /* ViewController.swift in Sources */,
 				C505448A270A5C85009E4FA9 /* BaseViewController.swift in Sources */,
 				C5054471270A5C42009E4FA9 /* AppDelegate.swift in Sources */,
+				C54CD17728678D2700870745 /* NaiveDrawRectView.swift in Sources */,
 				C5054499270A5D51009E4FA9 /* DebugView.swift in Sources */,
 				C5054473270A5C42009E4FA9 /* SceneDelegate.swift in Sources */,
 				C505448B270A5C85009E4FA9 /* DebugViewController.swift in Sources */,
-				C505448C270A5C85009E4FA9 /* ClippedBezierViewController.swift in Sources */,
+				C54CD17628678D2400870745 /* BezierView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

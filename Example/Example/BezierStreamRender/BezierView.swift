@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Inkable
 
 open class BezierView: UIView, Consumer {
 

@@ -7,7 +7,7 @@
 
 import UIKit
 @testable import Inkable
-@testable import MMSwiftToolbox
+@testable import SwiftToolbox
 
 typealias Event = TouchEvent.Simple
 

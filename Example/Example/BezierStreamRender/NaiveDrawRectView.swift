@@ -1,17 +1,18 @@
 //
-//  NaiveClippedDrawRectView.swift
+//  NaiveDrawRectView.swift
 //  Inkable
 //
-//  Created by Adam Wulf on 4/4/21.
+//  Created by Adam Wulf on 3/15/21.
 //
 
 import UIKit
-import MMSwiftToolbox
+import Inkable
+import SwiftToolbox
 import PerformanceBezier
 
-open class NaiveClippedDrawRectView: ClippedBezierView {
+open class NaiveDrawRectView: BezierView {
 
-    private var model: ClippedBezierStream.Produces = ClippedBezierStream.Produces.empty
+    private var model: BezierStream.Produces = BezierStream.Produces.empty
 
     override public func consume(_ input: Consumes) {
         model = input
@@ -22,7 +23,7 @@ open class NaiveClippedDrawRectView: ClippedBezierView {
     }
 
     override public func reset() {
-        model = ClippedBezierStream.Produces.empty
+        model = BezierStream.Produces.empty
         setNeedsDisplay()
     }
 

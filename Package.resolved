@@ -11,21 +11,21 @@
         }
       },
       {
-        "package": "MMSwiftToolbox",
-        "repositoryURL": "https://github.com/adamwulf/MMSwiftToolbox.git",
-        "state": {
-          "branch": "main",
-          "revision": "bcca4a637e512d41772582ef9e602c6df876a585",
-          "version": null
-        }
-      },
-      {
         "package": "PerformanceBezier",
         "repositoryURL": "https://github.com/adamwulf/PerformanceBezier.git",
         "state": {
           "branch": null,
           "revision": "5737bfcfe7b69ea79a02853f75ae838892f5db51",
           "version": "1.3.0"
+        }
+      },
+      {
+        "package": "SwiftToolbox",
+        "repositoryURL": "https://github.com/adamwulf/SwiftToolbox.git",
+        "state": {
+          "branch": "main",
+          "revision": "7f3f1c615bf9a1564bea4a6f40051e803757e55a",
+          "version": null
         }
       }
     ]

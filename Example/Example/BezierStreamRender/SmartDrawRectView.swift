@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import MMSwiftToolbox
+import Inkable
+import SwiftToolbox
 
 open class SmartDrawRectView: BezierView {
 

@@ -7,7 +7,7 @@
 
 import UIKit
 import Inkable
-import MMSwiftToolbox
+import SwiftToolbox
 
 class BezierViewController: BaseViewController {
 

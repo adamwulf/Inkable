@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import PerformanceBezier
+import SwiftToolbox
 
 open class BezierStream: ProducerConsumer {
 
