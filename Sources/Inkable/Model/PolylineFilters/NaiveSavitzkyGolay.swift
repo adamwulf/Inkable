@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftToolbox
 
 /// Smooths the points of the input strokes using the Savitzky–Golay filter, which smooths a stroke by fitting a polynomial, in a least squares sense, to a sliding window of its points.
 /// https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter
@@ -30,12 +31,12 @@ open class NaiveSavitzkyGolay: ProducerConsumer {
             clearCaches()
         }
     }
-    @Clamping(2...12) public var window: Int = 2 {
+    @Clamped(2...12) public var window: Int = 2 {
         didSet {
             clearCaches()
         }
     }
-    @Clamping(0...1) public var strength: CGFloat = 1
+    @Clamped(0...1) public var strength: CGFloat = 1
 
     // MARK: Init
 

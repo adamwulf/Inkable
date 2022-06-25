@@ -81,7 +81,7 @@ open class TouchPath {
             } else if event.isPrediction {
                 // The event is a prediction. Attempt to consume a previous prediction and reuse a Point object,
                 // otherwise create a new Point and add to the predictions array
-                if let prediction = consumable.popFirst() {
+                if let prediction = consumable.dequeue() {
                     // This event is a prediction, and we can reuse one of the points from the previous predictions
                     // consume a prediction and reuse it
                     prediction.add(event: event)
@@ -103,7 +103,7 @@ open class TouchPath {
                 predictedPoints.removeAll()
 
                 // The event is a normal confirmed user event. Attempt to re-use a consumable point, or create a new Point
-                if let point = consumable.popFirst() ?? predictedPoints.popFirst() {
+                if let point = consumable.dequeue() ?? predictedPoints.dequeue() {
                     // The event is a new confirmed points, consume a previous prediction if possible and update it to the now
                     // confirmed point.
                     if event.expectsUpdate {
