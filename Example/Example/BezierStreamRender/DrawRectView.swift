@@ -8,7 +8,7 @@
 import UIKit
 import Inkable
 
-open class BezierView: UIView, Consumer {
+open class DrawRectView: UIView, Consumer {
 
     public typealias Consumes = BezierStream.Produces
 

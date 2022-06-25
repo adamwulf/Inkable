@@ -15,24 +15,9 @@
                     <view key="view" contentMode="scaleToFill" id="Au3-qq-d3u">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2O-Tc-Ihb" customClass="DebugView" customModule="Example" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Kpx-Py-ZnD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Kpx-Py-ZnD" firstAttribute="trailing" secondItem="b2O-Tc-Ihb" secondAttribute="trailing" id="3jq-gQ-rD0"/>
-                            <constraint firstItem="b2O-Tc-Ihb" firstAttribute="leading" secondItem="Kpx-Py-ZnD" secondAttribute="leading" id="RZa-gN-TMe"/>
-                            <constraint firstItem="b2O-Tc-Ihb" firstAttribute="top" secondItem="Kpx-Py-ZnD" secondAttribute="top" id="arq-U2-qRG"/>
-                            <constraint firstItem="Kpx-Py-ZnD" firstAttribute="bottom" secondItem="b2O-Tc-Ihb" secondAttribute="bottom" id="cfJ-aR-rbb"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="debugView" destination="b2O-Tc-Ihb" id="OkI-FY-LLo"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sMc-Vj-gpn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

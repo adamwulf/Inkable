@@ -10,7 +10,7 @@ import Inkable
 import SwiftToolbox
 import PerformanceBezier
 
-open class NaiveDrawRectView: BezierView {
+open class NaiveDrawRectView: DrawRectView {
 
     private var model: BezierStream.Produces = BezierStream.Produces.empty
 

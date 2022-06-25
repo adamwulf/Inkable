@@ -16,14 +16,14 @@
 		C505448B270A5C85009E4FA9 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054488270A5C85009E4FA9 /* DebugViewController.swift */; };
 		C505448D270A5C85009E4FA9 /* BezierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054487270A5C85009E4FA9 /* BezierViewController.swift */; };
 		C5054493270A5D13009E4FA9 /* Inkable in Frameworks */ = {isa = PBXBuildFile; productRef = C5054492270A5D13009E4FA9 /* Inkable */; };
-		C5054499270A5D51009E4FA9 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054498270A5D51009E4FA9 /* DebugView.swift */; };
-		C54CD17628678D2400870745 /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17128678BDF00870745 /* BezierView.swift */; };
 		C54CD17728678D2700870745 /* NaiveDrawRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17028678BDF00870745 /* NaiveDrawRectView.swift */; };
 		C54CD17828678D2900870745 /* SmartDrawRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17228678BDF00870745 /* SmartDrawRectView.swift */; };
 		C54CD17A2867BB0C00870745 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD1792867BB0C00870745 /* SplitViewController.swift */; };
 		C54CD17C2867BB3300870745 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17B2867BB3300870745 /* SettingsViewController.swift */; };
 		C54CD17F2867C3EA00870745 /* PointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17E2867C3EA00870745 /* PointsView.swift */; };
 		C54CD1812867CA3000870745 /* PolylineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD1802867CA3000870745 /* PolylineView.swift */; };
+		C54CD1832867CC0000870745 /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD1822867CC0000870745 /* BezierView.swift */; };
+		C54CD1852867CC9100870745 /* DrawRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD1842867CC9100870745 /* DrawRectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,14 +38,14 @@
 		C5054488270A5C85009E4FA9 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		C5054489270A5C85009E4FA9 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C5054490270A5CB7009E4FA9 /* Inkable */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Inkable; path = ..; sourceTree = "<group>"; };
-		C5054498270A5D51009E4FA9 /* DebugView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebugView.swift; path = ../../../DrawUI/DrawUIExample/DebugView.swift; sourceTree = "<group>"; };
 		C54CD17028678BDF00870745 /* NaiveDrawRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaiveDrawRectView.swift; sourceTree = "<group>"; };
-		C54CD17128678BDF00870745 /* BezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
 		C54CD17228678BDF00870745 /* SmartDrawRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartDrawRectView.swift; sourceTree = "<group>"; };
 		C54CD1792867BB0C00870745 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		C54CD17B2867BB3300870745 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C54CD17E2867C3EA00870745 /* PointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsView.swift; sourceTree = "<group>"; };
 		C54CD1802867CA3000870745 /* PolylineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineView.swift; sourceTree = "<group>"; };
+		C54CD1822867CC0000870745 /* BezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
+		C54CD1842867CC9100870745 /* DrawRectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,6 @@
 				C54CD17D2867C3E000870745 /* View Layers */,
 				C54CD16F28678BDF00870745 /* BezierStreamRender */,
 				C505448E270A5C91009E4FA9 /* Tabs */,
-				C5054498270A5D51009E4FA9 /* DebugView.swift */,
 				C5054470270A5C42009E4FA9 /* AppDelegate.swift */,
 				C5054472270A5C42009E4FA9 /* SceneDelegate.swift */,
 				C54CD17B2867BB3300870745 /* SettingsViewController.swift */,
@@ -125,8 +124,8 @@
 		C54CD16F28678BDF00870745 /* BezierStreamRender */ = {
 			isa = PBXGroup;
 			children = (
+				C54CD1842867CC9100870745 /* DrawRectView.swift */,
 				C54CD17028678BDF00870745 /* NaiveDrawRectView.swift */,
-				C54CD17128678BDF00870745 /* BezierView.swift */,
 				C54CD17228678BDF00870745 /* SmartDrawRectView.swift */,
 			);
 			path = BezierStreamRender;
@@ -137,6 +136,7 @@
 			children = (
 				C54CD17E2867C3EA00870745 /* PointsView.swift */,
 				C54CD1802867CA3000870745 /* PolylineView.swift */,
+				C54CD1822867CC0000870745 /* BezierView.swift */,
 			);
 			path = "View Layers";
 			sourceTree = "<group>";
@@ -221,11 +221,11 @@
 				C54CD17A2867BB0C00870745 /* SplitViewController.swift in Sources */,
 				C505448A270A5C85009E4FA9 /* BaseViewController.swift in Sources */,
 				C5054471270A5C42009E4FA9 /* AppDelegate.swift in Sources */,
+				C54CD1852867CC9100870745 /* DrawRectView.swift in Sources */,
+				C54CD1832867CC0000870745 /* BezierView.swift in Sources */,
 				C54CD17728678D2700870745 /* NaiveDrawRectView.swift in Sources */,
-				C5054499270A5D51009E4FA9 /* DebugView.swift in Sources */,
 				C5054473270A5C42009E4FA9 /* SceneDelegate.swift in Sources */,
 				C505448B270A5C85009E4FA9 /* DebugViewController.swift in Sources */,
-				C54CD17628678D2400870745 /* BezierView.swift in Sources */,
 				C54CD17C2867BB3300870745 /* SettingsViewController.swift in Sources */,
 				C54CD17F2867C3EA00870745 /* PointsView.swift in Sources */,
 				C54CD1812867CA3000870745 /* PolylineView.swift in Sources */,

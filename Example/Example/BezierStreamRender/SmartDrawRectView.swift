@@ -9,7 +9,7 @@ import UIKit
 import Inkable
 import SwiftToolbox
 
-open class SmartDrawRectView: BezierView {
+open class SmartDrawRectView: DrawRectView {
 
     public typealias Consumes = BezierStream.Produces
 
