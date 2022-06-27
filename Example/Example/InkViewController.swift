@@ -1,5 +1,5 @@
 //
-//  DebugViewController.swift
+//  InkViewController.swift
 //  DrawUIExample
 //
 //  Created by Adam Wulf on 8/16/20.
@@ -8,8 +8,11 @@
 import UIKit
 import Inkable
 
-class DebugViewController: BaseViewController {
+class InkViewController: UIViewController {
 
+    var allEvents: [DrawEvent] = []
+
+    let touchEventStream = TouchEventStream()
     let touchPathStream = TouchPathStream()
     let lineStream = PolylineStream()
     let bezierStream = BezierStream(smoother: AntigrainSmoother())
@@ -27,6 +30,9 @@ class DebugViewController: BaseViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 
+        touchEventStream.addConsumer { (updatedEvents) in
+            self.allEvents.append(contentsOf: updatedEvents)
+        }
         touchEventStream.addConsumer(touchPathStream)
         touchPathStream.addConsumer(lineStream)
         touchPathStream.addConsumer(pointsView)
@@ -58,15 +64,16 @@ class DebugViewController: BaseViewController {
         eventView.addGestureRecognizer(touchEventStream.gesture)
     }
 
-    override func reset() {
+    func reset() {
         self.pointsView.reset()
         self.linesView.reset()
         self.curvesView.reset()
-        super.reset()
+        allEvents = []
+        touchEventStream.reset()
     }
 }
 
-extension DebugViewController: SettingsViewControllerDelegate {
+extension InkViewController: SettingsViewControllerDelegate {
     func clearAllData() {
         self.reset()
     }

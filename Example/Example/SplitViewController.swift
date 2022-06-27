@@ -15,18 +15,18 @@ class SplitViewController: UISplitViewController {
         return nav.viewControllers.first as? SettingsViewController
     }
 
-    private var debugViewController: DebugViewController? {
-        return self.viewController(for: .secondary) as? DebugViewController
+    private var inkViewController: InkViewController? {
+        return self.viewController(for: .secondary) as? InkViewController
     }
 
-    private var eventsViewController: EventsViewController? {
+    private var eventsViewController: EventListViewController? {
         guard let nav = self.viewController(for: .primary) as? UINavigationController else { return nil }
-        return nav.viewControllers.first as? EventsViewController
+        return nav.viewControllers.first as? EventListViewController
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        settingsViewController?.settingsDelegate = debugViewController
+        settingsViewController?.settingsDelegate = inkViewController
     }
 }

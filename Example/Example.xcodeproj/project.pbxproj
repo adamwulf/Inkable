@@ -12,9 +12,6 @@
 		C5054478270A5C42009E4FA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5054476270A5C42009E4FA9 /* Main.storyboard */; };
 		C505447A270A5C45009E4FA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5054479270A5C45009E4FA9 /* Assets.xcassets */; };
 		C505447D270A5C45009E4FA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C505447B270A5C45009E4FA9 /* LaunchScreen.storyboard */; };
-		C505448A270A5C85009E4FA9 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054489270A5C85009E4FA9 /* BaseViewController.swift */; };
-		C505448B270A5C85009E4FA9 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054488270A5C85009E4FA9 /* DebugViewController.swift */; };
-		C505448D270A5C85009E4FA9 /* BezierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5054487270A5C85009E4FA9 /* BezierViewController.swift */; };
 		C5054493270A5D13009E4FA9 /* Inkable in Frameworks */ = {isa = PBXBuildFile; productRef = C5054492270A5D13009E4FA9 /* Inkable */; };
 		C54CD17728678D2700870745 /* NaiveDrawRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17028678BDF00870745 /* NaiveDrawRectView.swift */; };
 		C54CD17828678D2900870745 /* SmartDrawRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17228678BDF00870745 /* SmartDrawRectView.swift */; };
@@ -24,7 +21,8 @@
 		C54CD1812867CA3000870745 /* PolylineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD1802867CA3000870745 /* PolylineView.swift */; };
 		C54CD1832867CC0000870745 /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD1822867CC0000870745 /* BezierView.swift */; };
 		C54CD1852867CC9100870745 /* DrawRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD1842867CC9100870745 /* DrawRectView.swift */; };
-		C54CD18A286A2D0E00870745 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD189286A2D0E00870745 /* EventsViewController.swift */; };
+		C54CD190286A34E300870745 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD18F286A34E300870745 /* EventListViewController.swift */; };
+		C54CD192286A354200870745 /* InkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD191286A354200870745 /* InkViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +33,6 @@
 		C5054479270A5C45009E4FA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C505447C270A5C45009E4FA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C505447E270A5C45009E4FA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5054487270A5C85009E4FA9 /* BezierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierViewController.swift; sourceTree = "<group>"; };
-		C5054488270A5C85009E4FA9 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
-		C5054489270A5C85009E4FA9 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C5054490270A5CB7009E4FA9 /* Inkable */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Inkable; path = ..; sourceTree = "<group>"; };
 		C54CD17028678BDF00870745 /* NaiveDrawRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaiveDrawRectView.swift; sourceTree = "<group>"; };
 		C54CD17228678BDF00870745 /* SmartDrawRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartDrawRectView.swift; sourceTree = "<group>"; };
@@ -47,7 +42,8 @@
 		C54CD1802867CA3000870745 /* PolylineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineView.swift; sourceTree = "<group>"; };
 		C54CD1822867CC0000870745 /* BezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
 		C54CD1842867CC9100870745 /* DrawRectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRectView.swift; sourceTree = "<group>"; };
-		C54CD189286A2D0E00870745 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		C54CD18F286A34E300870745 /* EventListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
+		C54CD191286A354200870745 /* InkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InkViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +84,10 @@
 				C505448E270A5C91009E4FA9 /* Tabs */,
 				C5054470270A5C42009E4FA9 /* AppDelegate.swift */,
 				C5054472270A5C42009E4FA9 /* SceneDelegate.swift */,
-				C54CD17B2867BB3300870745 /* SettingsViewController.swift */,
 				C54CD1792867BB0C00870745 /* SplitViewController.swift */,
-				C54CD189286A2D0E00870745 /* EventsViewController.swift */,
+				C54CD17B2867BB3300870745 /* SettingsViewController.swift */,
+				C54CD18F286A34E300870745 /* EventListViewController.swift */,
+				C54CD191286A354200870745 /* InkViewController.swift */,
 				C5054476270A5C42009E4FA9 /* Main.storyboard */,
 				C5054479270A5C45009E4FA9 /* Assets.xcassets */,
 				C505447B270A5C45009E4FA9 /* LaunchScreen.storyboard */,
@@ -102,9 +99,6 @@
 		C505448E270A5C91009E4FA9 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				C5054489270A5C85009E4FA9 /* BaseViewController.swift */,
-				C5054487270A5C85009E4FA9 /* BezierViewController.swift */,
-				C5054488270A5C85009E4FA9 /* DebugViewController.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -220,18 +214,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				C54CD17828678D2900870745 /* SmartDrawRectView.swift in Sources */,
-				C505448D270A5C85009E4FA9 /* BezierViewController.swift in Sources */,
 				C54CD17A2867BB0C00870745 /* SplitViewController.swift in Sources */,
-				C505448A270A5C85009E4FA9 /* BaseViewController.swift in Sources */,
 				C5054471270A5C42009E4FA9 /* AppDelegate.swift in Sources */,
 				C54CD1852867CC9100870745 /* DrawRectView.swift in Sources */,
 				C54CD1832867CC0000870745 /* BezierView.swift in Sources */,
+				C54CD192286A354200870745 /* InkViewController.swift in Sources */,
 				C54CD17728678D2700870745 /* NaiveDrawRectView.swift in Sources */,
 				C5054473270A5C42009E4FA9 /* SceneDelegate.swift in Sources */,
-				C505448B270A5C85009E4FA9 /* DebugViewController.swift in Sources */,
 				C54CD17C2867BB3300870745 /* SettingsViewController.swift in Sources */,
-				C54CD18A286A2D0E00870745 /* EventsViewController.swift in Sources */,
 				C54CD17F2867C3EA00870745 /* PointsView.swift in Sources */,
+				C54CD190286A34E300870745 /* EventListViewController.swift in Sources */,
 				C54CD1812867CA3000870745 /* PolylineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
