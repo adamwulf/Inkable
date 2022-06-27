@@ -40,7 +40,42 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7x-ev-Nvv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1800" y="2212"/>
+            <point key="canvasLocation" x="-459" y="1782"/>
+        </scene>
+        <!--Events View Controller-->
+        <scene sceneID="uUz-rl-GNl">
+            <objects>
+                <tableViewController id="SKa-R3-szx" userLabel="Events View Controller" customClass="EventsViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ICP-zr-bM2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="SKa-R3-szx" id="Ugl-zv-PyZ"/>
+                            <outlet property="delegate" destination="SKa-R3-szx" id="ZR7-5h-a8c"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Events" id="3h3-do-eSp"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hbr-hz-B7H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-459" y="1062"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="O5k-yb-6Vw">
+            <objects>
+                <navigationController id="pJo-HK-5NE" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bca-PI-5sJ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="SKa-R3-szx" kind="relationship" relationship="rootViewController" id="AO7-mY-sFI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HK0-Y5-7ei" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1346" y="1062"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tBG-Pn-xJ6">
@@ -56,15 +91,16 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecm-gT-yzp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1800" y="1422"/>
+            <point key="canvasLocation" x="-1346" y="1782"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="mot-FF-qTT">
             <objects>
                 <splitViewController allowDoubleColumnStyle="YES" id="WBD-7P-gIS" customClass="SplitViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="0J5-zX-OPf" kind="relationship" relationship="masterViewController" id="Dve-vc-Ghv"/>
                         <segue destination="KFW-nm-iEj" kind="relationship" relationship="detailViewController" id="Y4j-xg-k5v"/>
+                        <segue destination="0J5-zX-OPf" kind="relationship" relationship="supplementaryViewController" id="Vl9-G0-iNH"/>
+                        <segue destination="pJo-HK-5NE" kind="relationship" relationship="masterViewController" id="73a-Fy-QiE"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9OO-P3-7Fo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
