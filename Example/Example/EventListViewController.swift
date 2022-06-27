@@ -97,8 +97,43 @@ class EventListViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell") else { fatalError() }
 
         var configuration = cell.defaultContentConfiguration()
+        let event = allEvents[indexPath.row]
 
-        configuration.text = allEvents[indexPath.row].identifier
+        if let touchEvent = event as? TouchEvent {
+            if touchEvent.isPrediction {
+                configuration.text = "prediction: " + touchEvent.location.debugDescription
+            } else if touchEvent.isUpdate {
+                if touchEvent.estimatedProperties.isEmpty {
+                    configuration.text = "final update: " + touchEvent.location.debugDescription
+                } else {
+                    configuration.text = "update: " + touchEvent.location.debugDescription
+                }
+            } else if touchEvent.expectsUpdate {
+                configuration.text = "will update: " + touchEvent.location.debugDescription
+            } else {
+                configuration.text = "final: " + touchEvent.location.debugDescription
+            }
+            let touchId = touchEvent.pointIdentifier.suffix(from: touchEvent.pointIdentifier.firstIndex(of: ":")!)
+            configuration.secondaryText = String(touchId)
+            switch touchEvent.type {
+            case .direct:
+                configuration.image = UIImage(systemName: "hand.point.up")
+            case .indirect:
+                configuration.image = UIImage(systemName: "rectangle.and.hand.point.up.left.filled")
+            case .pencil:
+                configuration.image = UIImage(systemName: "pencil.circle")
+            case .indirectPointer:
+                configuration.image = UIImage(systemName: "square.and.pencil")
+            @unknown default:
+                configuration.image = UIImage(systemName: "questionmark.circle")
+            }
+        } else if let touchEvent = event as? ToolEvent {
+            configuration.text = "Tool: \(touchEvent.style.width)pt \(touchEvent.style.color?.debugDescription ?? "clear")"
+            configuration.image = UIImage(systemName: "paintbrush")
+        } else {
+            configuration.text = event.identifier
+            configuration.image = UIImage(systemName: "questionmark.circle")
+        }
 
         cell.contentConfiguration = configuration
 
