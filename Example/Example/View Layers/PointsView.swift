@@ -82,17 +82,17 @@ class PointsView: UIView, Consumer {
                 if point.event.isUpdate {
                     radius = 1
                     if !point.expectsUpdate {
-                        UIColor.red.setFill()
+                        UIColor.isFinal.setFill()
                     } else {
-                        UIColor.green.setFill()
+                        UIColor.isUpdate.setFill()
                     }
                 } else if point.event.isPrediction {
-                    UIColor.blue.setFill()
+                    UIColor.isPrediction.setFill()
                 } else {
                     if !point.event.expectsUpdate {
-                        UIColor.red.setFill()
+                        UIColor.isFinal.setFill()
                     } else {
-                        UIColor.green.setFill()
+                        UIColor.isUpdate.setFill()
                     }
                 }
                 UIBezierPath(ovalIn: CGRect(origin: point.event.location, size: CGSize.zero).expand(by: radius)).fill()

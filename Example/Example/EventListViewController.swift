@@ -102,16 +102,21 @@ class EventListViewController: UITableViewController {
         if let touchEvent = event as? TouchEvent {
             if touchEvent.isPrediction {
                 configuration.text = "prediction: " + touchEvent.location.debugDescription
+                configuration.textProperties.color = UIColor.isPrediction
             } else if touchEvent.isUpdate {
                 if touchEvent.estimatedProperties.isEmpty {
                     configuration.text = "final update: " + touchEvent.location.debugDescription
+                    configuration.textProperties.color = UIColor.isFinal
                 } else {
                     configuration.text = "update: " + touchEvent.location.debugDescription
+                    configuration.textProperties.color = UIColor.isUpdate
                 }
             } else if touchEvent.expectsUpdate {
                 configuration.text = "will update: " + touchEvent.location.debugDescription
+                configuration.textProperties.color = UIColor.isUpdate
             } else {
                 configuration.text = "final: " + touchEvent.location.debugDescription
+                configuration.textProperties.color = UIColor.isFinal
             }
             let touchId = touchEvent.pointIdentifier.suffix(from: touchEvent.pointIdentifier.firstIndex(of: ":")!)
             configuration.secondaryText = String(touchId)
