@@ -67,6 +67,10 @@ class DebugViewController: BaseViewController {
 }
 
 extension DebugViewController: SettingsViewControllerDelegate {
+    func clearAllData() {
+        self.reset()
+    }
+
     func visibilityChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool) {
         pointsView.isHidden = !pointsEnabled
         linesView.isHidden = !linesEnabled
@@ -79,5 +83,12 @@ extension DebugViewController: SettingsViewControllerDelegate {
         let events = allEvents
         reset()
         touchEventStream.process(events: events)
+    }
+
+    func importEvents(_ events: [DrawEvent]) {
+        let existingIdentifiers = allEvents.map({ $0.identifier })
+        let filtered = events.filter({ !existingIdentifiers.contains($0.identifier) })
+        allEvents += filtered
+        touchEventStream.process(events: filtered)
     }
 }

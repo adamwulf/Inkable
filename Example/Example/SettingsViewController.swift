@@ -7,16 +7,54 @@
 
 import Foundation
 import UIKit
+import Inkable
+import UniformTypeIdentifiers
 
-@objc protocol SettingsViewControllerDelegate {
+protocol SettingsViewControllerDelegate {
+    var allEvents: [DrawEvent] { get }
     func visibilityChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool)
     func smoothingChanged(savitzkyGolayEnabled: Bool)
+    func clearAllData()
+    func importEvents(_ events: [DrawEvent])
 }
 
 class SettingsViewController: UITableViewController {
 
-    @IBOutlet var settingsDelegate: SettingsViewControllerDelegate?
+    typealias Section = (title: String, options: [Settings])
+    enum Settings {
+        case showPoints
+        case showLines
+        case showCurves
+        case smoothSavitzkyGolay
+        case importEvents
+        case exportEvents
+        case clearScreen
 
+        var name: String {
+            switch self {
+            case .showPoints:
+                return "Points"
+            case .showLines:
+                return "Lines"
+            case .showCurves:
+                return "Curves"
+            case .smoothSavitzkyGolay:
+                return "Savitzky-Golay"
+            case .importEvents:
+                return "Import"
+            case .exportEvents:
+                return "Export"
+            case .clearScreen:
+                return "Clear"
+            }
+        }
+    }
+
+    var settingsDelegate: SettingsViewControllerDelegate?
+
+    private let navigation: [Section] = [("Visibility", [.showPoints, .showLines, .showCurves]),
+                                         ("Smoothing", [.smoothSavitzkyGolay]),
+                                         ("Data", [.importEvents, .exportEvents, .clearScreen])]
     private var pointsEnabled: Bool = true
     private var linesEnabled: Bool = true
     private var curvesEnabled: Bool = true
@@ -31,52 +69,44 @@ class SettingsViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return navigation.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 3
-        } else if section == 1 {
-            return 1
-        }
-        assertionFailure()
-        return 0
+        guard section >= 0, section < navigation.count else { fatalError() }
+        return navigation[section].options.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Visibility"
-        } else if section == 1 {
-            return "Smoothing"
-        }
-        return nil
+        guard section >= 0, section < navigation.count else { return nil }
+        return navigation[section].title
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Self.SimpleCell) else {
+        guard
+            indexPath.section >= 0, indexPath.section < navigation.count,
+            case let section = navigation[indexPath.section],
+            indexPath.row >= 0, indexPath.row < section.options.count,
+            case let option = section.options[indexPath.row],
+            let cell = tableView.dequeueReusableCell(withIdentifier: Self.SimpleCell)
+        else {
             assertionFailure()
             return UITableViewCell()
         }
         var content = cell.defaultContentConfiguration()
 
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                content.text = "Points"
-                cell.accessoryType = pointsEnabled ? .checkmark : .none
-            } else if indexPath.row == 1 {
-                content.text = "Lines"
-                cell.accessoryType = linesEnabled ? .checkmark : .none
-            } else if indexPath.row == 2 {
-                content.text = "Curves"
-                cell.accessoryType = curvesEnabled ? .checkmark : .none
-            } else {
-                assertionFailure()
-                content.text = "Unknown"
-            }
-        } else if indexPath.section == 1 {
-            content.text = "Savitzky-Golay"
+        content.text = option.name
+        switch option {
+        case .showPoints:
+            cell.accessoryType = pointsEnabled ? .checkmark : .none
+        case .showLines:
+            cell.accessoryType = linesEnabled ? .checkmark : .none
+        case .showCurves:
+            cell.accessoryType = curvesEnabled ? .checkmark : .none
+        case .smoothSavitzkyGolay:
             cell.accessoryType = savitzkyGolayEnabled ? .checkmark : .none
+        case .importEvents, .exportEvents, .clearScreen:
+            break
         }
 
         cell.contentConfiguration = content
@@ -87,26 +117,76 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                pointsEnabled = !pointsEnabled
-            } else if indexPath.row == 1 {
-                linesEnabled = !linesEnabled
-            } else if indexPath.row == 2 {
-                curvesEnabled = !curvesEnabled
-            }
+        guard
+            indexPath.section >= 0, indexPath.section < navigation.count,
+            case let section = navigation[indexPath.section],
+            indexPath.row >= 0, indexPath.row < section.options.count,
+            case let option = section.options[indexPath.row]
+        else {
+            return
+        }
 
-            settingsDelegate?.visibilityChanged(pointsEnabled: pointsEnabled,
-                                                linesEnabled: linesEnabled,
-                                                curvesEnabled: curvesEnabled)
-        } else if indexPath.section == 1 {
-            if indexPath.row == 0 {
-                savitzkyGolayEnabled = !savitzkyGolayEnabled
+        func visibilityChanged() {
+            self.settingsDelegate?.visibilityChanged(pointsEnabled: self.pointsEnabled,
+                                                linesEnabled: self.linesEnabled,
+                                                curvesEnabled: self.curvesEnabled)
+        }
+        func smoothingChanged() {
+            self.settingsDelegate?.smoothingChanged(savitzkyGolayEnabled: self.savitzkyGolayEnabled)
+        }
+
+        switch option {
+        case .showPoints:
+            pointsEnabled = !pointsEnabled
+            visibilityChanged()
+        case .showLines:
+            linesEnabled = !linesEnabled
+            visibilityChanged()
+        case .showCurves:
+            curvesEnabled = !curvesEnabled
+            visibilityChanged()
+        case .smoothSavitzkyGolay:
+            savitzkyGolayEnabled = !savitzkyGolayEnabled
+            smoothingChanged()
+        case .importEvents:
+            let picker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.json, UTType.text], asCopy: true)
+            picker.delegate = self
+            present(picker, animated: true, completion: nil)
+        case .exportEvents:
+            guard
+                let allEvents = settingsDelegate?.allEvents,
+                let cell = tableView.cellForRow(at: indexPath)
+            else { break }
+            let tmpDirURL = FileManager.default.temporaryDirectory.appendingPathComponent("events").appendingPathExtension("json")
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.outputFormatting = [.withoutEscapingSlashes, .prettyPrinted]
+
+            if let json = try? jsonEncoder.encode(allEvents) {
+                do {
+                    try json.write(to: tmpDirURL)
+
+                    let sharevc = UIActivityViewController(activityItems: [tmpDirURL], applicationActivities: nil)
+                    sharevc.popoverPresentationController?.sourceView = cell
+                    present(sharevc, animated: true, completion: nil)
+                } catch {
+                    // ignore
+                }
             }
-            settingsDelegate?.smoothingChanged(savitzkyGolayEnabled: savitzkyGolayEnabled)
+        case .clearScreen:
+            settingsDelegate?.clearAllData()
         }
 
         tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+}
 
+extension SettingsViewController: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        for url in urls {
+            guard let data = try? Data(contentsOf: url) else { continue }
+            let decoder = JSONDecoder()
+            guard let events = try? decoder.decode(Array<TouchEvent>.self, from: data) else { continue }
+            settingsDelegate?.importEvents(events)
+        }
     }
 }
