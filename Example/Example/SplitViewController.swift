@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Inkable
 
 class SplitViewController: UISplitViewController {
 
@@ -19,7 +20,7 @@ class SplitViewController: UISplitViewController {
         return self.viewController(for: .secondary) as? InkViewController
     }
 
-    private var eventsViewController: EventListViewController? {
+    private var eventListViewController: EventListViewController? {
         guard let nav = self.viewController(for: .primary) as? UINavigationController else { return nil }
         return nav.viewControllers.first as? EventListViewController
     }
@@ -27,6 +28,46 @@ class SplitViewController: UISplitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        settingsViewController?.settingsDelegate = inkViewController
+        settingsViewController?.settingsDelegate = self
+        eventListViewController?.inkViewController = inkViewController
+        inkViewController?.eventListViewController = eventListViewController
+    }
+}
+
+extension SplitViewController: SettingsViewControllerDelegate {
+    func visibilityChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool) {
+        inkViewController?.visibilityChanged(pointsEnabled: pointsEnabled, linesEnabled: linesEnabled, curvesEnabled: curvesEnabled)
+    }
+
+    func smoothingChanged(savitzkyGolayEnabled: Bool) {
+        inkViewController?.smoothingChanged(savitzkyGolayEnabled: savitzkyGolayEnabled)
+        eventListViewController?.replayEvents()
+    }
+
+    func clearAllData() {
+        eventListViewController?.reset()
+    }
+
+    func importEvents(_ events: [DrawEvent]) {
+        eventListViewController?.importEvents(events)
+    }
+
+    func exportEvents(sender: UIView) {
+        guard let allEvents = eventListViewController?.allEvents else { return }
+        let tmpDirURL = FileManager.default.temporaryDirectory.appendingPathComponent("events").appendingPathExtension("json")
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = [.withoutEscapingSlashes, .prettyPrinted]
+
+        if let json = try? jsonEncoder.encode(allEvents) {
+            do {
+                try json.write(to: tmpDirURL)
+
+                let sharevc = UIActivityViewController(activityItems: [tmpDirURL], applicationActivities: nil)
+                sharevc.popoverPresentationController?.sourceView = sender
+                present(sharevc, animated: true, completion: nil)
+            } catch {
+                // ignore
+            }
+        }
     }
 }

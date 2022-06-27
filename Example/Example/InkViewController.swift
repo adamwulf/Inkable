@@ -10,9 +10,15 @@ import Inkable
 
 class InkViewController: UIViewController {
 
-    var allEvents: [DrawEvent] = []
+    weak var eventListViewController: EventListViewController? {
+        didSet {
+            eventListViewController?.touchEventStream.addConsumer(touchPathStream)
+            if let eventListViewController = eventListViewController {
+                eventView.addGestureRecognizer(eventListViewController.touchEventStream.gesture)
+            }
+        }
+    }
 
-    let touchEventStream = TouchEventStream()
     let touchPathStream = TouchPathStream()
     let lineStream = PolylineStream()
     let bezierStream = BezierStream(smoother: AntigrainSmoother())
@@ -30,10 +36,6 @@ class InkViewController: UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 
-        touchEventStream.addConsumer { (updatedEvents) in
-            self.allEvents.append(contentsOf: updatedEvents)
-        }
-        touchEventStream.addConsumer(touchPathStream)
         touchPathStream.addConsumer(lineStream)
         touchPathStream.addConsumer(pointsView)
         lineStream.addConsumer(douglasPeucker)
@@ -60,20 +62,16 @@ class InkViewController: UIViewController {
         pointsView.layoutHuggingParent(safeArea: true)
         linesView.layoutHuggingParent(safeArea: true)
         curvesView.layoutHuggingParent(safeArea: true)
-
-        eventView.addGestureRecognizer(touchEventStream.gesture)
     }
 
     func reset() {
         self.pointsView.reset()
         self.linesView.reset()
         self.curvesView.reset()
-        allEvents = []
-        touchEventStream.reset()
     }
 }
 
-extension InkViewController: SettingsViewControllerDelegate {
+extension InkViewController {
     func clearAllData() {
         self.reset()
     }
@@ -86,16 +84,5 @@ extension InkViewController: SettingsViewControllerDelegate {
 
     func smoothingChanged(savitzkyGolayEnabled: Bool) {
         savitzkyGolay.enabled = savitzkyGolayEnabled
-        // reprocess all events
-        let events = allEvents
-        reset()
-        touchEventStream.process(events: events)
-    }
-
-    func importEvents(_ events: [DrawEvent]) {
-        let existingIdentifiers = allEvents.map({ $0.identifier })
-        let filtered = events.filter({ !existingIdentifiers.contains($0.identifier) })
-        allEvents += filtered
-        touchEventStream.process(events: filtered)
     }
 }

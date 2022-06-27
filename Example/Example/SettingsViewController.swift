@@ -11,11 +11,11 @@ import Inkable
 import UniformTypeIdentifiers
 
 protocol SettingsViewControllerDelegate {
-    var allEvents: [DrawEvent] { get }
     func visibilityChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool)
     func smoothingChanged(savitzkyGolayEnabled: Bool)
     func clearAllData()
     func importEvents(_ events: [DrawEvent])
+    func exportEvents(sender: UIView)
 }
 
 class SettingsViewController: UITableViewController {
@@ -153,25 +153,8 @@ class SettingsViewController: UITableViewController {
             picker.delegate = self
             present(picker, animated: true, completion: nil)
         case .exportEvents:
-            guard
-                let allEvents = settingsDelegate?.allEvents,
-                let cell = tableView.cellForRow(at: indexPath)
-            else { break }
-            let tmpDirURL = FileManager.default.temporaryDirectory.appendingPathComponent("events").appendingPathExtension("json")
-            let jsonEncoder = JSONEncoder()
-            jsonEncoder.outputFormatting = [.withoutEscapingSlashes, .prettyPrinted]
-
-            if let json = try? jsonEncoder.encode(allEvents) {
-                do {
-                    try json.write(to: tmpDirURL)
-
-                    let sharevc = UIActivityViewController(activityItems: [tmpDirURL], applicationActivities: nil)
-                    sharevc.popoverPresentationController?.sourceView = cell
-                    present(sharevc, animated: true, completion: nil)
-                } catch {
-                    // ignore
-                }
-            }
+            guard let cell = tableView.cellForRow(at: indexPath) else { return }
+            settingsDelegate?.exportEvents(sender: cell)
         case .clearScreen:
             settingsDelegate?.clearAllData()
         }
