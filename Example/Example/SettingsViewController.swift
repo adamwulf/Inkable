@@ -16,6 +16,7 @@ protocol SettingsViewControllerDelegate {
     func clearAllData()
     func importEvents(_ events: [DrawEvent])
     func exportEvents(sender: UIView)
+    func sizeToFit()
 }
 
 class SettingsViewController: UITableViewController {
@@ -29,6 +30,7 @@ class SettingsViewController: UITableViewController {
         case importEvents
         case exportEvents
         case clearScreen
+        case sizeToFit
 
         var name: String {
             switch self {
@@ -46,6 +48,8 @@ class SettingsViewController: UITableViewController {
                 return "Export"
             case .clearScreen:
                 return "Clear"
+            case .sizeToFit:
+                return "Size to Fit"
             }
         }
     }
@@ -54,7 +58,7 @@ class SettingsViewController: UITableViewController {
 
     private let navigation: [Section] = [("Visibility", [.showPoints, .showLines, .showCurves]),
                                          ("Smoothing", [.smoothSavitzkyGolay]),
-                                         ("Data", [.importEvents, .exportEvents, .clearScreen])]
+                                         ("Data", [.importEvents, .exportEvents, .clearScreen, .sizeToFit])]
     private var pointsEnabled: Bool = true
     private var linesEnabled: Bool = true
     private var curvesEnabled: Bool = true
@@ -105,7 +109,7 @@ class SettingsViewController: UITableViewController {
             cell.accessoryType = curvesEnabled ? .checkmark : .none
         case .smoothSavitzkyGolay:
             cell.accessoryType = savitzkyGolayEnabled ? .checkmark : .none
-        case .importEvents, .exportEvents, .clearScreen:
+        case .importEvents, .exportEvents, .clearScreen, .sizeToFit:
             break
         }
 
@@ -157,6 +161,8 @@ class SettingsViewController: UITableViewController {
             settingsDelegate?.exportEvents(sender: cell)
         case .clearScreen:
             settingsDelegate?.clearAllData()
+        case .sizeToFit:
+            settingsDelegate?.sizeToFit()
         }
 
         tableView.reloadRows(at: [indexPath], with: .automatic)

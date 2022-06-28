@@ -13,6 +13,14 @@ class PolylineView: UIView, Consumer {
 
     typealias Consumes = PolylineStream.Produces
 
+    private static let lineWidth: CGFloat = 1
+
+    var renderTransform: CGAffineTransform = .identity {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+
     // MARK: - Init
 
     override init(frame: CGRect) {
@@ -47,19 +55,19 @@ class PolylineView: UIView, Consumer {
             switch delta {
             case .addedPolyline(let index):
                 let path = model.lines[index]
-                setNeedsDisplay(path.bounds)
+                setNeedsDisplay(path.bounds.expand(by: Self.lineWidth).applying(renderTransform))
             case .updatedPolyline(let index, _):
                 // We could only setNeedsDisplay for the rect of the modified elements of the path.
                 // For now, we'll set the entire path as needing display, but something to possibly revisit
                 let path = model.lines[index]
-                setNeedsDisplay(path.bounds)
+                setNeedsDisplay(path.bounds.expand(by: Self.lineWidth).applying(renderTransform))
                 if index < previousModel.lines.count {
                     let previous = previousModel.lines[index]
-                    setNeedsDisplay(previous.bounds)
+                    setNeedsDisplay(previous.bounds.expand(by: Self.lineWidth).applying(renderTransform))
                 }
             case .completedPolyline(let index):
                 let path = model.lines[index]
-                setNeedsDisplay(path.bounds)
+                setNeedsDisplay(path.bounds.expand(by: Self.lineWidth).applying(renderTransform))
             case .unhandled(let event):
                 print("Unhandled event: \(event.identifier)")
             }
@@ -76,10 +84,15 @@ class PolylineView: UIView, Consumer {
     override func draw(_ rect: CGRect) {
         guard !isHidden else { return }
 
+        let context = UIGraphicsGetCurrentContext()
+        context?.saveGState()
+        context?.concatenate(renderTransform)
+
         for polyline in model.lines {
             UIColor.red.setStroke()
 
             let path = UIBezierPath()
+            path.lineWidth = Self.lineWidth
             for point in polyline.points {
                 if point.event.phase == .began {
                     path.move(to: point.location)
@@ -89,5 +102,6 @@ class PolylineView: UIView, Consumer {
             }
             path.stroke()
         }
+        context?.restoreGState()
     }
 }

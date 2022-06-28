@@ -46,9 +46,11 @@ extension SplitViewController: SettingsViewControllerDelegate {
 
     func clearAllData() {
         eventListViewController?.reset()
+        inkViewController?.clearTransform()
     }
 
     func importEvents(_ events: [DrawEvent]) {
+        inkViewController?.clearTransform()
         eventListViewController?.importEvents(events)
     }
 
@@ -69,5 +71,9 @@ extension SplitViewController: SettingsViewControllerDelegate {
                 // ignore
             }
         }
+    }
+
+    func sizeToFit() {
+        inkViewController?.sizeToFit()
     }
 }

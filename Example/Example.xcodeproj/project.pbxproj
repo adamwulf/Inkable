@@ -86,7 +86,6 @@
 				C54CD194286A45BF00870745 /* Extensions */,
 				C54CD17D2867C3E000870745 /* View Layers */,
 				C54CD16F28678BDF00870745 /* BezierStreamRender */,
-				C505448E270A5C91009E4FA9 /* Tabs */,
 				C5054470270A5C42009E4FA9 /* AppDelegate.swift */,
 				C5054472270A5C42009E4FA9 /* SceneDelegate.swift */,
 				C54CD1792867BB0C00870745 /* SplitViewController.swift */,
@@ -99,13 +98,6 @@
 				C505447E270A5C45009E4FA9 /* Info.plist */,
 			);
 			path = Example;
-			sourceTree = "<group>";
-		};
-		C505448E270A5C91009E4FA9 /* Tabs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tabs;
 			sourceTree = "<group>";
 		};
 		C505448F270A5CB7009E4FA9 /* Packages */ = {

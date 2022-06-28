@@ -19,6 +19,8 @@ class InkViewController: UIViewController {
         }
     }
 
+    let container = UIView()
+
     let touchPathStream = TouchPathStream()
     let lineStream = PolylineStream()
     let bezierStream = BezierStream(smoother: AntigrainSmoother())
@@ -55,15 +57,23 @@ class InkViewController: UIViewController {
         pointsView.setNeedsDisplay()
         linesView.setNeedsDisplay()
         curvesView.setNeedsDisplay()
+
+        if container.transform != .identity {
+            container.transform = .identity
+            container.frame = view.bounds
+            sizeToFit()
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(eventView)
-        view.addSubview(pointsView)
-        view.addSubview(linesView)
-        view.addSubview(curvesView)
+        view.addSubview(container)
+        container.frame = view.bounds
+        container.addSubview(eventView)
+        container.addSubview(pointsView)
+        container.addSubview(linesView)
+        container.addSubview(curvesView)
 
         eventView.layoutHuggingParent(safeArea: true)
         pointsView.layoutHuggingParent(safeArea: true)
@@ -75,6 +85,25 @@ class InkViewController: UIViewController {
         self.pointsView.reset()
         self.linesView.reset()
         self.curvesView.reset()
+    }
+
+    func clearTransform() {
+        pointsView.renderTransform = .identity
+        linesView.renderTransform = .identity
+        curvesView.renderTransform = .identity
+    }
+
+    func sizeToFit() {
+        let targetFrame = curvesView.model.paths.reduce(CGRect.null, { $0.union($1.bounds) }).expand(by: 10)
+        guard targetFrame != .null else { return }
+
+        let scale = max(targetFrame.size.width / view.frame.width, targetFrame.size.height / view.frame.height)
+        let transform: CGAffineTransform = .identity
+            .scaledBy(x: 1/scale, y: 1/scale)
+            .translatedBy(x: -targetFrame.origin.x, y: -targetFrame.origin.y)
+        pointsView.renderTransform = transform
+        linesView.renderTransform = transform
+        curvesView.renderTransform = transform
     }
 }
 

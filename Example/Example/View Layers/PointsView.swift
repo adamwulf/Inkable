@@ -13,6 +13,14 @@ class PointsView: UIView, Consumer {
 
     typealias Consumes = TouchPathStream.Produces
 
+    private static let maxRadius: CGFloat = 2
+
+    var renderTransform: CGAffineTransform = .identity {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+
     // MARK: - Init
 
     override init(frame: CGRect) {
@@ -47,19 +55,19 @@ class PointsView: UIView, Consumer {
             switch delta {
             case .addedTouchPath(let index):
                 let path = model.paths[index]
-                setNeedsDisplay(path.bounds)
+                setNeedsDisplay(path.bounds.expand(by: Self.maxRadius).applying(renderTransform))
             case .updatedTouchPath(let index, _):
                 // We could only setNeedsDisplay for the rect of the modified elements of the path.
                 // For now, we'll set the entire path as needing display, but something to possibly revisit
                 let path = model.paths[index]
-                setNeedsDisplay(path.bounds)
+                setNeedsDisplay(path.bounds.expand(by: Self.maxRadius).applying(renderTransform))
                 if index < previousModel.paths.count {
                     let previous = previousModel.paths[index]
-                    setNeedsDisplay(previous.bounds)
+                    setNeedsDisplay(previous.bounds.expand(by: Self.maxRadius).applying(renderTransform))
                 }
             case .completedTouchPath(let index):
                 let path = model.paths[index]
-                setNeedsDisplay(path.bounds)
+                setNeedsDisplay(path.bounds.expand(by: Self.maxRadius).applying(renderTransform))
             case .unhandled(let event):
                 print("Unhandled event: \(event.identifier)")
             }
@@ -76,11 +84,15 @@ class PointsView: UIView, Consumer {
     override func draw(_ rect: CGRect) {
         guard !isHidden else { return }
 
+        let context = UIGraphicsGetCurrentContext()
+        context?.saveGState()
+        context?.concatenate(renderTransform)
+
         for path in model.paths {
             for point in path.points {
-                var radius: CGFloat = 2
+                var radius: CGFloat = Self.maxRadius
                 if point.event.isUpdate {
-                    radius = 1
+                    radius = Self.maxRadius / 2
                     if !point.expectsUpdate {
                         UIColor.isFinal.setFill()
                     } else {
@@ -98,5 +110,7 @@ class PointsView: UIView, Consumer {
                 UIBezierPath(ovalIn: CGRect(origin: point.event.location, size: CGSize.zero).expand(by: radius)).fill()
             }
         }
+
+        context?.restoreGState()
     }
 }
