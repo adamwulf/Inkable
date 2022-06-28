@@ -80,9 +80,9 @@ class EventListViewController: UITableViewController {
 
     @objc func nextEvent() {
         if currentEventIndex < allEvents.count - 1 {
-            currentEventIndex += 1
-            let event = allEvents[currentEventIndex]
+            let event = allEvents[currentEventIndex + 1]
             touchEventStream.process(events: [event])
+            currentEventIndex += 1
             reloadTable()
         }
     }
@@ -96,16 +96,16 @@ class EventListViewController: UITableViewController {
         allEvents = []
         touchEventStream.reset()
         inkViewController?.reset()
+        currentEventIndex = 0
         if index == -1 || index >= events.count {
-            currentEventIndex = 0
             touchEventStream.process(events: events)
         } else {
-            currentEventIndex = index
             allEvents = events
             if !allEvents.isEmpty {
                 let toProcess = Array(allEvents[0...index])
                 touchEventStream.process(events: toProcess)
             }
+            currentEventIndex = index
         }
         // we don't need to reload the table explicitly here, since the event list is unchanged
     }
