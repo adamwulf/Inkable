@@ -11,7 +11,7 @@ import Inkable
 
 class EventListViewController: UITableViewController {
     private var currentTableCount = 0
-    private var currentEventIndex = 0
+    private var currentEventIndex = -1
     var allEvents: [DrawEvent] = []
     let touchEventStream = TouchEventStream()
 
@@ -70,11 +70,13 @@ class EventListViewController: UITableViewController {
 
     @objc func rewind() {
         replayEvents(through: 0)
+        scrollToLatestRow()
     }
 
     @objc func prevEvent() {
         if currentEventIndex > 0 {
             replayEvents(through: currentEventIndex - 1)
+            scrollToLatestRow()
         }
     }
 
@@ -84,11 +86,21 @@ class EventListViewController: UITableViewController {
             touchEventStream.process(events: [event])
             currentEventIndex += 1
             reloadTable()
+            scrollToLatestRow()
         }
     }
 
     @objc func fastforward() {
         replayEvents(through: allEvents.count - 1)
+        scrollToLatestRow()
+    }
+
+    private func scrollToLatestRow() {
+        if currentEventIndex >= 0, currentEventIndex < allEvents.count {
+            tableView.scrollToRow(at: IndexPath(row: currentEventIndex, section: 0),
+                                  at: .none,
+                                  animated: true)
+        }
     }
 
     func replayEvents(through index: Int = -1) {
@@ -96,7 +108,7 @@ class EventListViewController: UITableViewController {
         allEvents = []
         touchEventStream.reset()
         inkViewController?.reset()
-        currentEventIndex = 0
+        currentEventIndex = -1
         if index == -1 || index >= events.count {
             touchEventStream.process(events: events)
         } else {
@@ -111,8 +123,7 @@ class EventListViewController: UITableViewController {
     }
 
     func reset() {
-        currentEventIndex = 0
-        currentTableCount = 0
+        currentEventIndex = -1
         allEvents = []
         touchEventStream.reset()
         inkViewController?.reset()
@@ -120,9 +131,10 @@ class EventListViewController: UITableViewController {
     }
 
     func importEvents(_ events: [DrawEvent]) {
+        // get up to date before our import
+        replayEvents(through: allEvents.count - 1)
         let existingIdentifiers = allEvents.map({ $0.identifier })
         let filtered = events.filter({ !existingIdentifiers.contains($0.identifier) })
-        allEvents += filtered
         touchEventStream.process(events: filtered)
     }
 
