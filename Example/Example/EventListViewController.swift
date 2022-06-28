@@ -66,17 +66,20 @@ class EventListViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        scrollToCurrentRow(animated: false)
+    }
+
     // MARK: - Actions
 
     @objc func rewind() {
         replayEvents(through: 0)
-        scrollToLatestRow()
     }
 
     @objc func prevEvent() {
         if currentEventIndex > 0 {
             replayEvents(through: currentEventIndex - 1)
-            scrollToLatestRow()
         }
     }
 
@@ -86,21 +89,11 @@ class EventListViewController: UITableViewController {
             touchEventStream.process(events: [event])
             currentEventIndex += 1
             reloadTable()
-            scrollToLatestRow()
         }
     }
 
     @objc func fastforward() {
         replayEvents(through: allEvents.count - 1)
-        scrollToLatestRow()
-    }
-
-    private func scrollToLatestRow() {
-        if currentEventIndex >= 0, currentEventIndex < allEvents.count {
-            tableView.scrollToRow(at: IndexPath(row: currentEventIndex, section: 0),
-                                  at: .none,
-                                  animated: true)
-        }
     }
 
     func replayEvents(through index: Int = -1) {
@@ -162,6 +155,15 @@ class EventListViewController: UITableViewController {
         }
         currentTableCount = allEvents.count
         tableView.endUpdates()
+        scrollToCurrentRow(animated: true)
+    }
+
+    func scrollToCurrentRow(animated: Bool) {
+        if currentEventIndex >= 0, currentEventIndex < allEvents.count {
+            tableView.scrollToRow(at: IndexPath(row: currentEventIndex, section: 0),
+                                  at: .none,
+                                  animated: animated)
+        }
     }
 
     // MARK: - UITableView Delegate & DataSource
