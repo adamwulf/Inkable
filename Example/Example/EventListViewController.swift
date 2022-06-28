@@ -15,6 +15,9 @@ class EventListViewController: UITableViewController {
     var allEvents: [DrawEvent] = []
     let touchEventStream = TouchEventStream()
 
+    private var playButton: UIBarButtonItem!
+    private var displayLink: CADisplayLink!
+
     weak var inkViewController: InkViewController?
 
     init() {
@@ -28,6 +31,11 @@ class EventListViewController: UITableViewController {
     }
 
     private func finishSetup() {
+        displayLink = CADisplayLink(target: self, selector: #selector(nextEvent))
+        displayLink.preferredFrameRateRange = CAFrameRateRange(minimum: 30, maximum: 30)
+        displayLink.isPaused = true
+        displayLink.add(to: .main, forMode: .default)
+
         self.touchEventStream.addConsumer { (updatedEvents) in
             if self.currentEventIndex >= self.allEvents.count - 1 {
                 self.allEvents.append(contentsOf: updatedEvents)
@@ -35,35 +43,40 @@ class EventListViewController: UITableViewController {
             }
             self.scheduleReload()
         }
-
-        let rewind = UIBarButtonItem(image: UIImage(systemName: "backward.end.alt"),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(rewind))
-        let prevButton = UIBarButtonItem(image: UIImage(systemName: "backward.frame"),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(prevEvent))
-        let playButton = UIBarButtonItem(image: UIImage(systemName: "play"),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(nextEvent))
-        let nextButton = UIBarButtonItem(image: UIImage(systemName: "forward.frame"),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(nextEvent))
-        let fastforward = UIBarButtonItem(image: UIImage(systemName: "forward.end.alt"),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(fastforward))
-
-        self.navigationItem.title = nil
-        self.navigationItem.leftBarButtonItems = [rewind, prevButton, playButton, nextButton, fastforward]
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let rewind = UIBarButtonItem(image: UIImage(systemName: "backward.end.alt"),
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(rewind))
+        let prevButton = UIBarButtonItem(image: UIImage(systemName: "backward.frame"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(prevEvent))
+        playButton = UIBarButtonItem(image: UIImage(systemName: "play"),
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(play))
+        let nextButton = UIBarButtonItem(image: UIImage(systemName: "forward.frame"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(nextEvent))
+        let fastforward = UIBarButtonItem(image: UIImage(systemName: "forward.end.alt"),
+                                          style: .plain,
+                                          target: self,
+                                          action: #selector(fastforward))
+        let flex1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let flex2 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+
+        self.toolbarItems = [flex1, rewind, prevButton, playButton, nextButton, fastforward, flex2]
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -83,12 +96,25 @@ class EventListViewController: UITableViewController {
         }
     }
 
+    @objc func play() {
+        if displayLink.isPaused {
+            displayLink.isPaused = false
+            playButton.image = UIImage(systemName: "pause")
+        } else {
+            displayLink.isPaused = true
+            playButton.image = UIImage(systemName: "play")
+        }
+    }
+
     @objc func nextEvent() {
         if currentEventIndex < allEvents.count - 1 {
             let event = allEvents[currentEventIndex + 1]
             touchEventStream.process(events: [event])
             currentEventIndex += 1
-            reloadTable()
+            scheduleReload()
+        } else {
+            displayLink.isPaused = true
+            playButton.image = UIImage(systemName: "play")
         }
     }
 
