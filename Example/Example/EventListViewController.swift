@@ -184,7 +184,8 @@ class EventListViewController: UITableViewController {
                 configuration.textProperties.color = UIColor.isFinal
             }
             let touchId = touchEvent.pointIdentifier.suffix(from: touchEvent.pointIdentifier.firstIndex(of: ":")!)
-            configuration.secondaryText = String(touchId)
+            configuration.secondaryText = touchEvent.phase.stringValue + String(touchId)
+            configuration.secondaryTextProperties.numberOfLines = 1
             switch touchEvent.type {
             case .direct:
                 configuration.image = UIImage(systemName: "hand.point.up")

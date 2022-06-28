@@ -24,6 +24,7 @@
 		C54CD190286A34E300870745 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD18F286A34E300870745 /* EventListViewController.swift */; };
 		C54CD192286A354200870745 /* InkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD191286A354200870745 /* InkViewController.swift */; };
 		C54CD196286A45C800870745 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD195286A45C800870745 /* UIColor+Extensions.swift */; };
+		C54CD198286B7EB000870745 /* UITouch+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD197286B7EB000870745 /* UITouch+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		C54CD18F286A34E300870745 /* EventListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
 		C54CD191286A354200870745 /* InkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InkViewController.swift; sourceTree = "<group>"; };
 		C54CD195286A45C800870745 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		C54CD197286B7EB000870745 /* UITouch+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITouch+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				C54CD195286A45C800870745 /* UIColor+Extensions.swift */,
+				C54CD197286B7EB000870745 /* UITouch+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				C54CD192286A354200870745 /* InkViewController.swift in Sources */,
 				C54CD17728678D2700870745 /* NaiveDrawRectView.swift in Sources */,
 				C5054473270A5C42009E4FA9 /* SceneDelegate.swift in Sources */,
+				C54CD198286B7EB000870745 /* UITouch+Extensions.swift in Sources */,
 				C54CD17C2867BB3300870745 /* SettingsViewController.swift in Sources */,
 				C54CD17F2867C3EA00870745 /* PointsView.swift in Sources */,
 				C54CD190286A34E300870745 /* EventListViewController.swift in Sources */,
