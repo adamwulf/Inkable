@@ -31,6 +31,30 @@ class EventListViewController: UITableViewController {
             self.allEvents.append(contentsOf: updatedEvents)
             self.scheduleReload()
         }
+
+        let rewind = UIBarButtonItem(image: UIImage(systemName: "backward.end.alt"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(nextEvent))
+        let prevButton = UIBarButtonItem(image: UIImage(systemName: "backward.frame"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(nextEvent))
+        let playButton = UIBarButtonItem(image: UIImage(systemName: "play"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(nextEvent))
+        let nextButton = UIBarButtonItem(image: UIImage(systemName: "forward.frame"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(nextEvent))
+        let fastforward = UIBarButtonItem(image: UIImage(systemName: "forward.end.alt"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(nextEvent))
+
+//        self.navigationItem.title = nil
+//        self.navigationItem.leftBarButtonItems = [fastforward, nextButton, playButton, prevButton, rewind]
     }
 
     override func viewDidLoad() {
@@ -40,12 +64,17 @@ class EventListViewController: UITableViewController {
 
     // MARK: - Actions
 
+    @objc func nextEvent() {
+
+    }
+
     func replayEvents() {
         let events = allEvents
         allEvents = []
         touchEventStream.reset()
         inkViewController?.reset()
         touchEventStream.process(events: events)
+        // we don't need to reload the table explicitly here, since the event list is unchanged
     }
 
     func reset() {

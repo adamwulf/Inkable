@@ -96,7 +96,7 @@
         <!--Split View Controller-->
         <scene sceneID="mot-FF-qTT">
             <objects>
-                <splitViewController allowDoubleColumnStyle="YES" id="WBD-7P-gIS" customClass="SplitViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController allowDoubleColumnStyle="YES" preferredDisplayMode="beside" id="WBD-7P-gIS" customClass="SplitViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="KFW-nm-iEj" kind="relationship" relationship="detailViewController" id="Y4j-xg-k5v"/>
                         <segue destination="0J5-zX-OPf" kind="relationship" relationship="supplementaryViewController" id="Vl9-G0-iNH"/>

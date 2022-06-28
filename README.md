@@ -7,7 +7,7 @@ allowing for easy customization at any point of the algorithm.
  
  <a href='https://adamwulf.github.io/Inkable/'>View the chart with tooltips here</a>.
  
- <a href='https://adamwulf.github.io/Inkable/'><img src='docs/graph.png'/></a>
+ <a href='https://adamwulf.github.io/Inkable/'><img src='Docs/graph.png'/></a>
 
 
 ## Funnel
