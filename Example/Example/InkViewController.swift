@@ -50,6 +50,13 @@ class InkViewController: UIViewController {
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        pointsView.setNeedsDisplay()
+        linesView.setNeedsDisplay()
+        curvesView.setNeedsDisplay()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

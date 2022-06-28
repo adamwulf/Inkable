@@ -11,6 +11,7 @@ import Inkable
 
 class EventListViewController: UITableViewController {
     private var currentTableCount = 0
+    private var currentEventIndex = 0
     var allEvents: [DrawEvent] = []
     let touchEventStream = TouchEventStream()
 
@@ -28,18 +29,21 @@ class EventListViewController: UITableViewController {
 
     private func finishSetup() {
         self.touchEventStream.addConsumer { (updatedEvents) in
-            self.allEvents.append(contentsOf: updatedEvents)
+            if self.currentEventIndex >= self.allEvents.count - 1 {
+                self.allEvents.append(contentsOf: updatedEvents)
+                self.currentEventIndex = self.allEvents.count - 1
+            }
             self.scheduleReload()
         }
 
         let rewind = UIBarButtonItem(image: UIImage(systemName: "backward.end.alt"),
                                          style: .plain,
                                          target: self,
-                                         action: #selector(nextEvent))
+                                         action: #selector(rewind))
         let prevButton = UIBarButtonItem(image: UIImage(systemName: "backward.frame"),
                                          style: .plain,
                                          target: self,
-                                         action: #selector(nextEvent))
+                                         action: #selector(prevEvent))
         let playButton = UIBarButtonItem(image: UIImage(systemName: "play"),
                                          style: .plain,
                                          target: self,
@@ -51,10 +55,10 @@ class EventListViewController: UITableViewController {
         let fastforward = UIBarButtonItem(image: UIImage(systemName: "forward.end.alt"),
                                          style: .plain,
                                          target: self,
-                                         action: #selector(nextEvent))
+                                         action: #selector(fastforward))
 
-//        self.navigationItem.title = nil
-//        self.navigationItem.leftBarButtonItems = [fastforward, nextButton, playButton, prevButton, rewind]
+        self.navigationItem.title = nil
+        self.navigationItem.leftBarButtonItems = [rewind, prevButton, playButton, nextButton, fastforward]
     }
 
     override func viewDidLoad() {
@@ -64,20 +68,51 @@ class EventListViewController: UITableViewController {
 
     // MARK: - Actions
 
-    @objc func nextEvent() {
-
+    @objc func rewind() {
+        replayEvents(through: 0)
     }
 
-    func replayEvents() {
+    @objc func prevEvent() {
+        if currentEventIndex > 0 {
+            replayEvents(through: currentEventIndex - 1)
+        }
+    }
+
+    @objc func nextEvent() {
+        if currentEventIndex < allEvents.count - 1 {
+            currentEventIndex += 1
+            let event = allEvents[currentEventIndex]
+            touchEventStream.process(events: [event])
+            reloadTable()
+        }
+    }
+
+    @objc func fastforward() {
+        replayEvents(through: allEvents.count - 1)
+    }
+
+    func replayEvents(through index: Int = -1) {
         let events = allEvents
         allEvents = []
         touchEventStream.reset()
         inkViewController?.reset()
-        touchEventStream.process(events: events)
+        if index == -1 || index >= events.count {
+            currentEventIndex = 0
+            touchEventStream.process(events: events)
+        } else {
+            currentEventIndex = index
+            allEvents = events
+            if !allEvents.isEmpty {
+                let toProcess = Array(allEvents[0...index])
+                touchEventStream.process(events: toProcess)
+            }
+        }
         // we don't need to reload the table explicitly here, since the event list is unchanged
     }
 
     func reset() {
+        currentEventIndex = 0
+        currentTableCount = 0
         allEvents = []
         touchEventStream.reset()
         inkViewController?.reset()
@@ -99,6 +134,7 @@ class EventListViewController: UITableViewController {
     }
 
     @objc private func reloadTable() {
+        touchEventStream.gesture.isEnabled = currentEventIndex >= allEvents.count - 1
         timer = nil
         tableView.beginUpdates()
         if allEvents.count < currentTableCount {
@@ -169,8 +205,22 @@ class EventListViewController: UITableViewController {
             configuration.image = UIImage(systemName: "questionmark.circle")
         }
 
+        cell.accessoryType = indexPath.row > currentEventIndex ? .none : .checkmark
+
         cell.contentConfiguration = configuration
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row < currentEventIndex {
+            replayEvents(through: indexPath.row)
+        }
+        while indexPath.row > currentEventIndex {
+            currentEventIndex += 1
+            let event = allEvents[currentEventIndex]
+            touchEventStream.process(events: [event])
+        }
+        reloadTable()
     }
 }
