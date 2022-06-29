@@ -412,4 +412,26 @@ class AntigrainSmootherTests: XCTestCase {
                                      ctrl1: CGPoint(x: 433.39180836637934, y: 94.99122874504309),
                                      ctrl2: CGPoint(x: 465, y: 113)))
     }
+
+    func testStreamsMatch() throws {
+        guard
+            let jsonFile = Bundle.module.url(forResource: "pencil-antigrain", withExtension: "json")
+        else {
+            XCTFail("Could not load json")
+            return
+        }
+
+        let data = try Data(contentsOf: jsonFile)
+        let events = try JSONDecoder().decode([TouchEvent].self, from: data)
+        let touchStream = TouchPathStream()
+        touchStream.produce(with: events)
+
+        for split in 1..<events.count {
+            let altStream = TouchPathStream()
+            altStream.produce(with: Array(events[0 ..< split]))
+            altStream.produce(with: Array(events[split ..< events.count]))
+
+            XCTAssertEqual(touchStream.paths, altStream.paths)
+        }
+    }
 }

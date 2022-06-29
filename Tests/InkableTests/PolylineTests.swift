@@ -127,4 +127,26 @@ class PolylineTests: XCTestCase {
         XCTAssertEqual(polylineOutput.deltas[0], .updatedPolyline(index: 0, updatedIndexes: IndexSet([0, 1, 2])))
         XCTAssertEqual(polylineOutput.deltas[1], .completedPolyline(index: 0))
     }
+
+    func testStreamsMatch() throws {
+        guard
+            let jsonFile = Bundle.module.url(forResource: "pencil-error", withExtension: "json")
+        else {
+            XCTFail("Could not load json")
+            return
+        }
+
+        let data = try Data(contentsOf: jsonFile)
+        let events = try JSONDecoder().decode([TouchEvent].self, from: data)
+        let touchStream = TouchPathStream()
+        touchStream.produce(with: events)
+
+        for split in 1..<events.count {
+            let altStream = TouchPathStream()
+            altStream.produce(with: Array(events[0 ..< split]))
+            altStream.produce(with: Array(events[split ..< events.count]))
+
+            XCTAssertEqual(touchStream.paths, altStream.paths)
+        }
+    }
 }
