@@ -83,7 +83,17 @@ class InkViewController: UIViewController {
         curvesView.renderTransform = .identity
     }
 
-    func sizeToFit() {
+    var isFitToSize: Bool {
+        return pointsView.renderTransform != .identity
+    }
+
+    func toggleSizeToFit() {
+        guard pointsView.renderTransform == .identity else {
+            pointsView.renderTransform = .identity
+            linesView.renderTransform = .identity
+            curvesView.renderTransform = .identity
+            return
+        }
         let targetFrame = curvesView.model.paths.reduce(CGRect.null, { $0.union($1.bounds) }).expand(by: 10)
         guard targetFrame != .null else { return }
 

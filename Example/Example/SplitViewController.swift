@@ -74,7 +74,11 @@ extension SplitViewController: SettingsViewControllerDelegate {
         }
     }
 
-    func sizeToFit() {
-        inkViewController?.sizeToFit()
+    var isFitToSize: Bool {
+        return inkViewController?.isFitToSize ?? false
+    }
+
+    func toggleSizeToFit() {
+        inkViewController?.toggleSizeToFit()
     }
 }

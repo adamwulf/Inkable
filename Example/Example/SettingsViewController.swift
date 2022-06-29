@@ -11,12 +11,14 @@ import Inkable
 import UniformTypeIdentifiers
 
 protocol SettingsViewControllerDelegate {
+    var isFitToSize: Bool { get }
+
     func visibilityChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool)
     func smoothingChanged(savitzkyGolayEnabled: Bool)
     func clearAllData()
     func importEvents(_ events: [DrawEvent])
     func exportEvents(sender: UIView)
-    func sizeToFit()
+    func toggleSizeToFit()
 }
 
 class SettingsViewController: UITableViewController {
@@ -109,7 +111,12 @@ class SettingsViewController: UITableViewController {
             cell.accessoryType = curvesEnabled ? .checkmark : .none
         case .smoothSavitzkyGolay:
             cell.accessoryType = savitzkyGolayEnabled ? .checkmark : .none
-        case .importEvents, .exportEvents, .clearScreen, .sizeToFit:
+        case .sizeToFit:
+            if let settingsDelegate = settingsDelegate,
+               settingsDelegate.isFitToSize {
+                content.text = "Original Size"
+            }
+        case .importEvents, .exportEvents, .clearScreen:
             break
         }
 
@@ -162,7 +169,7 @@ class SettingsViewController: UITableViewController {
         case .clearScreen:
             settingsDelegate?.clearAllData()
         case .sizeToFit:
-            settingsDelegate?.sizeToFit()
+            settingsDelegate?.toggleSizeToFit()
         }
 
         tableView.reloadRows(at: [indexPath], with: .automatic)
