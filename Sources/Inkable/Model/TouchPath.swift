@@ -35,8 +35,9 @@ open class TouchPath {
         }
     }
     public var isComplete: Bool {
+        // completed paths are allowed to have expectingUpdate
         let phase = confirmedPoints.last?.event.phase
-        return (phase == .ended || phase == .cancelled) && predictedPoints.isEmpty && expectingUpdate.isEmpty
+        return (phase == .ended || phase == .cancelled) && predictedPoints.isEmpty
     }
 
     // MARK: - Private Properties

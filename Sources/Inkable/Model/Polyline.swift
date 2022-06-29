@@ -49,7 +49,7 @@ public struct Polyline {
                 if index < points.count {
                     points.remove(at: index)
                 } else {
-                    print("Error: unknown index \(index)")
+                    print("Error: unknown polyline index \(index)")
                 }
             }
         }

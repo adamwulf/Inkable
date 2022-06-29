@@ -71,7 +71,7 @@ open class AntigrainSmoother: Smoother {
     // 7 => 9, 8, 7, 6
     public func elementIndexes(for line: Polyline, at lineIndex: Int) -> IndexSet {
         guard lineIndex >= 0 && lineIndex < line.points.count else {
-            print("Error: unknown index \(lineIndex)")
+            print("Error: unknown antigrain index \(lineIndex)")
             return IndexSet()
         }
         assert(lineIndex >= 0 && lineIndex < line.points.count)
