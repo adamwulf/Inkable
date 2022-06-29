@@ -261,7 +261,7 @@ class EventListViewController: UITableViewController {
             replayEvents(through: indexPath.row)
         }
         var eventsToProcess: [DrawEvent] = []
-        while indexPath.row > currentEventIndex {
+        while indexPath.row > currentEventIndex + eventsToProcess.count {
             let event = allEvents[currentEventIndex]
             eventsToProcess.append(event)
         }
