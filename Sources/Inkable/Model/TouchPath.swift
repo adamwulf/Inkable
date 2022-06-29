@@ -101,6 +101,12 @@ open class TouchPath {
                     expectingUpdate.remove(object: event.pointIdentifier)
                 }
                 indexSet.insert(index)
+
+                if event.phase == .ended || event.phase == .cancelled {
+                    // this is an update to the final event of the stroke, so remove all predicted points
+                    consumable.append(contentsOf: predictedPoints)
+                    predictedPoints.removeAll()
+                }
             } else {
                 // we got a new legitimate point. move all of our predictions into consumable
                 consumable.append(contentsOf: predictedPoints)
