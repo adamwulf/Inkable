@@ -25,6 +25,8 @@ open class BezierStream: ProducerConsumer {
         }
     }
 
+    public private(set) var paths: [UIBezierPath] = []
+
     public typealias Consumes = PolylineStream.Produces
 
     public enum Delta: Equatable, CustomDebugStringConvertible {
@@ -113,6 +115,7 @@ open class BezierStream: ProducerConsumer {
         }
 
         let output = BezierStream.Produces(paths: builders.map({ $0.path }), deltas: deltas)
+        paths = output.paths
         consumers.forEach({ $0.process(output) })
         return output
     }

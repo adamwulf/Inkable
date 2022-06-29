@@ -66,9 +66,19 @@ public struct Polyline {
     }
 }
 
+extension Polyline: Equatable {
+    public static func == (lhs: Polyline, rhs: Polyline) -> Bool {
+        return lhs.points.count == rhs.points.count &&
+        lhs.isComplete == rhs.isComplete &&
+        lhs.touchIdentifier == rhs.touchIdentifier &&
+        lhs.bounds == rhs.bounds &&
+        lhs.points == rhs.points
+    }
+}
+
 extension Polyline {
     /// A mutable version of `TouchPoint` that maintains a reference to the immutable point it's initialized from
-    public struct Point {
+    public struct Point: Equatable {
 
         // MARK: - Mutable
         public var force: CGFloat

@@ -71,7 +71,8 @@ open class AntigrainSmoother: Smoother {
     // 7 => 9, 8, 7, 6
     public func elementIndexes(for line: Polyline, at lineIndex: Int) -> IndexSet {
         guard lineIndex >= 0 && lineIndex < line.points.count else {
-            assertionFailure("Error: unknown antigrain index \(lineIndex)")
+            print("Error: unknown antigrain index \(lineIndex)")
+//            assertionFailure("Error: unknown antigrain index \(lineIndex)")
             return IndexSet()
         }
         let max = maxIndex(for: line)

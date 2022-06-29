@@ -139,14 +139,18 @@ class PolylineTests: XCTestCase {
         let data = try Data(contentsOf: jsonFile)
         let events = try JSONDecoder().decode([TouchEvent].self, from: data)
         let touchStream = TouchPathStream()
+        let polylineStream = PolylineStream()
+        touchStream.addConsumer(polylineStream)
         touchStream.produce(with: events)
 
         for split in 1..<events.count {
             let altStream = TouchPathStream()
+            let altPolylineStream = PolylineStream()
+            altStream.addConsumer(altPolylineStream)
             altStream.produce(with: Array(events[0 ..< split]))
             altStream.produce(with: Array(events[split ..< events.count]))
 
-            XCTAssertEqual(touchStream.paths, altStream.paths)
+            XCTAssertEqual(polylineStream.lines, altPolylineStream.lines)
         }
     }
 }
