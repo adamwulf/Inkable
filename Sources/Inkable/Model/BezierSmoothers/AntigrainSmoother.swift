@@ -71,8 +71,8 @@ open class AntigrainSmoother: Smoother {
     // 7 => 9, 8, 7, 6
     public func elementIndexes(for line: Polyline, at lineIndex: Int) -> IndexSet {
         guard lineIndex >= 0 && lineIndex < line.points.count else {
-            print("Error: unknown antigrain index \(lineIndex)")
-//            assertionFailure("Error: unknown antigrain index \(lineIndex)")
+            // a point was removed from the Polyline. This can happen when there are predicted points
+            // when a path is ended, and those predicted points are removed.
             return IndexSet()
         }
         let max = maxIndex(for: line)
