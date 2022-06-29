@@ -54,7 +54,7 @@ public struct Polyline {
         // Remove points from the end of the list toward the beginning
         for index in indexesToRemove.reversed() {
             guard index < points.count else {
-                print("Error: unknown polyline index \(index)")
+                assertionFailure("Error: unknown polyline index \(index)")
                 continue
             }
             points.remove(at: index)
