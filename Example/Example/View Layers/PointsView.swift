@@ -45,29 +45,33 @@ class PointsView: UIView, Consumer {
 
     // MARK: - TouchPathStream Consumer
 
+    private var pathBounds: [String: CGRect] = [:]
     private var model: Consumes = Consumes(paths: [], deltas: [])
 
+    func setNeedsDisplay(in path: TouchPath) {
+        if let oldBounds = pathBounds[path.touchIdentifier] {
+            setNeedsDisplay(oldBounds.expand(by: Self.maxRadius).applying(renderTransform))
+        }
+        pathBounds[path.touchIdentifier] = path.bounds
+        setNeedsDisplay(path.bounds.expand(by: Self.maxRadius).applying(renderTransform))
+    }
+
     func consume(_ input: TouchPathStream.Produces) {
-        let previousModel = model
         model = input
 
         for delta in input.deltas {
             switch delta {
             case .addedTouchPath(let index):
                 let path = model.paths[index]
-                setNeedsDisplay(path.bounds.expand(by: Self.maxRadius).applying(renderTransform))
+                setNeedsDisplay(in: path)
             case .updatedTouchPath(let index, _):
                 // We could only setNeedsDisplay for the rect of the modified elements of the path.
                 // For now, we'll set the entire path as needing display, but something to possibly revisit
                 let path = model.paths[index]
-                setNeedsDisplay(path.bounds.expand(by: Self.maxRadius).applying(renderTransform))
-                if index < previousModel.paths.count {
-                    let previous = previousModel.paths[index]
-                    setNeedsDisplay(previous.bounds.expand(by: Self.maxRadius).applying(renderTransform))
-                }
+                setNeedsDisplay(in: path)
             case .completedTouchPath(let index):
                 let path = model.paths[index]
-                setNeedsDisplay(path.bounds.expand(by: Self.maxRadius).applying(renderTransform))
+                setNeedsDisplay(in: path)
             case .unhandled(let event):
                 if event as? GestureCallbackEvent != nil {
                     break

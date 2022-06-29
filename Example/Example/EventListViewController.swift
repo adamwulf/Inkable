@@ -262,7 +262,9 @@ class EventListViewController: UITableViewController {
         }
         var eventsToProcess: [DrawEvent] = []
         while indexPath.row > currentEventIndex + eventsToProcess.count {
-            let event = allEvents[currentEventIndex]
+            let nextIndex = currentEventIndex + eventsToProcess.count + 1
+            guard nextIndex < allEvents.count else { assertionFailure(); break }
+            let event = allEvents[nextIndex]
             eventsToProcess.append(event)
         }
         if !eventsToProcess.isEmpty {
