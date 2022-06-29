@@ -69,6 +69,9 @@ class BezierView: UIView, Consumer {
                 let path = model.paths[index]
                 setNeedsDisplay(path.bounds.expand(by: Self.lineWidth).applying(renderTransform))
             case .unhandled(let event):
+                if event as? GestureCallbackEvent != nil {
+                    break
+                }
                 print("Unhandled event: \(event.identifier)")
             }
         }

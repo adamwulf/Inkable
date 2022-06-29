@@ -260,11 +260,15 @@ class EventListViewController: UITableViewController {
         if indexPath.row < currentEventIndex {
             replayEvents(through: indexPath.row)
         }
+        var eventsToProcess: [DrawEvent] = []
         while indexPath.row > currentEventIndex {
-            currentEventIndex += 1
             let event = allEvents[currentEventIndex]
-            touchEventStream.process(events: [event])
+            eventsToProcess.append(event)
         }
+        if !eventsToProcess.isEmpty {
+            touchEventStream.process(events: eventsToProcess)
+        }
+        currentEventIndex += eventsToProcess.count
         reloadTable()
     }
 }

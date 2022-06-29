@@ -46,7 +46,11 @@ public struct Polyline {
                     assertionFailure("Attempting to modify a point that doesn't yet exist. maybe an update is out of order?")
                 }
             } else {
-                points.remove(at: index)
+                if index < points.count {
+                    points.remove(at: index)
+                } else {
+                    print("Error: unknown index \(index)")
+                }
             }
         }
 

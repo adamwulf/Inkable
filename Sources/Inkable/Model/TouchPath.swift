@@ -72,21 +72,7 @@ open class TouchPath {
 
         for event in touchEvents {
             assert(touchIdentifier == event.touchIdentifier)
-            if
-                eventToPoint[event.pointIdentifier] != nil,
-                let index = eventToIndex[event.pointIdentifier] {
-                // we got an update to a legitimate point. move all of our predictions into consumable
-                consumable.append(contentsOf: predictedPoints)
-                predictedPoints.removeAll()
-
-                // This is an update to an existing point. Add the event to the point that we already have.
-                // If this is the last event that the point expects, then remove it from `expectsUpdate`
-                eventToPoint[event.pointIdentifier]?.add(event: event)
-                if !event.expectsUpdate {
-                    expectingUpdate.remove(object: event.pointIdentifier)
-                }
-                indexSet.insert(index)
-            } else if event.isPrediction {
+            if event.isPrediction {
                 // The event is a prediction. Attempt to consume a previous prediction and reuse a Point object,
                 // otherwise create a new Point and add to the predictions array
                 if let prediction = consumable.dequeue() {
@@ -105,6 +91,16 @@ open class TouchPath {
                     eventToIndex[event.pointIdentifier] = index
                     indexSet.insert(index)
                 }
+            } else if
+                eventToPoint[event.pointIdentifier] != nil,
+                let index = eventToIndex[event.pointIdentifier] {
+                // This is an update to an existing point. Add the event to the point that we already have.
+                // If this is the last event that the point expects, then remove it from `expectsUpdate`
+                eventToPoint[event.pointIdentifier]?.add(event: event)
+                if !event.expectsUpdate {
+                    expectingUpdate.remove(object: event.pointIdentifier)
+                }
+                indexSet.insert(index)
             } else {
                 // we got a new legitimate point. move all of our predictions into consumable
                 consumable.append(contentsOf: predictedPoints)
@@ -148,6 +144,11 @@ open class TouchPath {
             }
         }
 
+        if [.ended, .cancelled].contains(confirmedPoints.last?.events.last?.phase),
+           (!predictedPoints.isEmpty || !consumable.isEmpty) {
+            print("gotcha")
+        }
+
         return indexSet
     }
 }
@@ -166,11 +167,17 @@ extension TouchPath {
     open class Point: Codable {
 
         public private(set) var events: [TouchEvent]
+
         public var event: TouchEvent {
             return events.last!
         }
+
         public var expectsUpdate: Bool {
             return self.event.isPrediction || self.event.expectsUpdate
+        }
+
+        public var isPrediction: Bool {
+            return events.allSatisfy({ $0.isPrediction })
         }
 
         public init(event: TouchEvent) {
