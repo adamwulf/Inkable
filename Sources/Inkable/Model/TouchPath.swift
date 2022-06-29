@@ -67,13 +67,13 @@ open class TouchPath {
 
     @discardableResult
     func add(touchEvents: [TouchEvent]) -> IndexSet {
-        assert(!isComplete, "Cannot add events to a complete pointCollection")
         var indexSet = IndexSet()
         let startingCount = points.count
 
         for event in touchEvents {
             assert(touchIdentifier == event.touchIdentifier)
             if event.isPrediction {
+                assert(!isComplete, "Cannot predict events to a complete pointCollection")
                 // The event is a prediction. Attempt to consume a previous prediction and reuse a Point object,
                 // otherwise create a new Point and add to the predictions array
                 if let prediction = consumable.dequeue() {
@@ -108,6 +108,8 @@ open class TouchPath {
                     consumable.append(contentsOf: predictedPoints)
                     predictedPoints.removeAll()
                 }
+            } else if isComplete {
+                assert(!isComplete, "Cannot add events to a complete pointCollection")
             } else {
                 // we got a new legitimate point. move all of our predictions into consumable
                 consumable.append(contentsOf: predictedPoints)

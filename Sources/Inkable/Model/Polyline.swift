@@ -36,6 +36,7 @@ public struct Polyline {
     }
 
     mutating func update(with path: TouchPath, indexSet: IndexSet) -> IndexSet {
+        var indexesToRemove = IndexSet()
         for index in indexSet {
             if index < path.points.count {
                 if index < points.count {
@@ -46,12 +47,17 @@ public struct Polyline {
                     assertionFailure("Attempting to modify a point that doesn't yet exist. maybe an update is out of order?")
                 }
             } else {
-                if index < points.count {
-                    points.remove(at: index)
-                } else {
-                    print("Error: unknown polyline index \(index)")
-                }
+                indexesToRemove.insert(index)
             }
+        }
+
+        // Remove points from the end of the list toward the beginning
+        for index in indexesToRemove.reversed() {
+            guard index < points.count else {
+                print("Error: unknown polyline index \(index)")
+                continue
+            }
+            points.remove(at: index)
         }
 
         isComplete = path.isComplete
