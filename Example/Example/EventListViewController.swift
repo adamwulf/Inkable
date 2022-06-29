@@ -256,6 +256,8 @@ class EventListViewController: UITableViewController {
             configuration.image = UIImage(systemName: "questionmark.circle")
         }
 
+        configuration.secondaryText = "\(indexPath.row): " + (configuration.secondaryText ?? "")
+
         cell.accessoryType = indexPath.row > currentEventIndex ? .none : .checkmark
 
         cell.contentConfiguration = configuration

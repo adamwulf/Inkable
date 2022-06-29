@@ -169,7 +169,7 @@ class PolylineTests: XCTestCase {
         touchStream.addConsumer(polylineStream)
         touchStream.produce(with: events)
 
-        for split in 9..<events.count {
+        for split in 1..<events.count {
             let altStream = TouchPathStream()
             let altPolylineStream = PolylineStream()
             altStream.addConsumer(altPolylineStream)
