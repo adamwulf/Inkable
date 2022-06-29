@@ -204,7 +204,10 @@ class EventListViewController: UITableViewController {
         var configuration = cell.defaultContentConfiguration()
         let event = allEvents[indexPath.row]
 
-        if let touchEvent = event as? TouchEvent {
+        if event as? GestureCallbackEvent != nil {
+            configuration.text = "Gesture Callback"
+            configuration.image = UIImage(systemName: "waveform.circle")
+        } else if let touchEvent = event as? TouchEvent {
             if touchEvent.isPrediction {
                 configuration.text = "prediction: " + touchEvent.location.debugDescription
                 configuration.textProperties.color = UIColor.isPrediction

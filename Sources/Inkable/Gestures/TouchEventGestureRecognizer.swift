@@ -10,7 +10,7 @@ import UIKit
 public class TouchEventGestureRecognizer: UIGestureRecognizer, UIGestureRecognizerDelegate {
 
     // MARK: - Private
-    public var callback: (([TouchEvent]) -> Void)?
+    public var callback: (([DrawEvent]) -> Void)?
     private var activeTouches: Set<UITouch>
 
     // MARK: - Init
@@ -32,7 +32,7 @@ public class TouchEventGestureRecognizer: UIGestureRecognizer, UIGestureRecogniz
     private func process(touches: Set<UITouch>, with event: UIEvent?, isUpdate: Bool) {
         guard let view = view else { return }
 
-        var allTouchEvents: [TouchEvent] = []
+        var allTouchEvents: [DrawEvent] = []
 
         for touch in touches {
             var coalesced = event?.coalescedTouches(for: touch) ?? [touch]
@@ -59,6 +59,8 @@ public class TouchEventGestureRecognizer: UIGestureRecognizer, UIGestureRecogniz
                                                  isPrediction: true))
             }
         }
+
+        allTouchEvents.append(GestureCallbackEvent())
 
         callback?(allTouchEvents)
     }

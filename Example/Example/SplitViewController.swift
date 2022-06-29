@@ -56,11 +56,12 @@ extension SplitViewController: SettingsViewControllerDelegate {
 
     func exportEvents(sender: UIView) {
         guard let allEvents = eventListViewController?.allEvents else { return }
+        let touchEvents = allEvents.compactMap({ $0 as? TouchEvent })
         let tmpDirURL = FileManager.default.temporaryDirectory.appendingPathComponent("events").appendingPathExtension("json")
         let jsonEncoder = JSONEncoder()
         jsonEncoder.outputFormatting = [.withoutEscapingSlashes, .prettyPrinted]
 
-        if let json = try? jsonEncoder.encode(allEvents) {
+        if let json = try? jsonEncoder.encode(touchEvents) {
             do {
                 try json.write(to: tmpDirURL)
 

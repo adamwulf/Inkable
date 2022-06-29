@@ -38,6 +38,16 @@ open class DrawEvent: Codable {
     }
 }
 
+open class GestureCallbackEvent: DrawEvent {
+    public init() {
+        super.init(identifier: UUID().uuidString)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
+}
+
 open class TouchEvent: DrawEvent {
 
     /// An identifier unique to the touch that created this event. Events with the same
