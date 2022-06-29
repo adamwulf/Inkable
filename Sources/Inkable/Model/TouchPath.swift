@@ -144,11 +144,6 @@ open class TouchPath {
             }
         }
 
-        if [.ended, .cancelled].contains(confirmedPoints.last?.events.last?.phase),
-           (!predictedPoints.isEmpty || !consumable.isEmpty) {
-            print("gotcha")
-        }
-
         return indexSet
     }
 }
