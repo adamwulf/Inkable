@@ -40,7 +40,18 @@ public struct Polyline {
         for index in indexSet {
             if index < path.points.count {
                 if index < points.count {
-                    points[index].location = path.points[index].event.location
+                    if !path.points[index].event.estimatedPropertiesExpectingUpdates.contains(.location) {
+                        points[index].location = path.points[index].event.location
+                    }
+                    if !path.points[index].event.estimatedPropertiesExpectingUpdates.contains(.force) {
+                        points[index].force = path.points[index].event.force
+                    }
+                    if !path.points[index].event.estimatedPropertiesExpectingUpdates.contains(.azimuth) {
+                        points[index].azimuth = path.points[index].event.azimuth
+                    }
+                    if !path.points[index].event.estimatedPropertiesExpectingUpdates.contains(.altitude) {
+                        points[index].altitudeAngle = path.points[index].event.altitudeAngle
+                    }
                 } else if index == points.count {
                     points.append(Point(touchPoint: path.points[index]))
                 } else {

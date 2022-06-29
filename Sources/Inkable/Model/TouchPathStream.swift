@@ -117,6 +117,7 @@ open class TouchPathStream: ProducerConsumer {
                 // so move onto the next event
                 continue
             }
+
             processedTouchIdentifiers.append(touchIdentifier)
             if let index = touchToIndex[touchIdentifier] {
                 let path = paths[index]

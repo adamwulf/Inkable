@@ -82,14 +82,12 @@ open class TouchPath {
                     prediction.add(event: event)
                     predictedPoints.append(prediction)
                     let index = confirmedPoints.count + predictedPoints.count - 1
-                    eventToIndex[event.pointIdentifier] = index
                     indexSet.insert(index)
                 } else {
                     // The event is a prediction, and we're out of consumable previous predicted points, so create a new point
                     let prediction = Point(event: event)
                     predictedPoints.append(prediction)
                     let index = confirmedPoints.count + predictedPoints.count - 1
-                    eventToIndex[event.pointIdentifier] = index
                     indexSet.insert(index)
                 }
             } else if
