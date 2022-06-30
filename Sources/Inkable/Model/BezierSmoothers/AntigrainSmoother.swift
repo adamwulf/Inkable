@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// This algorithm is described at http://www.elvenprogrammer.org/projects/bezier/reference/index.html
 open class AntigrainSmoother: Smoother {
 
     let smoothFactor: CGFloat
