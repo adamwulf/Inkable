@@ -248,9 +248,6 @@ class EventListViewController: UITableViewController {
             @unknown default:
                 configuration.image = UIImage(systemName: "questionmark.circle")
             }
-        } else if let touchEvent = event as? ToolEvent {
-            configuration.text = "Tool: \(touchEvent.style.width)pt \(touchEvent.style.color?.debugDescription ?? "clear")"
-            configuration.image = UIImage(systemName: "paintbrush")
         } else {
             configuration.text = event.identifier
             configuration.image = UIImage(systemName: "questionmark.circle")

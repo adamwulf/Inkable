@@ -49,22 +49,16 @@
                 end
 
                 S5[BezierStream]
-                S6[AttributesStream]
 
                 BezierSmoothers -.-> S5
                 PolylineFilters --> S5
-                S5 --> S6
 
                 subgraph Renderers
-                    S7[DrawRectView]
-                    S7 -.-> S7A[NaiveDrawRectView]
-                    S7 -.-> S7B[SmartDrawRectView]
                     S8[PointView]
                     S9[PolylineView]
                     S10[BezierView]
                 end
 
-                S6 --> S7
                 S2 --> S8
                 PolylineFilters --> S9
                 S5 --> S10
@@ -79,9 +73,6 @@
                 click SM1 "https://web.archive.org/web/20171224222131/http://www.antigrain.com:80/research/bezier_interpolation" "Uses a heuristic developed by Maxim Shemanarev to generate smooth Bezier curves from the input polyline. Click for more information."
                 click SM2 emptyCallback "Simply translates the polyline into a linear UIBezierPath directly."
                 click S6 emptyCallback "Add attributes to each path, including line width and color, or a nil color to signify eraser paths"
-                click S7 emptyCallback "An abstract view that can render the output of a BezierStream"
-                click S7A emptyCallback "Sets the entire view as needingDisplay whenever any part of any path is updated"
-                click S7B emptyCallback "Sets only the bounding rect of the changed paths as needing display, reducing the amount of hte model that needs to be redrawn"
                 click S8 emptyCallback "Renders the output from the TouchPathStream to show the points of each TouchPath"
                 click S9 emptyCallback "Renders the output from the PolylineStream to show the path of each Polyline"
                 click S10 emptyCallback "Renders the output from the BezierStream to show its output UIBezierPaths"

@@ -22,7 +22,6 @@ class InkViewController: UIViewController {
     let touchPathStream = TouchPathStream()
     let lineStream = PolylineStream()
     let bezierStream = BezierStream(smoother: AntigrainSmoother())
-    let attributeStream = AttributesStream()
 
     let eventView = UIView()
     let pointsView = PointsView(frame: .zero)
@@ -43,9 +42,8 @@ class InkViewController: UIViewController {
         douglasPeucker.addConsumer(pointDistance)
         pointDistance.addConsumer(savitzkyGolay)
         savitzkyGolay.addConsumer(bezierStream)
-        bezierStream.addConsumer(attributeStream)
         bezierStream.addConsumer(curvesView)
-        attributeStream.addConsumer { (_) in
+        bezierStream.addConsumer { (_) in
             // noop
         }
     }

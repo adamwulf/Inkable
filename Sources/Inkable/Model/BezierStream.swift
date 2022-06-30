@@ -229,19 +229,3 @@ public extension UIBezierPath {
         }
     }
 }
-
-public extension BezierStream.Produces {
-    func draw(at rect: CGRect, in context: CGContext) {
-        for path in paths {
-            if rect.intersects(path.bounds.expand(by: path.lineWidth)) {
-                if let color = path.color {
-                    context.setStrokeColor(color.cgColor)
-                    path.stroke()
-                } else {
-                    UIColor.white.setStroke()
-                    path.stroke(with: .clear, alpha: 1.0)
-                }
-            }
-        }
-    }
-}
