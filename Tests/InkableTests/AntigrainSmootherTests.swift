@@ -439,6 +439,10 @@ class AntigrainSmootherTests: XCTestCase {
             altStream.produce(with: Array(events[0 ..< split]))
             altStream.produce(with: Array(events[split ..< events.count]))
 
+            if touchStream.paths != altStream.paths {
+                print("gotcha")
+            }
+
             if smoother.paths != altSmoother.paths {
                 print("gotcha") // path length is different
                 // I believe the issue is that the smoother can't currently remove path elements

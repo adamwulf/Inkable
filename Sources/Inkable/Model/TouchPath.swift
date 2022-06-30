@@ -148,6 +148,10 @@ open class TouchPath {
             let possiblyRemovedIndex = confirmedPoints.count + predictedPoints.count + index
             if possiblyRemovedIndex < startingCount {
                 indexSet.insert(possiblyRemovedIndex)
+            } else {
+                // this index was only ever seen during this exact update, so we
+                // can safely ignore it altogether
+                indexSet.remove(possiblyRemovedIndex)
             }
         }
 
