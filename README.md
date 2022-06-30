@@ -8,9 +8,9 @@ touch input. Many attributes of the `UITouch` are estimates, and are updated wit
 later than the initial `UITouch` is sent. To reduce percieved lag in input, the Pencil also provides
 predicted `UITouch` events.
 
-### Example
-
 This allows for the following example event data to be sent to your gesture:
+
+<details><summary>Click to show example</summary>
 
 #### Gesture Callbacks
 
@@ -50,6 +50,8 @@ Ignoring UIGestureRecognizer's `coalescedTouches(for:)` and `predictedTouches(fo
 Note how the predicted touch is missing, and how Touch A's location and force has changed, and
 Touch B's location has changed. These updates to a touch's location and force can make
 significant impact on the smoothness and accuracy of handwriting when using the Pencil.
+
+</details>
 
 ## Data Flow chart
  
