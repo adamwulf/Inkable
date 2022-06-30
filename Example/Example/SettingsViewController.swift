@@ -102,6 +102,7 @@ class SettingsViewController: UITableViewController {
         var content = cell.defaultContentConfiguration()
 
         content.text = option.name
+        content.secondaryText = nil
         switch option {
         case .showPoints:
             cell.accessoryType = pointsEnabled ? .checkmark : .none
@@ -111,6 +112,7 @@ class SettingsViewController: UITableViewController {
             cell.accessoryType = curvesEnabled ? .checkmark : .none
         case .smoothSavitzkyGolay:
             cell.accessoryType = savitzkyGolayEnabled ? .checkmark : .none
+            content.secondaryText = "(Slow implementation)"
         case .sizeToFit:
             if let settingsDelegate = settingsDelegate,
                settingsDelegate.isFitToSize {
