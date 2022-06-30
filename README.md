@@ -8,7 +8,12 @@ touch input. Many attributes of the `UITouch` are estimates, and are updated wit
 later than the initial `UITouch` is sent. To reduce percieved lag in input, the Pencil also provides
 predicted `UITouch` events.
 
-This allows for the following example event data to be sent to your gesture:
+Bookkeeping these asynchronous updates to previous touches not trivial, and efficiently recomputing
+Bezier paths from these updated touch events can cost valuable CPU cycles. For realtime ink,
+it's important to recompute as little as possible, while reacting to Pencil sensor data as quickly
+as possible.
+
+The following example event data shows the nuance of Pencil `UITouch` events:
 
 <details><summary>Click to show example</summary>
 
@@ -28,7 +33,7 @@ Callback #3
 
  - Touch C at location `(180, 120)` with force `0.4`
  - update to Touch A's force `0.4`
- - update to Touch B's location `(155, 108)`
+ - update to Touch B's location `(155, 108)` and force is `0.45`
  - predicted touch at `(180, 115)` with force `0.6`
 
 #### Generated data
@@ -36,20 +41,20 @@ Callback #3
 Taking into account touch updates and predictions, the output TouchPath would be:
 
 - Touch A at `(100, 105)` with force `0.4`
-- Touch B at `(155, 108)` with force `0.3`
+- Touch B at `(155, 108)` with force `0.45`
 - Touch C at `(180, 120)` with force `0.4`
 - predicted touch at `(180, 115)` with force `0.6`
 
 Ignoring UIGestureRecognizer's `coalescedTouches(for:)` and `predictedTouches(for:)` and
-`touchesEstimatedPropertiesUpdated()` would lead to the less accurate stream:
+`touchesEstimatedPropertiesUpdated()` would lead to the less accurate path data:
 
 - Touch A at `(100, 100)` with force `0.2`
 - Touch B at `(150, 100)` with force `0.3`
 - Touch C at `(180, 120)` with force `0.4`
 
-Note how the predicted touch is missing, and how Touch A's location and force has changed, and
-Touch B's location has changed. These updates to a touch's location and force can make
-significant impact on the smoothness and accuracy of handwriting when using the Pencil.
+Note how the predicted touch is missing, and how Touch A and B's location and force has changed.
+These updates to a touch's location and force can make significant impact on the smoothness
+and accuracy of handwriting when using the Pencil.
 
 </details>
 
