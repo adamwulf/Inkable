@@ -227,8 +227,8 @@ class EventListViewController: UITableViewController {
                     configuration.textProperties.color = UIColor.isUpdate
                 }
             } else if touchEvent.expectsUpdate {
-                configuration.text = "will update: " + touchEvent.location.debugDescription
-                configuration.textProperties.color = UIColor.isUpdate
+                configuration.text = "initial: " + touchEvent.location.debugDescription
+                configuration.textProperties.color = UIColor.isIntial
             } else {
                 configuration.text = "final: " + touchEvent.location.debugDescription
                 configuration.textProperties.color = UIColor.isFinal

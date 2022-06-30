@@ -1,5 +1,53 @@
 # Inkable
- 
+
+## The Problem
+
+Building high performance digital ink is difficult. The Apple Pencil provides UITouch input through
+a gesture recognizer - so far so simple - however, some data from the Pencil arrives after the initial
+touch input. Many attributes of the `UITouch` are estimates, and are updated with higher accuracy values
+later. To reduce percieved lag in input, the Pencil also provides predicted `UITouch` events.
+
+This allows for the following example event data to be sent to your gesture:
+
+### Gesture Callbacks
+
+Callback #1
+
+ - Touch A at location `(100, 100)` with force `0.2`
+
+Callback #2
+
+ - Touch B at location `(150, 100)` with force `0.3`
+ - update to Touch A's location `(100, 105)`
+ - predicted touch at `(160, 110)` with force `0.2`
+
+Callback #3
+
+ - Touch C at location `(180, 120)` with force `0.4`
+ - update to Touch A's force `0.4`
+ - update to Touch B's location `(155, 108)`
+ - predicted touch at `(180, 115)` with force `0.6`
+
+### Generated data
+
+Taking into account touch updates and predictions, the output TouchPath would be:
+
+- Touch A at `(100, 105)` with force `0.4`
+- Touch B at `(155, 108)` with force `0.3`
+- Touch C at `(180, 120)` with force `0.4`
+- predicted touch at `(180, 115)` with force `0.6`
+
+Ignoring UIGestureRecognizer's `coalescedTouches(for:)` and `predictedTouches(for:)` and
+`touchesEstimatedPropertiesUpdated()` would lead to the less accurate stream:
+
+- Touch A at `(100, 100)` with force `0.2`
+- Touch B at `(150, 100)` with force `0.3`
+- Touch C at `(180, 120)` with force `0.4`
+
+Note how the predicted touch is missing, and how Touch A's location and force has changed, and
+Touch B's location has changed. These updates to a touch's location and force can make
+significant impact on the smoothness and accuracy of handwriting when using the Pencil.
+
 ## Data Flow chart
  
 The flow chart below describes how UITouch events are processed into Bezier paths. The code is extremely modular
