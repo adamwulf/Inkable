@@ -5,11 +5,14 @@
 Building high performance digital ink is difficult. The Apple Pencil provides UITouch input through
 a gesture recognizer - so far so simple - however, some data from the Pencil arrives after the initial
 touch input. Many attributes of the `UITouch` are estimates, and are updated with higher accuracy values
-later. To reduce percieved lag in input, the Pencil also provides predicted `UITouch` events.
+later than the initial `UITouch` is sent. To reduce percieved lag in input, the Pencil also provides
+predicted `UITouch` events.
+
+### Example
 
 This allows for the following example event data to be sent to your gesture:
 
-### Gesture Callbacks
+#### Gesture Callbacks
 
 Callback #1
 
@@ -28,7 +31,7 @@ Callback #3
  - update to Touch B's location `(155, 108)`
  - predicted touch at `(180, 115)` with force `0.6`
 
-### Generated data
+#### Generated data
 
 Taking into account touch updates and predictions, the output TouchPath would be:
 
