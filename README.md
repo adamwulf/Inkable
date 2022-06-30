@@ -70,6 +70,9 @@ An example application is provided that sets up a basic pipeline to process `UIT
 including import/export of the raw event data, as well as the ability to replay the event data to see
 how the path is built up during the stroke.
 
+<img src='Docs/example.png'/>
+
+
 ## Data Flow chart
  
 The flow chart below describes how UITouch events are processed into Bezier paths. The code is extremely modular
