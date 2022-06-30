@@ -163,7 +163,6 @@ open class BezierStream: ProducerConsumer {
                 } else {
                     // use the existing element
                     let element = elements[elementIndex]
-                    elements.append(element)
                     updatedPath.append(element)
                 }
             }

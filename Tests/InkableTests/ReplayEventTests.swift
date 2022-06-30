@@ -68,20 +68,9 @@ class ReplayEventTests: XCTestCase {
             altStream.produce(with: Array(events[0 ..< split]))
             altStream.produce(with: Array(events[split ..< events.count]))
 
-            if touchStream.paths != altStream.paths {
-                print("gotcha")
-            }
-
-            if smoother.paths != altSmoother.paths {
-                print("gotcha") // path length is different
-                // I believe the issue is that the smoother can't currently remove path elements
-                // so when multiple predicted points are added, it'll add elements for each,
-                // but then if only 1 point replaces them then it'll have too many elements
-            }
-
             XCTAssertEqual(touchStream.paths, altStream.paths)
             XCTAssertEqual(polylineStream.lines, altPolylineStream.lines)
-            XCTAssertEqual(smoother.paths, altSmoother.paths)
+            XCTAssertEqual(smoother.paths, altSmoother.paths, "error at split index \(split)")
         }
     }
 
