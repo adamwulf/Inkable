@@ -58,6 +58,14 @@ and accuracy of handwriting when using the Pencil.
 
 </details>
 
+Naively regenerating the entire `UIBeizerPath` from `UITouches` will dramatically reduce the number
+of events that the Pencil can send the app. It's incredibly important to process touch events
+as fast as possible to that the Pencil can send _even more_ events that it would otherwise.
+
+Also, filtering and smoothing the input points can reduce the number of elements in the final
+`UIBezierPath` which reduces memory and storage (and is important for network bandwidth for
+realtime ink). Naively re-filtering and re-smoothing entire strokes can spend too much CPU
+and affect the framerate of the ink.
 
 ## The Solution
 
