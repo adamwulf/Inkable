@@ -34,7 +34,7 @@ myView.addGestureRecognizer(touchStream.gesture)
 ```
 
 Next, build the processing pipeline for your events. Each step is optional, depending on what sorts
-of paths you want to generate. Below will generate smooth `UIBezierPath` output
+of paths you want to generate. Below will generate smooth `UIBezierPath` output.
 
 ```swift
 // create a stream to convert `TouchPaths` to `Polylines`
@@ -65,6 +65,13 @@ only doing the minimum computation needed and relying on its cache whenever poss
 
 You can add `block` consumers to any step to inspect its output. Each Stream can support
 an arbitrary number of consumers.
+
+## Custom Streams
+
+`Inkable` streams are setup to follow a producer/consumer architecture. You can create custom
+`Producer`, `Consumer`, or combination `ProducerConsumer` streams. Look at the existing
+`TouchPathStream`, `PolylineStream`, `BezierStream` as examples. The Filters like
+`NaiveSavitzkyGolay` are setup similar to Streams, and simply produce and consume the same type.
 
 ## Funnel
 
