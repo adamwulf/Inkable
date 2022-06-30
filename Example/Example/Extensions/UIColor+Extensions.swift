@@ -9,8 +9,8 @@ import UIKit
 import SwiftToolbox
 
 extension UIColor {
-    static let isIntial = UIColor.red
-    static let isFinal = UIColor.blue
-    static let isUpdate = UIColor.purple
-    static let isPrediction = UIColor.green.darker()
+    static let isIntial = UIColor.purple
+    static let isFinal = UIColor.red
+    static let isUpdate = UIColor.green.darker()
+    static let isPrediction = UIColor.blue
 }

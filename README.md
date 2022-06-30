@@ -64,6 +64,11 @@ its calculations, so that only the portions of the path updated by the new event
 With realtime ink, every millisecond counts, and this heavily cached stream processing architecture
 allows for minimal recomputation with each new `UITouch` event.
 
+### Example App
+
+An example application is provided that sets up a basic pipeline to process `UITouch` into `UIBezierPath`,
+including import/export of the raw event data, as well as the ability to replay the event data to see
+how the path is built up during the stroke.
 
 ## Data Flow chart
  
@@ -91,40 +96,46 @@ efficient `UIBezierPath` building.
 
 ## Example
 
-First, create a `TouchStream` and add its gesture recognizer to a `UIView`. All events from the gesture
+First, create a `TouchEventStream` - this holds the gesture that will translate all of the `UITouches`
+into `TouchEvents` to be processed by the rest of the pipeline. Then,
+build the processing pipeline for your events. Each step is optional, depending on what sorts
+of paths you want to generate. Below will generate smooth `UIBezierPath` output.
+
+Last, make sure to add the `TouchEventStream` gesture recognizer to your `UIView`. All events from the gesture
 recognizer will automatically be processed by the `TouchStream` without any additional work.
 
 ```swift
-let touchStream = TouchStream()
-myView.addGestureRecognizer(touchStream.gesture)
-```
-
-Next, build the processing pipeline for your events. Each step is optional, depending on what sorts
-of paths you want to generate. Below will generate smooth `UIBezierPath` output.
-
-```swift
-// create a stream to convert `TouchPaths` to `Polylines`
+// Create streams to process:
+// `UITouch` -> `TouchEvent` -> `TouchPath` -> `Polyline` -> `UIBezierPath`
+let touchEventStream = TouchEventStream()
+let touchPathStream = TouchPathStream()
 let lineStream = PolylineStream()
-// create a stream to convert `Polylines` to `UIBezierPath`
 let bezierStream = BezierStream(smoother: AntigrainSmoother())
-// setup the streams to consume the previous step's output
+
+// setup each stream to consume the previous step's output
+touchEventStream.addConsumer(touchPathStream)
 touchPathStream.addConsumer(lineStream)
 lineStream.addConsumer(bezierStream)
-// add a `block` to inspect the final output
+
+// add a `block` for us to inspect the final output
 bezierStream.addConsumer { (output) in
     let beziers: [UIBezierPath] = output.paths
     // use the bezier paths
     let changes: [BezierStream.Delta] = output.deltas
     // inspect how the paths changed since the last callback
 }
+
+// Finally, add the gesture to the UIView
+myView.addGestureRecognizer(touchEventStream.gesture)
 ```
 
 The above pipeline will:
 
-1. process all `UITouches`/updates/predictions into `TouchPaths`
-2. process those `TouchPaths` into `Polylines`
-3. process those `Polylines` into `UIBezierPaths`
-4. send those `UIBezierPaths` to the consumer block at the end of the pipeline
+1. process all `UITouches`/updates/predictions into `TouchEvents` that can be encoded/decoded to/from JSON
+2. process all `TouchEvents` into `TouchPaths`
+3. process those `TouchPaths` into `Polylines`
+4. process those `Polylines` into `UIBezierPaths`
+5. send those `UIBezierPaths` to the consumer block at the end of the pipeline
 
 Any new touch event will immediatley be processed by the entire pipeline, with each step
 only doing the minimum computation needed and relying on its cache whenever possible.
