@@ -53,6 +53,18 @@ significant impact on the smoothness and accuracy of handwriting when using the 
 
 </details>
 
+
+## The Solution
+
+`Inkable` simplifies how `UITouch` data is collected, giving a single callback with all `UITouch`
+events, updates, and predictions. This event stream is processed through multiple steps to generate
+smooth `UIBezierPaths` with as little recalculation as possible. Each step of processing caches
+its calculations, so that only the portions of the path updated by the new events are recalculated.
+
+With realtime ink, every millisecond counts, and this heavily cached stream processing architecture
+allows for minimal recomputation with each new `UITouch` event.
+
+
 ## Data Flow chart
  
 The flow chart below describes how UITouch events are processed into Bezier paths. The code is extremely modular
@@ -75,6 +87,7 @@ This `Stream` architecture allows computation to be cached at every step of the 
 entire `UIBezierPath` does not need to be recomputed each time a new `UITouch` event arrives. Instead,
 only the minimal amount of work is computed and the cached path is updated, allowing for extremely
 efficient `UIBezierPath` building.
+
 
 ## Example
 
@@ -119,12 +132,14 @@ only doing the minimum computation needed and relying on its cache whenever poss
 You can add `block` consumers to any step to inspect its output. Each Stream can support
 an arbitrary number of consumers.
 
+
 ## Custom Streams
 
 `Inkable` streams are setup to follow a producer/consumer architecture. You can create custom
 `Producer`, `Consumer`, or combination `ProducerConsumer` streams. Look at the existing
 `TouchPathStream`, `PolylineStream`, `BezierStream` as examples. The Filters like
 `NaiveSavitzkyGolay` are setup similar to Streams, and simply produce and consume the same type.
+
 
 ## Funnel
 
@@ -243,6 +258,7 @@ The code is a Swift rewrite and successor to [DrawUI](https://github.com/adamwul
 [archived objective-c branch](https://github.com/adamwulf/DrawUI/tree/archived/objective-c) contains
 features that will likely show up here at some point.
  
-## Support
  
+## Support
+
 Has Inkable saved you time? Become a [Github Sponsor](https://github.com/sponsors/adamwulf) and buy me a coffee ☕️ 😄
