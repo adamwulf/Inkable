@@ -116,7 +116,9 @@ class SettingsViewController: UITableViewController {
                settingsDelegate.isFitToSize {
                 content.text = "Original Size"
             }
+            cell.accessoryType = .none
         case .importEvents, .exportEvents, .clearScreen:
+            cell.accessoryType = .none
             break
         }
 

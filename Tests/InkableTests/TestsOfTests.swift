@@ -18,7 +18,7 @@ class TestsOfTests: XCTestCase {
         //     a) a point expecting a location update
         //     b) a predicted point
         // event batch 2 contains:
-        //     a) an update to the (a) point above
+        //     a) an update to the (a) point above (this allows the predicted point in 1.b to remain)
         // event batch 3 contains:
         //     a) a .ended point expecting an update (the stroke should not be complete yet)
         // event batch 4 contains:
@@ -80,12 +80,12 @@ class TestsOfTests: XCTestCase {
         XCTAssertEqual(output.paths.count, 1)
         XCTAssertEqual(delta2.count, 1)
         if case .updatedTouchPath(let index, let indexSet) = delta2.first {
-            XCTAssertEqual(output.paths[index].points.count, 1)
-            XCTAssertEqual(indexSet.count, 2)
+            XCTAssertEqual(output.paths[index].points.count, 2)
+            XCTAssertEqual(indexSet.count, 1)
             XCTAssertEqual(indexSet.first!, 0)
-            XCTAssertEqual(indexSet.last!, 1)
             XCTAssertEqual(output.paths[index].points.first!.event.location, CGPoint(x: 110, y: 120))
-            XCTAssert(!output.paths[index].points.first!.expectsUpdate)
+            XCTAssertFalse(output.paths[index].points.first!.expectsUpdate)
+            XCTAssertTrue(output.paths[index].points.last!.isPrediction)
         } else {
             XCTFail()
         }

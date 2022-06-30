@@ -36,18 +36,32 @@ public struct Polyline {
     }
 
     mutating func update(with path: TouchPath, indexSet: IndexSet) -> IndexSet {
+        var indexesToRemove = IndexSet()
         for index in indexSet {
             if index < path.points.count {
                 if index < points.count {
                     points[index].location = path.points[index].event.location
+                    points[index].force = path.points[index].event.force
+                    points[index].azimuth = path.points[index].event.azimuth
+                    points[index].altitudeAngle = path.points[index].event.altitudeAngle
                 } else if index == points.count {
                     points.append(Point(touchPoint: path.points[index]))
                 } else {
                     assertionFailure("Attempting to modify a point that doesn't yet exist. maybe an update is out of order?")
                 }
             } else {
-                points.remove(at: index)
+                indexesToRemove.insert(index)
             }
+        }
+
+        // Remove points from the end of the list toward the beginning
+        for index in indexesToRemove.reversed() {
+            guard index < points.count else {
+                print("Error: unknown polyline index \(index)")
+//                assertionFailure("Error: unknown polyline index \(index)")
+                continue
+            }
+            points.remove(at: index)
         }
 
         isComplete = path.isComplete
@@ -56,9 +70,19 @@ public struct Polyline {
     }
 }
 
+extension Polyline: Equatable {
+    public static func == (lhs: Polyline, rhs: Polyline) -> Bool {
+        return lhs.points.count == rhs.points.count &&
+        lhs.isComplete == rhs.isComplete &&
+        lhs.touchIdentifier == rhs.touchIdentifier &&
+        lhs.bounds == rhs.bounds &&
+        lhs.points == rhs.points
+    }
+}
+
 extension Polyline {
     /// A mutable version of `TouchPoint` that maintains a reference to the immutable point it's initialized from
-    public struct Point {
+    public struct Point: Equatable {
 
         // MARK: - Mutable
         public var force: CGFloat

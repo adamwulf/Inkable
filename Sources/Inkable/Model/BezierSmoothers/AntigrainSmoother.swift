@@ -50,11 +50,11 @@ open class AntigrainSmoother: Smoother {
         return Swift.max(0, lastIndex - 1) + (line.points.count > 2 && line.isComplete ? 1 : 0)
     }
 
-    public func elementIndexes(for line: Polyline, at lineIndexes: IndexSet) -> IndexSet {
+    public func elementIndexes(for line: Polyline, at lineIndexes: IndexSet, with bezier: UIBezierPath) -> IndexSet {
         var curveIndexes = IndexSet()
 
         for index in lineIndexes {
-            curveIndexes.formUnion(elementIndexes(for: line, at: index))
+            curveIndexes.formUnion(elementIndexes(for: line, at: index, with: bezier))
         }
 
         return curveIndexes
@@ -69,22 +69,24 @@ open class AntigrainSmoother: Smoother {
     // 5 => 7, 6, 5, 4
     // 6 => 8, 7, 6, 5
     // 7 => 9, 8, 7, 6
-    public func elementIndexes(for line: Polyline, at lineIndex: Int) -> IndexSet {
-        assert(lineIndex >= 0 && lineIndex < line.points.count)
+    public func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: UIBezierPath) -> IndexSet {
+        guard lineIndex >= 0 else {
+            return IndexSet()
+        }
         let max = maxIndex(for: line)
         var ret = IndexSet()
 
         if lineIndex > 1,
-           lineIndex - 1 <= max {
+           (lineIndex - 1 <= max) || (lineIndex - 1 < bezier.elementCount) {
             ret.insert(lineIndex - 1)
         }
-        if lineIndex <= max {
+        if (lineIndex <= max) || (lineIndex < bezier.elementCount) {
             ret.insert(lineIndex)
         }
-        if lineIndex + 1 <= max {
+        if (lineIndex + 1 <= max) || (lineIndex + 1 < bezier.elementCount) {
             ret.insert(lineIndex + 1)
         }
-        if lineIndex + 2 <= max {
+        if (lineIndex + 2 <= max) || (lineIndex + 2 < bezier.elementCount) {
             ret.insert(lineIndex + 2)
         }
 

@@ -36,6 +36,9 @@ open class SmartDrawRectView: DrawRectView {
             case .completedBezierPath:
                 break
             case .unhandled(let event):
+                if event as? GestureCallbackEvent != nil {
+                    break
+                }
                 print("Unhandled event: \(event.identifier)")
             }
         }

@@ -1,0 +1,3693 @@
+[
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.80500000005,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 0,
+    "type" : 2,
+    "identifier" : "B465E6E3-FE6F-4641-905D-BEA79721C6F3",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.33333333333333331,
+    "location" : [
+      151.5,
+      100
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7031,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.81000000006,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "483CC2D0-03EC-47DD-91AB-64ECC6D40527",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.33333333333333331,
+    "location" : [
+      152,
+      100
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7032,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.81400000001,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "4F6F4014-0541-44DB-A67A-2B2BC8A77B23",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.33333333333333331,
+    "location" : [
+      152.5,
+      100.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7033,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.81799999997,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "EF020F72-84B2-4562-AD3C-E7E99675FF85",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.33333333333333331,
+    "location" : [
+      152.5,
+      100.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7034,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.82200000004,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "E5874D6B-0EB0-4753-B54A-0ACBFDDAA7AF",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.33333333333333331,
+    "location" : [
+      153,
+      101
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7035,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.826,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "60CDDCBF-F61E-47BE-BBA7-186FB2C655B6",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.4217791239420573,
+    "location" : [
+      154,
+      101
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7036,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.82999999996,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "F255D65A-E04F-46E9-A0A6-1EFBB45B46FA",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.48266868591308593,
+    "location" : [
+      154.5,
+      101.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7037,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.80500000005,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 0,
+    "type" : 2,
+    "identifier" : "A13B74E0-C8F0-4E2B-9419-95574B6BB168",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.35086657206217448,
+    "location" : [
+      151.5,
+      100
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7031,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.81000000006,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "1F5E924D-A1E4-424D-91F3-EB1D8186536A",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.35086657206217448,
+    "location" : [
+      152,
+      100
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7032,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.83499999996,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "28EAE13C-B1EF-4A15-BB32-D8BBC356E69A",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.55189170837402346,
+    "location" : [
+      155,
+      102
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7038,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.83900000004,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "1049279D-C9C1-4523-8649-61E53483AC0E",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.51342913309733074,
+    "location" : [
+      156,
+      102.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7039,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.84299999999,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "D7E93ADA-5F93-40AF-ACAA-BD448FA3C59F",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.51086451212565109,
+    "location" : [
+      156.5,
+      103.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7040,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.81400000001,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "D9D5D721-BDD2-4E44-806E-6E16B8E9C26D",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.32620811462402344,
+    "location" : [
+      152.5,
+      100.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7033,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.81799999997,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "4D5D0ECD-7988-43D8-9F35-45F47249E96F",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.29462496439615887,
+    "location" : [
+      152.5,
+      100.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7034,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.82200000004,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "A57C60B5-EF86-43B2-BC9E-AA865DCEBF18",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.30442937215169269,
+    "location" : [
+      153,
+      101
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7035,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.826,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "7E56BBA2-EE41-4697-8603-9BAC486A60F0",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.33448066711425783,
+    "location" : [
+      154,
+      101
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7036,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.84699999995,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "100F0229-5C04-4CFC-B501-232B9F4ECCA2",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.50830001831054683,
+    "location" : [
+      157.5,
+      104
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7041,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.85100000002,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "673D843F-290E-4A3E-B339-69F07CF0F154",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.54163335164388016,
+    "location" : [
+      158,
+      104.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7042,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.85499999998,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "03B105F2-BDA0-4B23-9A1A-CEA689054263",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.51682637532552078,
+    "location" : [
+      158.5,
+      105.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7043,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.85999999999,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "92E3E75B-36B8-4FD3-95FD-52099CE07263",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.52596982320149743,
+    "location" : [
+      159,
+      106
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7044,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.82999999996,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "232A9A0F-FAD5-4B35-97F6-8BF6AC511FB9",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.35713094075520835,
+    "location" : [
+      154.5,
+      101.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7037,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.83499999996,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "AA87A5CB-B4D0-4FC4-A209-B7BB59B0BC38",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.38024559020996096,
+    "location" : [
+      155,
+      102
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7038,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.83900000004,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "EF3B3AB8-9ED1-4EA5-93CE-C237D8552F72",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.38429997762044271,
+    "location" : [
+      156,
+      102.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7039,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.84299999999,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "0C4D5850-7920-4987-B5C1-4ADBAA4A6409",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.38429997762044271,
+    "location" : [
+      156.5,
+      103.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7040,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.86399999994,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "0FD2F3E5-4489-4884-B51C-AEDE1EE2469A",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.52793083190917967,
+    "location" : [
+      159.5,
+      106.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7045,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.86800000002,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "F6DCA05F-79CA-474F-9F5F-9D3E769CE8F1",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.52448527018229163,
+    "location" : [
+      160,
+      107
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7046,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.84699999995,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "9D9D8ED0-690D-44F4-9945-6708E9D12468",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.3976941426595052,
+    "location" : [
+      157.5,
+      104
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7041,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.85100000002,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "77765558-D34C-4E40-BA45-65A54AD2FE01",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.41556485493977863,
+    "location" : [
+      158,
+      104.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7042,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.85499999998,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "C0819522-C7B8-45B4-9656-B45570D36709",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.44117889404296873,
+    "location" : [
+      158.5,
+      105.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7043,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.85999999999,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "1C50259C-2D78-44F6-A773-1CD848CD9942",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.47699343363444008,
+    "location" : [
+      159,
+      106
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7044,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.87199999997,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "FF4123CA-7A13-4622-9AE7-538D07FAB77F",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.54785906473795576,
+    "location" : [
+      160,
+      107.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7047,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.87600000005,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "4FEB8EFE-4E73-4EF9-890C-42C1CE647F39",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.57123298645019527,
+    "location" : [
+      160.5,
+      108
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7048,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.88,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "8C69ED3B-C6EC-4CA7-ACDE-01E86C66FB79",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.5946067810058594,
+    "location" : [
+      161,
+      108.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7049,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.88500000001,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "88F9066D-5BC7-4EDE-B284-8392E0A0AD26",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.62690175374348955,
+    "location" : [
+      161,
+      109
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7050,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.86399999994,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "E85D8B5C-C983-4BD7-9B35-5C8F0AB0A2BA",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.50321744283040359,
+    "location" : [
+      159.5,
+      106.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7045,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.86800000002,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "1221E32C-F5E8-4167-AA36-E912730A5E50",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.52904307047526045,
+    "location" : [
+      160,
+      107
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7046,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.88899999997,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "4FFE841B-0D94-4EFC-896F-14E5D915895B",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.64980901082356768,
+    "location" : [
+      161.5,
+      109.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7051,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.89300000004,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "CEC447A6-0233-4F5C-AF48-6BB86AD27D49",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.67271639506022141,
+    "location" : [
+      161.5,
+      110.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7052,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.897,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "0B59EDFD-4688-46B4-89F1-DA9F77BBE4CE",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.69562365214029953,
+    "location" : [
+      162,
+      111
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7053,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.90099999995,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "0EEE3DD8-B74C-4C0A-A677-E82BCE4AFA98",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.74475657145182295,
+    "location" : [
+      162,
+      112
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7054,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.87199999997,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "9F8E6ECA-BD08-4CA1-BA19-78023120E8F3",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.5613426208496094,
+    "location" : [
+      160,
+      107.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7047,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.87600000005,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "D8C32253-64DA-434B-989E-33B3A1E6F6FA",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.59498926798502605,
+    "location" : [
+      160.5,
+      108
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7048,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.88,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "5C865B82-3885-401B-BB3A-AD551CE21404",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.62061971028645835,
+    "location" : [
+      161,
+      108.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7049,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.90500000003,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "C1B17E02-86CB-4605-AE79-B8ED625E4C6B",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.74141743977864583,
+    "location" : [
+      162.5,
+      113
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7055,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.91000000003,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "66E387BE-24D9-4A40-A4F8-DE85855E5B6B",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.76413701375325516,
+    "location" : [
+      162.5,
+      114
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7056,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.91399999999,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "3CA2A237-C0EA-411B-B482-B672AFDC060B",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.74455782572428386,
+    "location" : [
+      163,
+      115.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7057,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.91799999995,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "9FEDA2FD-93D9-42C7-8D6E-35F5AD0841DA",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.76490376790364578,
+    "location" : [
+      163,
+      117
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7058,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.92212698411,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "36CEA231-48D1-44BA-9787-6D8088CE8006",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.77020768279077012,
+    "location" : [
+      163.5,
+      118
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7058,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.88500000001,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "5E63F928-D83E-4F9C-95F9-6278B0413F61",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.64955317179361982,
+    "location" : [
+      161,
+      109
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7050,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.88899999997,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "16E9157C-3128-44BF-987D-40780826BEAC",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.65513267517089846,
+    "location" : [
+      161.5,
+      109.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7051,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.89300000004,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "2AF1D99E-53FB-4ED5-BFAF-987C629CBA0F",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.66087888081868484,
+    "location" : [
+      161.5,
+      110.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7052,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.897,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "E4E725F7-27B1-41F5-B940-9DFA76145822",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.67000541687011717,
+    "location" : [
+      162,
+      111
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7053,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.90099999995,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "4EA83A7E-63C3-468E-865D-4D4323D41D5B",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.679131825764974,
+    "location" : [
+      162,
+      112
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7054,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.92200000002,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "FEB4E219-096A-471C-AE00-5AC3001DFEDA",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.78521626790364585,
+    "location" : [
+      163,
+      118.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7059,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.92599999998,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "A6A7E093-9E6A-4785-A2DC-D7DE016E1CA1",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.80555572509765627,
+    "location" : [
+      163,
+      121
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7060,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.93003174604,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "BF44A1F5-6601-490A-AAD4-AF7794708FD2",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.8228713195475692,
+    "location" : [
+      163.5,
+      123
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7060,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.93000000005,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "3016551A-FD9A-4776-8C11-4B7BAF670EA7",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.78297360738118493,
+    "location" : [
+      163,
+      123
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7061,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.93500000006,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "6F4F83E0-559A-4124-9617-351F6B714E9A",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.76481653849283859,
+    "location" : [
+      163,
+      125
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7062,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.93950793659,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "A3267BE1-6C4B-423D-84EE-66B2BB822C92",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.75369987455848586,
+    "location" : [
+      163.5,
+      127
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7062,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.94401587313,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "0D095302-334E-474E-A21E-518C4530BA58",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.73480858656606196,
+    "location" : [
+      163.5,
+      130
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7062,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.90500000003,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "E44C9AF3-A4C4-4ADE-99B0-EDCC141D3039",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68277384440104172,
+    "location" : [
+      162.5,
+      113
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7055,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.91000000003,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "D9A46A8B-8692-4CA3-BED8-5631804F28DA",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.6865364074707031,
+    "location" : [
+      162.5,
+      114
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7056,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.91399999999,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "551F5392-4C46-4698-BE25-50D94A7D4737",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68767407735188801,
+    "location" : [
+      163,
+      115.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7057,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.93900000001,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "F414C96B-7659-4C70-ACA2-1B715D60BAC9",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.7832511901855469,
+    "location" : [
+      163,
+      128
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7063,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.94299999997,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "0B3B383F-4AB6-42A7-932D-A914AC715543",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.75871721903483069,
+    "location" : [
+      163,
+      130.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7064,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.94712698401,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "C3BFCF69-D4A8-450C-B253-6BA4331B23CC",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.74683108776706031,
+    "location" : [
+      163.5,
+      133
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7064,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.95125396806,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "315D343A-2503-415A-A6C2-717CF2E0E9BF",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.72939374065919216,
+    "location" : [
+      163.5,
+      136
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7064,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.9553809521,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "B6DE42E2-4884-42CC-ACEE-DD353CBD5C60",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.70538094023072329,
+    "location" : [
+      163.5,
+      139
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7064,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.91799999995,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "44441CC9-823C-496E-B782-00533C57650A",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68875834147135417,
+    "location" : [
+      163,
+      117
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7058,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.92200000002,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "AB7E1828-A9CF-4BBF-9F8C-0FED5EC803D3",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68875834147135417,
+    "location" : [
+      163,
+      118.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7059,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.92599999998,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "6881E03C-0D3F-482F-A518-E917FDCEFFEF",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68875834147135417,
+    "location" : [
+      163,
+      121
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7060,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.93000000005,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "E9EF8494-987A-40D2-9F79-631F6061DE56",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68875834147135417,
+    "location" : [
+      163,
+      123
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7061,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.94700000004,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "22BFB17A-091B-47E2-A4F4-84E9A2766061",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.75040079752604172,
+    "location" : [
+      163,
+      133
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7065,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.951,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "24560501-451C-46FD-A129-E47ED4C1241D",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.74208424886067703,
+    "location" : [
+      163,
+      136.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7066,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.95503174607,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "2BBFE46C-9FA7-4700-9C85-3606B435CC01",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.73154224792522138,
+    "location" : [
+      163.5,
+      140
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7066,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.95906349213,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "81120E78-A014-469B-ADD8-303C9F1E76AA",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.71989617181981236,
+    "location" : [
+      163.5,
+      143
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7066,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.9630952382,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "F308AA8F-7798-4871-B2F2-C8A56397E372",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.70792274603418404,
+    "location" : [
+      163.5,
+      146
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7066,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.95499999996,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "9D21CF58-F93A-4B34-AE27-04168A1E4CF5",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.74333076477050786,
+    "location" : [
+      163,
+      139.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7067,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.95999999996,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "4A4C9093-5809-4246-B828-98018EF44448",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.71871910095214842,
+    "location" : [
+      163,
+      142.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7068,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.9645079365,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "ED52ED52-FB13-4A4C-92D6-B4270F35278A",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.70545669954872259,
+    "location" : [
+      163.5,
+      146
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7068,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.96901587304,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "62ADD28F-FBE9-4A92-8455-B9887E8E28A5",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.69032185559026193,
+    "location" : [
+      163.5,
+      149
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7068,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.97352380957,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "0FE019D4-9D56-4898-81BE-6B054EFB4E07",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.67325477370482922,
+    "location" : [
+      162.5,
+      152
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7068,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.93500000006,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "A64D1539-58B0-47C4-B3CF-95A37CCD5967",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68781420389811199,
+    "location" : [
+      163,
+      125
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7062,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.93900000001,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "C8C2BDC1-0660-4E04-9FA0-9A2E436A577D",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68378829956054688,
+    "location" : [
+      163,
+      128
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7063,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.96400000004,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "1D0EC52C-549A-410C-B71C-6991783BCE56",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.71555608113606772,
+    "location" : [
+      163,
+      147
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7069,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.96799999999,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "666911CE-C65A-42B5-BBEF-E05903F141CA",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.72212117513020835,
+    "location" : [
+      163,
+      151.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7070,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.97212698415,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "F6DAD2C6-E24C-4FB7-A46D-BE93D69A598E",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.72208621123459915,
+    "location" : [
+      162.5,
+      156
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7070,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.97625396831,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "8360F1A3-BBC7-42E6-B7A8-664F21134D8F",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.72692537587420114,
+    "location" : [
+      162.5,
+      160
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7070,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.98038095247,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "B6483985-4B07-41F0-9202-AA2D0BA0C55E",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.7385791088625534,
+    "location" : [
+      162.5,
+      166
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7070,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.60028521617386799,
+    "azimuthUnitVector" : [
+      0.82517453617618641,
+      0.56487784949174247
+    ],
+    "timestamp" : 585522.97199999995,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "D598A157-9A51-4F39-A205-0ED7F7A8468A",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.71045570373535161,
+    "location" : [
+      163,
+      156
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7071,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.57729022105667183,
+    "azimuthUnitVector" : [
+      0.83794460079242827,
+      0.54575529864841266
+    ],
+    "timestamp" : 585522.97600000002,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "984A0C71-8E8A-4606-BC33-D311F5F6D663",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68519783020019531,
+    "location" : [
+      163,
+      161
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7072,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.55871613998994096,
+    "azimuthUnitVector" : [
+      0.84793638127974236,
+      0.53009800348823743
+    ],
+    "timestamp" : 585522.98003174609,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "1D737BBE-F4F4-4BB5-937C-21ED6C33D22B",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.66964927690744369,
+    "location" : [
+      162.5,
+      166
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7072,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.53290513999196076,
+    "azimuthUnitVector" : [
+      0.86133478648026074,
+      0.50803777969655339
+    ],
+    "timestamp" : 585522.98406349216,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "5C5B3E52-28E5-4E60-988A-83248768F3EF",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.64937191278299777,
+    "location" : [
+      162.5,
+      171
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7072,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.49772675750387774,
+    "azimuthUnitVector" : [
+      0.87867014394915155,
+      0.47742934360214756
+    ],
+    "timestamp" : 585522.98809523822,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "E20A583C-5AC6-49DC-8E4C-1814297AC4C6",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.62232330593909224,
+    "location" : [
+      162.5,
+      176
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7072,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.94299999997,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "9811E7E7-575A-41FB-B1F2-3A9018CEA712",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68026669820149743,
+    "location" : [
+      163,
+      130.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7064,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.94700000004,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "C924153F-6EC2-40AC-8A06-2E01A712C62D",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68026669820149743,
+    "location" : [
+      163,
+      133
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7065,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.951,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "F116B9E4-696F-4212-B626-DD4A208D89BC",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68000640869140627,
+    "location" : [
+      163,
+      136.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7066,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.95499999996,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "CFA5AD14-A1BF-4380-81F8-DCCEA2CAE236",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.67723706563313801,
+    "location" : [
+      163,
+      139.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7067,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.55011431773633479,
+    "azimuthUnitVector" : [
+      0.85246476406818605,
+      0.52278468418859791
+    ],
+    "timestamp" : 585522.97999999998,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "56A566FE-3F9E-4DD6-A1B9-EEC898A94934",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.68021074930826819,
+    "location" : [
+      163,
+      166
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7073,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.52338091929885366,
+    "azimuthUnitVector" : [
+      0.86613431138192476,
+      0.49981131904645659
+    ],
+    "timestamp" : 585522.98499999999,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "49EC2225-4324-4AD5-8D69-7AF129EFFE0F",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.67680714925130203,
+    "location" : [
+      162.5,
+      171
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7074,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.4955222850469625,
+    "azimuthUnitVector" : [
+      0.87972048789952662,
+      0.47549118095903614
+    ],
+    "timestamp" : 585522.98950793652,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "B00BC34F-A89F-4881-9C61-AAAC4FA96A19",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.66890140940193421,
+    "location" : [
+      162.5,
+      176
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7074,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.46162192770924471,
+    "azimuthUnitVector" : [
+      0.89533126750530545,
+      0.4454008547671896
+    ],
+    "timestamp" : 585522.99401587306,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "569A741E-351B-467D-9304-2B4EC4F406C9",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.66167721793885148,
+    "location" : [
+      162.5,
+      181
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7074,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.42098631988057428,
+    "azimuthUnitVector" : [
+      0.91268631399744393,
+      0.40866085234795774
+    ],
+    "timestamp" : 585522.9985238096,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "011C49F7-9A67-479F-B4E6-5194EE098970",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.65545063801579562,
+    "location" : [
+      162.5,
+      187
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7074,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.48836199840040651,
+    "azimuthUnitVector" : [
+      0.88310256055204694,
+      0.46917999482759115
+    ],
+    "timestamp" : 585522.98899999994,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "4F19A4FF-F0CB-42E7-9699-199858D38DA4",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.61143010457356772,
+    "location" : [
+      162.5,
+      176.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7075,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.44934527476758584,
+    "azimuthUnitVector" : [
+      0.90073169224761385,
+      0.43437589548771005
+    ],
+    "timestamp" : 585522.99300000002,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "D8B88370-34D9-439B-BF11-8137FAF1E37E",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.57358818054199223,
+    "location" : [
+      162.5,
+      182
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7076,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.4114351821864114,
+    "azimuthUnitVector" : [
+      0.91654780148744741,
+      0.39992515248296978
+    ],
+    "timestamp" : 585522.99712698418,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "D2445B06-8906-4BA0-93E3-A122B81D94B1",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.53038493777968687,
+    "location" : [
+      162.5,
+      188
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7076,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.36840362509156988,
+    "azimuthUnitVector" : [
+      0.93290343118569496,
+      0.36012662784353705
+    ],
+    "timestamp" : 585523.00125396834,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "B3E7F9F0-BD11-4D6A-9C75-B4579C4303F9",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.47575230298419924,
+    "location" : [
+      162.5,
+      193
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7076,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.32042043577264107,
+    "azimuthUnitVector" : [
+      0.94910307915499148,
+      0.31496562532840638
+    ],
+    "timestamp" : 585523.0053809525,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "AE2072DB-806C-4420-BCE9-AED17C17F61A",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.40689348966528899,
+    "location" : [
+      162.5,
+      199
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7076,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.95999999996,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "04964522-0433-414E-8556-0A0B5A3DB1F5",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.66877479553222652,
+    "location" : [
+      163,
+      142.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7068,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.96400000004,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "670F2AE5-1494-450F-A64E-E13ECB74D2DF",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.64468053181966145,
+    "location" : [
+      163,
+      147
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7069,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.62022845347853273,
+    "azimuthUnitVector" : [
+      0.8137456959215521,
+      0.58122107873781459
+    ],
+    "timestamp" : 585522.96799999999,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "B7C6C7A0-3868-45AF-AF73-09B6EE70EF2D",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.61925989786783853,
+    "location" : [
+      163,
+      151.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7070,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.60028521617386799,
+    "azimuthUnitVector" : [
+      0.82517453617618641,
+      0.56487784949174247
+    ],
+    "timestamp" : 585522.97199999995,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "0C7F5955-2254-43A5-A909-2E7519367060",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.58864084879557288,
+    "location" : [
+      163,
+      156
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7071,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.405949278673846,
+    "azimuthUnitVector" : [
+      0.91872794950029424,
+      0.39489106701340415
+    ],
+    "timestamp" : 585522.99699999997,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "A60F923C-30F4-48F5-8AC3-D918185C6237",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.53574612935384114,
+    "location" : [
+      162.5,
+      188
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7077,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3190263072636466,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.36472003062698438,
+    "azimuthUnitVector" : [
+      0.93422365942389973,
+      0.35668775444724432
+    ],
+    "timestamp" : 585523.00100000005,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "B614246C-D997-4F2A-B551-3B16797DFCBE",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.53103917439778647,
+    "location" : [
+      163,
+      193.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7078,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3216050426152091,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.3222866041341691,
+    "azimuthUnitVector" : [
+      0.94851364794591253,
+      0.31673626199148341
+    ],
+    "timestamp" : 585523.00503174611,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "FB9A2935-7E88-480B-AC9F-FCB1C2BEECC7",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.50662741921134535,
+    "location" : [
+      162.5,
+      199
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7078,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3234188425481199,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.27763447414396492,
+    "azimuthUnitVector" : [
+      0.96170647523948616,
+      0.27408147599289429
+    ],
+    "timestamp" : 585523.00906349218,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "C28105F7-D182-4AA9-8F51-45EBBA06ED63",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.48775789974712475,
+    "location" : [
+      162.5,
+      205
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7078,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3259838518901323,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.23198828251129122,
+    "azimuthUnitVector" : [
+      0.97321118699987297,
+      0.22991299549677127
+    ],
+    "timestamp" : 585523.01309523825,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "6E330AF7-71C0-4575-80C6-9FB355CBFC6A",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.47866074637576222,
+    "location" : [
+      162.5,
+      211
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7078,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3295339484881343,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.32428423961134795,
+    "azimuthUnitVector" : [
+      0.9478790322291144,
+      0.31863041326966512
+    ],
+    "timestamp" : 585523.00600000005,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "F5B0F15F-5569-401C-8711-914B2956A435",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.44032529195149739,
+    "location" : [
+      163,
+      199
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7079,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3242448131230216,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.28300921519729055,
+    "azimuthUnitVector" : [
+      0.96021947459240831,
+      0.27924641557856994
+    ],
+    "timestamp" : 585523.01000000001,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "44A70AE6-8829-46DB-913D-ABA6B0D17501",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.38518905639648438,
+    "location" : [
+      163.5,
+      204.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7080,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3267777721073966,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.24129821557235509,
+    "azimuthUnitVector" : [
+      0.97102856715873986,
+      0.23896343185024085
+    ],
+    "timestamp" : 585523.01425793651,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "C5EEFB5F-61EF-4FCA-90E4-ED1CF3AB305D",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.32747900649914868,
+    "location" : [
+      163.5,
+      210
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7080,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3294947252688927,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.20002600847337498,
+    "azimuthUnitVector" : [
+      0.98006141042376349,
+      0.19869482076335987
+    ],
+    "timestamp" : 585523.018515873,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "630E7C8E-A331-47D7-A1F2-8C490600ED91",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.26276076041649593,
+    "location" : [
+      164.5,
+      215
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7080,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3328343009790151,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.160702556313851,
+    "azimuthUnitVector" : [
+      0.98711510973240257,
+      0.16001174999976375
+    ],
+    "timestamp" : 585523.0227738095,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "0857E013-0B08-416D-9595-2404F36A61BB",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.19059328754278454,
+    "location" : [
+      164.5,
+      220
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7080,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3368796126290163,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.57729022105667183,
+    "azimuthUnitVector" : [
+      0.83794460079242827,
+      0.54575529864841266
+    ],
+    "timestamp" : 585522.97600000002,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "830B3809-F782-4AAB-B91C-E374732D586A",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.55832583109537759,
+    "location" : [
+      163,
+      161
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7072,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.55011431773633479,
+    "azimuthUnitVector" : [
+      0.85246476406818605,
+      0.52278468418859791
+    ],
+    "timestamp" : 585522.97999999998,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "18E514C2-56A2-4508-A8EF-887441606C3B",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.53094113667805987,
+    "location" : [
+      163,
+      166
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7073,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.52338091929885366,
+    "azimuthUnitVector" : [
+      0.86613431138192476,
+      0.49981131904645659
+    ],
+    "timestamp" : 585522.98499999999,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "0CAA6D77-5AF0-4779-989B-D034ED1E99D8",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.48991012573242188,
+    "location" : [
+      162.5,
+      171
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7074,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.48836199840040651,
+    "azimuthUnitVector" : [
+      0.88310256055204694,
+      0.46917999482759115
+    ],
+    "timestamp" : 585522.98899999994,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "B6040E1C-47C4-49AF-9AE5-40EFF7DC94F7",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.44078191121419269,
+    "location" : [
+      162.5,
+      176.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7075,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.24011675914259345,
+    "azimuthUnitVector" : [
+      0.97131021427626052,
+      0.2378160373957251
+    ],
+    "timestamp" : 585523.01399999997,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "7A18B60B-CA7B-4512-A866-1729039EAA5F",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.33005294799804685,
+    "location" : [
+      164,
+      209.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7081,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3288987437870841,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.20030657847853214,
+    "azimuthUnitVector" : [
+      0.98000562404262315,
+      0.19896978877414795
+    ],
+    "timestamp" : 585523.01800000004,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "ACA0AEF0-2855-4057-B9BF-F5465F200D6A",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.21642201741536457,
+    "location" : [
+      164.5,
+      214.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7082,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3309129039433341,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.15948306992329012,
+    "azimuthUnitVector" : [
+      0.98730950784291793,
+      0.15880785787540594
+    ],
+    "timestamp" : 585523.02206448419,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "E36A633C-C6AE-447A-A4E1-BE90BD65162E",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.12763555623683992,
+    "location" : [
+      164.5,
+      219
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7082,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3332200776654166,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.11991835283127285,
+    "azimuthUnitVector" : [
+      0.99281840670748223,
+      0.11963114687578773
+    ],
+    "timestamp" : 585523.02612896834,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "010DBC01-F399-42B5-B7E1-BA8DEAC17E02",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.022265372326174863,
+    "location" : [
+      165.5,
+      224
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7082,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3354899780124607,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.082646163100538905,
+    "azimuthUnitVector" : [
+      0.99658674934500768,
+      0.08255211099633257
+    ],
+    "timestamp" : 585523.03019345249,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "DF3FB709-7CF1-4008-ABD3-5422EB918D46",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0,
+    "location" : [
+      166.5,
+      228
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7082,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3375435930065227,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.048792474026640227,
+    "azimuthUnitVector" : [
+      0.99880988337705578,
+      0.048773116245654426
+    ],
+    "timestamp" : 585523.03425793664,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "9D0D817A-DF03-493F-B910-71197935633B",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0,
+    "location" : [
+      167.5,
+      232
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7082,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3391606178335664,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.44934527476758584,
+    "azimuthUnitVector" : [
+      0.90073169224761385,
+      0.43437589548771005
+    ],
+    "timestamp" : 585522.99300000002,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "7B2C0348-52DD-4F47-9E86-9F0D2AA6200A",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.39259147644042969,
+    "location" : [
+      162.5,
+      182
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7076,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3176224986698966,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.405949278673846,
+    "azimuthUnitVector" : [
+      0.91872794950029424,
+      0.39489106701340415
+    ],
+    "timestamp" : 585522.99699999997,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "4E903998-1155-41A6-8251-CA30AB4D0ACD",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.34679463704427083,
+    "location" : [
+      162.5,
+      188
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7077,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3190263072636466,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.36472003062698438,
+    "azimuthUnitVector" : [
+      0.93422365942389973,
+      0.35668775444724432
+    ],
+    "timestamp" : 585523.00100000005,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "F3E72A7E-6D7A-4664-A8DF-099BA50F826C",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.29817034403483073,
+    "location" : [
+      163,
+      193.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7078,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3216050426152091,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.32428423961134795,
+    "azimuthUnitVector" : [
+      0.9478790322291144,
+      0.31863041326966512
+    ],
+    "timestamp" : 585523.00600000005,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "5032020B-F42A-4C53-B9AF-4AD63B347CBF",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.22037544250488281,
+    "location" : [
+      163,
+      199
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7079,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3242448131230216,
+    "estimatedProperties" : 0,
+    "isUpdate" : true,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.16408221324415667,
+    "azimuthUnitVector" : [
+      0.98656868849307888,
+      0.16334694023778448
+    ],
+    "timestamp" : 585523.022,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "849FED34-E018-4997-AC11-3AFCAE321D77",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.1478588104248047,
+    "location" : [
+      165,
+      219
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7083,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3329270640995841,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.13412921031448549,
+    "azimuthUnitVector" : [
+      0.99101815535666238,
+      0.13372739342961207
+    ],
+    "timestamp" : 585523.02599999995,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "C0C991F2-0EB6-4EE7-8FDE-BA53CEF270C4",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.093197123209635413,
+    "location" : [
+      165.5,
+      222.5
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7084,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3347581187870841,
+    "estimatedProperties" : 1,
+    "isUpdate" : false,
+    "isPrediction" : false
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.10078591056852858,
+    "azimuthUnitVector" : [
+      0.99492539786402479,
+      0.1006153700242267
+    ],
+    "timestamp" : 585523.03001612099,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "B2C2E1C3-61CD-40ED-95DB-0017C04B92A0",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0.023030823055698459,
+    "location" : [
+      166.5,
+      227
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7084,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3366292200508787,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.071162170322764964,
+    "azimuthUnitVector" : [
+      0.99746904110411672,
+      0.07110212401070666
+    ],
+    "timestamp" : 585523.03403224202,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "8ECDAA2A-ACC9-4D78-AACF-C1FEAABA05CA",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0,
+    "location" : [
+      166.5,
+      230
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7084,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3381865587575545,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.046451510777376047,
+    "azimuthUnitVector" : [
+      0.99892132255322319,
+      0.046434807510309949
+    ],
+    "timestamp" : 585523.03804836306,
+    "estimatedPropertiesExpectingUpdates" : 1,
+    "phase" : 1,
+    "type" : 2,
+    "identifier" : "6F6C4196-F84F-4CBD-912D-D475F9BE0A0E",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0,
+    "location" : [
+      167.5,
+      233
+    ],
+    "majorRadius" : 0.25,
+    "estimationUpdateIndex" : 7084,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.339229711337184,
+    "estimatedProperties" : 15,
+    "isUpdate" : false,
+    "isPrediction" : true
+  },
+  {
+    "touchIdentifier" : "5597C362-DCDE-4D96-88AA-95B088707519",
+    "azimuth" : 0.11032549937697542,
+    "azimuthUnitVector" : [
+      0.99392031253405344,
+      0.11010182710659071
+    ],
+    "timestamp" : 585523.03099999996,
+    "estimatedPropertiesExpectingUpdates" : 0,
+    "phase" : 3,
+    "type" : 2,
+    "identifier" : "3E54A83A-AB38-4C5A-BDDB-C99117C7BF5D",
+    "maximumPossibleForce" : 4.166666666666667,
+    "force" : 0,
+    "location" : [
+      166.5,
+      226
+    ],
+    "majorRadius" : 0,
+    "isUpdate" : false,
+    "majorRadiusTolerance" : 0,
+    "altitudeAngle" : 1.3362382213261466,
+    "estimatedProperties" : 0,
+    "isPrediction" : false
+  }
+]

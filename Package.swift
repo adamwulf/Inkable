@@ -30,6 +30,10 @@ let package = Package(
         .testTarget(
             name: "InkableTests",
             dependencies: ["Inkable"],
-            resources: [.copy("events.json")])
+            resources: [.copy("events.json"),
+                        .copy("pencil-antigrain.json"),
+                        .copy("pencil-antigrain2.json"),
+                        .copy("pencil-error.json"),
+                        .copy("unknown-polyline-index.json")])
     ]
 )

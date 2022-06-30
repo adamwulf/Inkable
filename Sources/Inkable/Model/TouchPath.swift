@@ -35,8 +35,9 @@ open class TouchPath {
         }
     }
     public var isComplete: Bool {
+        // completed paths are allowed to have expectingUpdate
         let phase = confirmedPoints.last?.event.phase
-        return (phase == .ended || phase == .cancelled) && predictedPoints.isEmpty && expectingUpdate.isEmpty
+        return (phase == .ended || phase == .cancelled) && predictedPoints.isEmpty
     }
 
     // MARK: - Private Properties
@@ -66,27 +67,13 @@ open class TouchPath {
 
     @discardableResult
     func add(touchEvents: [TouchEvent]) -> IndexSet {
-        assert(!isComplete, "Cannot add events to a complete pointCollection")
         var indexSet = IndexSet()
         let startingCount = points.count
 
         for event in touchEvents {
             assert(touchIdentifier == event.touchIdentifier)
-            if
-                eventToPoint[event.pointIdentifier] != nil,
-                let index = eventToIndex[event.pointIdentifier] {
-                // we got an update to a legitimate point. move all of our predictions into consumable
-                consumable.append(contentsOf: predictedPoints)
-                predictedPoints.removeAll()
-
-                // This is an update to an existing point. Add the event to the point that we already have.
-                // If this is the last event that the point expects, then remove it from `expectsUpdate`
-                eventToPoint[event.pointIdentifier]?.add(event: event)
-                if !event.expectsUpdate {
-                    expectingUpdate.remove(object: event.pointIdentifier)
-                }
-                indexSet.insert(index)
-            } else if event.isPrediction {
+            if event.isPrediction {
+                assert(!isComplete, "Cannot predict events to a complete pointCollection")
                 // The event is a prediction. Attempt to consume a previous prediction and reuse a Point object,
                 // otherwise create a new Point and add to the predictions array
                 if let prediction = consumable.dequeue() {
@@ -95,16 +82,32 @@ open class TouchPath {
                     prediction.add(event: event)
                     predictedPoints.append(prediction)
                     let index = confirmedPoints.count + predictedPoints.count - 1
-                    eventToIndex[event.pointIdentifier] = index
                     indexSet.insert(index)
                 } else {
                     // The event is a prediction, and we're out of consumable previous predicted points, so create a new point
                     let prediction = Point(event: event)
                     predictedPoints.append(prediction)
                     let index = confirmedPoints.count + predictedPoints.count - 1
-                    eventToIndex[event.pointIdentifier] = index
                     indexSet.insert(index)
                 }
+            } else if
+                eventToPoint[event.pointIdentifier] != nil,
+                let index = eventToIndex[event.pointIdentifier] {
+                // This is an update to an existing point. Add the event to the point that we already have.
+                // If this is the last event that the point expects, then remove it from `expectsUpdate`
+                eventToPoint[event.pointIdentifier]?.add(event: event)
+                if !event.expectsUpdate {
+                    expectingUpdate.remove(object: event.pointIdentifier)
+                }
+                indexSet.insert(index)
+
+                if event.phase == .ended || event.phase == .cancelled {
+                    // this is an update to the final event of the stroke, so remove all predicted points
+                    consumable.append(contentsOf: predictedPoints)
+                    predictedPoints.removeAll()
+                }
+            } else if isComplete {
+                assert(!isComplete, "Cannot add events to a complete pointCollection")
             } else {
                 // we got a new legitimate point. move all of our predictions into consumable
                 consumable.append(contentsOf: predictedPoints)
@@ -145,6 +148,10 @@ open class TouchPath {
             let possiblyRemovedIndex = confirmedPoints.count + predictedPoints.count + index
             if possiblyRemovedIndex < startingCount {
                 indexSet.insert(possiblyRemovedIndex)
+            } else {
+                // this index was only ever seen during this exact update, so we
+                // can safely ignore it altogether
+                indexSet.remove(possiblyRemovedIndex)
             }
         }
 
@@ -166,11 +173,17 @@ extension TouchPath {
     open class Point: Codable {
 
         public private(set) var events: [TouchEvent]
+
         public var event: TouchEvent {
             return events.last!
         }
+
         public var expectsUpdate: Bool {
             return self.event.isPrediction || self.event.expectsUpdate
+        }
+
+        public var isPrediction: Bool {
+            return events.allSatisfy({ $0.isPrediction })
         }
 
         public init(event: TouchEvent) {

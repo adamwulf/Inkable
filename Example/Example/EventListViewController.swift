@@ -124,18 +124,25 @@ class EventListViewController: UITableViewController {
 
     func replayEvents(through index: Int = -1) {
         let events = allEvents
-        allEvents = []
-        touchEventStream.reset()
-        inkViewController?.reset()
-        currentEventIndex = -1
-        if index == -1 || index >= events.count {
-            touchEventStream.process(events: events)
-        } else {
-            allEvents = events
-            if !allEvents.isEmpty {
-                let toProcess = Array(allEvents[0...index])
-                touchEventStream.process(events: toProcess)
+        if index <= currentEventIndex {
+            allEvents = []
+            touchEventStream.reset()
+            inkViewController?.reset()
+            currentEventIndex = -1
+            if index == -1 || index >= events.count {
+                touchEventStream.process(events: events)
+            } else {
+                allEvents = events
+                if !allEvents.isEmpty {
+                    let toProcess = Array(allEvents[0...index])
+                    touchEventStream.process(events: toProcess)
+                }
+                currentEventIndex = index
             }
+        } else if index < allEvents.count,
+                  case let toProcess = Array(allEvents[currentEventIndex+1...index]),
+                  !toProcess.isEmpty {
+            touchEventStream.process(events: toProcess)
             currentEventIndex = index
         }
         // we don't need to reload the table explicitly here, since the event list is unchanged
@@ -249,6 +256,8 @@ class EventListViewController: UITableViewController {
             configuration.image = UIImage(systemName: "questionmark.circle")
         }
 
+        configuration.secondaryText = "\(indexPath.row): " + (configuration.secondaryText ?? "")
+
         cell.accessoryType = indexPath.row > currentEventIndex ? .none : .checkmark
 
         cell.contentConfiguration = configuration
@@ -260,11 +269,17 @@ class EventListViewController: UITableViewController {
         if indexPath.row < currentEventIndex {
             replayEvents(through: indexPath.row)
         }
-        while indexPath.row > currentEventIndex {
-            currentEventIndex += 1
-            let event = allEvents[currentEventIndex]
-            touchEventStream.process(events: [event])
+        var eventsToProcess: [DrawEvent] = []
+        while indexPath.row > currentEventIndex + eventsToProcess.count {
+            let nextIndex = currentEventIndex + eventsToProcess.count + 1
+            guard nextIndex < allEvents.count else { assertionFailure(); break }
+            let event = allEvents[nextIndex]
+            eventsToProcess.append(event)
         }
+        if !eventsToProcess.isEmpty {
+            touchEventStream.process(events: eventsToProcess)
+        }
+        currentEventIndex += eventsToProcess.count
         reloadTable()
     }
 }

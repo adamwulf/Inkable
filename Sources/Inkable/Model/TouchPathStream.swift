@@ -102,9 +102,7 @@ open class TouchPathStream: ProducerConsumer {
         })
 
         for eventToProcess in input {
-            guard
-                let touchToProcess = eventToProcess as? TouchEvent
-            else {
+            guard let touchToProcess = eventToProcess as? TouchEvent else {
                 deltas.append(.unhandled(event: eventToProcess))
                 continue
             }
@@ -119,6 +117,7 @@ open class TouchPathStream: ProducerConsumer {
                 // so move onto the next event
                 continue
             }
+
             processedTouchIdentifiers.append(touchIdentifier)
             if let index = touchToIndex[touchIdentifier] {
                 let path = paths[index]

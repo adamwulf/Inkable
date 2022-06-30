@@ -25,6 +25,8 @@ open class BezierStream: ProducerConsumer {
         }
     }
 
+    public private(set) var paths: [UIBezierPath] = []
+
     public typealias Consumes = PolylineStream.Produces
 
     public enum Delta: Equatable, CustomDebugStringConvertible {
@@ -113,6 +115,7 @@ open class BezierStream: ProducerConsumer {
         }
 
         let output = BezierStream.Produces(paths: builders.map({ $0.path }), deltas: deltas)
+        paths = output.paths
         consumers.forEach({ $0.process(output) })
         return output
     }
@@ -128,7 +131,7 @@ open class BezierStream: ProducerConsumer {
 
         @discardableResult
         func update(with line: Polyline, at lineIndexes: IndexSet) -> IndexSet {
-            let updatedPathIndexes = smoother.elementIndexes(for: line, at: lineIndexes)
+            let updatedPathIndexes = smoother.elementIndexes(for: line, at: lineIndexes, with: path)
             let updatedPath: UIBezierPath
             if let min = updatedPathIndexes.min(),
                min - 1 < path.elementCount,
@@ -146,17 +149,20 @@ open class BezierStream: ProducerConsumer {
             for elementIndex in min ... max {
                 assert(elementIndex <= elements.count, "Invalid element index")
                 if updatedPathIndexes.contains(elementIndex) {
-                    let element = smoother.element(for: line, at: elementIndex)
-                    if elementIndex == elements.count {
-                        elements.append(element)
+                    if elementIndex > smoother.maxIndex(for: line) {
+                        // skip this element, it was deleted
                     } else {
-                        elements[elementIndex] = element
+                        let element = smoother.element(for: line, at: elementIndex)
+                        if elementIndex == elements.count {
+                            elements.append(element)
+                        } else {
+                            elements[elementIndex] = element
+                        }
+                        updatedPath.append(element)
                     }
-                    updatedPath.append(element)
                 } else {
                     // use the existing element
                     let element = elements[elementIndex]
-                    elements.append(element)
                     updatedPath.append(element)
                 }
             }
