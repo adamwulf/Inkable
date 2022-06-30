@@ -227,7 +227,8 @@ elements. The `AntigrainSmoother` converts the `Polyline` into smoother `curveTo
 
 ### 6. Tapered Strokes (TBD)
 
-This will convert single-width stroked-path beziers into variable-width filled-path beziers.
+This will convert single-width stroked-path beziers into variable-width filled-path beziers using the 
+force, velocity, or angle to inform the stroke width.
 
 
 ## TODO
