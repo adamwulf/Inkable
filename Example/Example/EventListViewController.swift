@@ -227,14 +227,14 @@ class EventListViewController: UITableViewController {
                     configuration.textProperties.color = UIColor.isUpdate
                 }
             } else if touchEvent.expectsUpdate {
-                configuration.text = "initial: " + touchEvent.location.debugDescription
+                configuration.text = "will update: " + touchEvent.location.debugDescription
                 configuration.textProperties.color = UIColor.isIntial
             } else {
-                configuration.text = "final: " + touchEvent.location.debugDescription
+                configuration.text = "single event: " + touchEvent.location.debugDescription
                 configuration.textProperties.color = UIColor.isFinal
             }
             let touchId = touchEvent.pointIdentifier.suffix(from: touchEvent.pointIdentifier.firstIndex(of: ":")!)
-            configuration.secondaryText = touchEvent.phase.stringValue + String(touchId)
+            configuration.secondaryText = touchEvent.phase.stringValue + " id" + String(touchId)
             configuration.secondaryTextProperties.numberOfLines = 1
             switch touchEvent.type {
             case .direct:
