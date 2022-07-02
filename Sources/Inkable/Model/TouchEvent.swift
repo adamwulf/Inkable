@@ -53,13 +53,13 @@ open class TouchEvent: DrawEvent {
     /// An identifier unique to the touch that created this event. Events with the same
     /// touch will also have the same touchIdentifier
     public let touchIdentifier: UITouchIdentifier
-    public var pointIdentifier: PointIdentifier {
+    lazy public var pointIdentifier: PointIdentifier = {
         if let estimationUpdateIndex = estimationUpdateIndex {
             return touchIdentifier + ":\(estimationUpdateIndex)"
         } else {
             return touchIdentifier + ":" + identifier
         }
-    }
+    }()
     public let timestamp: TimeInterval
     public let type: UITouch.TouchType
     public let phase: UITouch.Phase

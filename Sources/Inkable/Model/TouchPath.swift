@@ -48,7 +48,7 @@ open class TouchPath {
     /// Consumable points are previously predicted points that were not used up by the previous `process()` when creating confirmed points.
     /// these should be used before any newly predicted points
     private var consumable: [Point]
-    private var expectingUpdate: [String]
+    private var expectingUpdate: Set<String>
     private var eventToPoint: [PointIdentifier: Point]
     private var eventToIndex: [PointIdentifier: Int]
 
@@ -60,7 +60,7 @@ open class TouchPath {
         self.consumable = []
         self.eventToPoint = [:]
         self.eventToIndex = [:]
-        self.expectingUpdate = []
+        self.expectingUpdate = Set()
         self.touchIdentifier = touchEvents.first!.touchIdentifier
         add(touchEvents: touchEvents)
     }
@@ -97,7 +97,7 @@ open class TouchPath {
                 // If this is the last event that the point expects, then remove it from `expectsUpdate`
                 eventToPoint[event.pointIdentifier]?.add(event: event)
                 if !event.expectsUpdate {
-                    expectingUpdate.remove(object: event.pointIdentifier)
+                    expectingUpdate.remove(event.pointIdentifier)
                 }
                 indexSet.insert(index)
 
@@ -118,7 +118,7 @@ open class TouchPath {
                     // The event is a new confirmed points, consume a previous prediction if possible and update it to the now
                     // confirmed point.
                     if event.expectsUpdate {
-                        expectingUpdate.append(event.pointIdentifier)
+                        expectingUpdate.insert(event.pointIdentifier)
                     }
                     point.add(event: event)
                     eventToPoint[event.pointIdentifier] = point
@@ -129,7 +129,7 @@ open class TouchPath {
                 } else {
                     // We are out of consumable points, so create a new point for this event
                     if event.expectsUpdate {
-                        expectingUpdate.append(event.pointIdentifier)
+                        expectingUpdate.insert(event.pointIdentifier)
                     }
                     let point = Point(event: event)
                     eventToPoint[event.pointIdentifier] = point
@@ -188,6 +188,7 @@ extension TouchPath {
 
         public init(event: TouchEvent) {
             events = [event]
+            events.reserveCapacity(10)
         }
 
         func add(event: TouchEvent) {

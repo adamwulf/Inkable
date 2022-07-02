@@ -19,6 +19,7 @@ open class SavitzkyGolay: ProducerConsumer {
 
     // MARK: - Private
 
+    private let coeffs = Coeffs(index: 0)
     private let deriv: Int // 0 is smooth, 1 is first derivative, etc
     private let order: Int
     private var consumers: [(process: (Produces) -> Void, reset: () -> Void)] = []
@@ -104,14 +105,13 @@ open class SavitzkyGolay: ProducerConsumer {
             stroke.points.removeSubrange(input.points.count...)
         }
         let outIndexes = { () -> IndexSet in
-            if let indexes = indexes {
+            if let indexes = indexes,
+               let minIndex = indexes.min(),
+               let maxIndex = indexes.max() {
                 var outIndexes = IndexSet()
-                for pIndex in indexes {
-                    for i in pIndex - window ... pIndex + window {
-                        guard i >= 0, i < stroke.points.count else { continue }
-                        outIndexes.insert(i)
-                    }
-                }
+                let start = max(0, minIndex - window)
+                let end = min(stroke.points.count - 1, maxIndex + window)
+                outIndexes.insert(integersIn: start...end)
                 return outIndexes
             }
             return IndexSet(stroke.points.indices)
@@ -125,7 +125,7 @@ open class SavitzkyGolay: ProducerConsumer {
             if minWin > 1 {
                 var outPoint = CGPoint.zero
                 for windowPos in -minWin ... minWin {
-                    let wght = weight(0, windowPos, minWin, order, deriv)
+                    let wght = coeffs.weight(windowPos, minWin, order, deriv)
                     outPoint.x += wght * input.points[pIndex + windowPos].location.x
                     outPoint.y += wght * input.points[pIndex + windowPos].location.y
                 }
@@ -138,10 +138,36 @@ open class SavitzkyGolay: ProducerConsumer {
         return outIndexes
     }
 
+}
+
+class Coeffs {
+
+    private let index: Int
+    private var cache: [Int: [CGFloat]] = [:]
+
+    init(index: Int) {
+        self.index = index
+    }
+
+    func weight(_ windowLoc: Int, _ windowSize: Int, _ order: Int, _ derivative: Int) -> CGFloat {
+        guard abs(windowLoc) <= windowSize else { fatalError("Invalid coefficient") }
+        if let cached = cache[windowSize] {
+            return cached[abs(windowLoc)]
+        }
+        var coeffs: [CGFloat] = []
+        for windowLoc in 0...windowSize {
+            coeffs.append(Self.calcWeight(index, windowLoc, windowSize, order, derivative))
+        }
+
+        cache[windowSize] = coeffs
+
+        return coeffs[abs(windowLoc)]
+    }
+
     // MARK: - Coefficients
 
     /// calculates the generalised factorial (a)(a-1)...(a-b+1)
-    private func genFact(_ a: Int, _ b: Int) -> CGFloat {
+    private static func genFact(_ a: Int, _ b: Int) -> CGFloat {
         var gf: CGFloat = 1.0
 
         for jj in (a - b + 1) ..< (a + 1) {
@@ -152,7 +178,7 @@ open class SavitzkyGolay: ProducerConsumer {
 
     /// Calculates the Gram Polynomial ( s = 0 ), or its s'th
     /// derivative evaluated at i, order k, over 2m + 1 points
-    private func gramPoly(_ index: Int, _ window: Int, _ order: Int, _ derivative: Int) -> CGFloat {
+    private static func gramPoly(_ index: Int, _ window: Int, _ order: Int, _ derivative: Int) -> CGFloat {
         var gp_val: CGFloat
 
         if order > 0 {
@@ -175,7 +201,7 @@ open class SavitzkyGolay: ProducerConsumer {
 
     /// calculates the weight of the i'th data point for the t'th Least-square
     /// point of the s'th derivative, over 2m + 1 points, order n
-    private func weight(_ index: Int, _ windowLoc: Int, _ windowSize: Int, _ order: Int, _ derivative: Int) -> CGFloat {
+    private static func calcWeight(_ index: Int, _ windowLoc: Int, _ windowSize: Int, _ order: Int, _ derivative: Int) -> CGFloat {
         var sum: CGFloat = 0.0
 
         for k in 0 ..< order + 1 {
@@ -186,7 +212,7 @@ open class SavitzkyGolay: ProducerConsumer {
         return sum
     }
 
-    private func testCoeff() {
+    static func testCoeff(deriv: Int) {
         for m in 2...12 {
             // for a window of 2*m+1 points ( from p[-m] => p[m],
             // the coefficents for p[0]...p[m] or p[0]...p[-m] are given
@@ -195,9 +221,8 @@ open class SavitzkyGolay: ProducerConsumer {
             for windowPos in -m ... m {
                 let term = 0 // coefficients to adjust p[0] when looking at p[-m] ... p[m]
                 let order = 3 // cubic curve
-                print("  \(windowPos): \(weight(term, windowPos, m, order, deriv))")
+                print("  \(windowPos): \(calcWeight(term, windowPos, m, order, deriv))")
             }
         }
-
     }
 }

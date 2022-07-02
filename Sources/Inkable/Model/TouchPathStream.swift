@@ -90,16 +90,14 @@ open class TouchPathStream: ProducerConsumer {
         guard !input.isEmpty else { return Produces(paths: paths, deltas: []) }
         var deltas: [Delta] = []
         var processedTouchIdentifiers: [UITouchIdentifier] = []
-        let updatedEventsPerTouch = input.reduce([:], { (result, event) -> [String: [TouchEvent]] in
-            guard let event = event as? TouchEvent else { return result }
+        let updatedEventsPerTouch = input.reduce(into: [String: [TouchEvent]](), { (result, event) in
+            guard let event = event as? TouchEvent else { return }
 
-            var result = result
             if result[event.touchIdentifier] != nil {
                 result[event.touchIdentifier]?.append(event)
             } else {
                 result[event.touchIdentifier] = [event]
             }
-            return result
         })
 
         for eventToProcess in input {

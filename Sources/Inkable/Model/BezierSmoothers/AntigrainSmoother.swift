@@ -55,10 +55,16 @@ open class AntigrainSmoother: Smoother {
         var curveIndexes = IndexSet()
 
         for index in lineIndexes {
-            curveIndexes.formUnion(elementIndexes(for: line, at: index, with: bezier))
+            elementIndexes(for: line, at: index, with: bezier, into: &curveIndexes)
         }
 
         return curveIndexes
+    }
+
+    public func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: UIBezierPath) -> IndexSet {
+        var ret = IndexSet()
+        elementIndexes(for: line, at: lineIndex, with: bezier, into: &ret)
+        return ret
     }
 
     // Below are the examples of input indexes, and which smoothed elements that point index affects
@@ -70,28 +76,25 @@ open class AntigrainSmoother: Smoother {
     // 5 => 7, 6, 5, 4
     // 6 => 8, 7, 6, 5
     // 7 => 9, 8, 7, 6
-    public func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: UIBezierPath) -> IndexSet {
+    private func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: UIBezierPath, into indexes: inout IndexSet) {
         guard lineIndex >= 0 else {
-            return IndexSet()
+            return
         }
         let max = maxIndex(for: line)
-        var ret = IndexSet()
 
         if lineIndex > 1,
            (lineIndex - 1 <= max) || (lineIndex - 1 < bezier.elementCount) {
-            ret.insert(lineIndex - 1)
+            indexes.insert(lineIndex - 1)
         }
         if (lineIndex <= max) || (lineIndex < bezier.elementCount) {
-            ret.insert(lineIndex)
+            indexes.insert(lineIndex)
         }
         if (lineIndex + 1 <= max) || (lineIndex + 1 < bezier.elementCount) {
-            ret.insert(lineIndex + 1)
+            indexes.insert(lineIndex + 1)
         }
         if (lineIndex + 2 <= max) || (lineIndex + 2 < bezier.elementCount) {
-            ret.insert(lineIndex + 2)
+            indexes.insert(lineIndex + 2)
         }
-
-        return ret
     }
 
     // MARK: - Helper
