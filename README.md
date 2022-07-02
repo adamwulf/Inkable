@@ -129,17 +129,16 @@ let lineStream = PolylineStream()
 let bezierStream = BezierStream(smoother: AntigrainSmoother())
 
 // setup each stream to consume the previous step's output
-touchEventStream.addConsumer(touchPathStream)
-touchPathStream.addConsumer(lineStream)
-lineStream.addConsumer(bezierStream)
-
-// add a `block` for us to inspect the final output
-bezierStream.addConsumer { (output) in
-    let beziers: [UIBezierPath] = output.paths
-    // use the bezier paths
-    let changes: [BezierStream.Delta] = output.deltas
-    // inspect how the paths changed since the last callback
-}
+touchEventStream
+    .nextStep(touchPathStream)
+    .nextStep(lineStream)
+    .nextStep(bezierStream)
+    .nextStep({ (output) in
+        let beziers: [UIBezierPath] = output.paths
+        // use the bezier paths
+        let changes: [BezierStream.Delta] = output.deltas
+        // inspect how the paths changed since the last callback
+    })
 
 // Finally, add the gesture to the UIView
 myView.addGestureRecognizer(touchEventStream.gesture)

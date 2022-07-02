@@ -21,16 +21,7 @@ public protocol Producer {
     func reset()
 }
 
-public protocol ProducerConsumer: Producer, Consumer {
-    @discardableResult
-    func produce(with input: Consumes) -> Produces
-}
-
-extension ProducerConsumer {
-    public func consume(_ input: Consumes) {
-        produce(with: input)
-    }
-
+extension Producer {
     @discardableResult
     public func nextStep<Customer>(_ consumer: Customer) -> Customer where Customer: Consumer, Customer.Consumes == Produces {
         addConsumer(consumer)
@@ -39,6 +30,17 @@ extension ProducerConsumer {
 
     public func nextStep(_ block: @escaping (Produces) -> Void) {
         addConsumer(block)
+    }
+}
+
+public protocol ProducerConsumer: Producer, Consumer {
+    @discardableResult
+    func produce(with input: Consumes) -> Produces
+}
+
+extension ProducerConsumer {
+    public func consume(_ input: Consumes) {
+        produce(with: input)
     }
 }
 
