@@ -11,7 +11,7 @@ import Foundation
 public struct Polyline {
 
     // MARK: - Public Properties
-    public private(set) var isComplete: Bool
+    public internal(set) var isComplete: Bool
     public let touchIdentifier: String
     public var points: [Point]
     public var bounds: CGRect {

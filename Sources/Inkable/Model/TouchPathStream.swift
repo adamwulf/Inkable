@@ -87,6 +87,7 @@ open class TouchPathStream: ProducerConsumer {
 
     @discardableResult
     public func produce(with input: Consumes) -> Produces {
+        guard !input.isEmpty else { return Produces(paths: paths, deltas: []) }
         var deltas: [Delta] = []
         var processedTouchIdentifiers: [UITouchIdentifier] = []
         let updatedEventsPerTouch = input.reduce([:], { (result, event) -> [String: [TouchEvent]] in

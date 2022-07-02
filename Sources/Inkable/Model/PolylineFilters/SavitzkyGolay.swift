@@ -1,5 +1,5 @@
 //
-//  NaiveSavitzkyGolay.swift
+//  SavitzkyGolay.swift
 //  Inkable
 //
 //  Created by Adam Wulf on 8/18/20.
@@ -12,7 +12,7 @@ import SwiftToolbox
 /// https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter
 /// Coefficients are calculated with the algorithm from https://dekalogblog.blogspot.com/2013/09/savitzky-golay-filter-convolution.html
 /// Values were confirmed against the coefficients listed at http://www.statistics4u.info/fundstat_eng/cc_savgol_coeff.html
-open class NaiveSavitzkyGolay: ProducerConsumer {
+open class SavitzkyGolay: ProducerConsumer {
 
     public typealias Consumes = PolylineStream.Produces
     public typealias Produces = PolylineStream.Produces
@@ -22,9 +22,9 @@ open class NaiveSavitzkyGolay: ProducerConsumer {
     private let deriv: Int // 0 is smooth, 1 is first derivative, etc
     private let order: Int
     private var consumers: [(process: (Produces) -> Void, reset: () -> Void)] = []
-    private var knownLines = IndexSet()
 
     // MARK: Public
+
     public private(set) var lines: [Polyline] = []
 
     public var enabled: Bool = true {
@@ -51,7 +51,7 @@ open class NaiveSavitzkyGolay: ProducerConsumer {
 
     public func reset() {
         consumers.forEach({ $0.reset() })
-        knownLines = IndexSet()
+        lines = []
     }
 
     // MARK: - Producer<Polyline>
@@ -70,53 +70,74 @@ open class NaiveSavitzkyGolay: ProducerConsumer {
 
     @discardableResult
     public func produce(with input: Consumes) -> Produces {
-        guard enabled else {
-            consumers.forEach({ $0.process(input) })
-            return input
-        }
-        var outLines = input.lines
         var outDeltas: [PolylineStream.Delta] = []
-
-        func smooth(lineIdx: Int) {
-            for pIndex in 0 ..< outLines[lineIdx].points.count {
-                let minWin = min(min(window, pIndex), outLines[lineIdx].points.count - 1 - pIndex)
-
-                if minWin > 1 {
-                    var outPoint = CGPoint.zero
-                    for windowPos in -minWin ... minWin {
-                        let wght = weight(0, windowPos, minWin, order, deriv)
-                        outPoint.x += wght * input.lines[lineIdx].points[pIndex + windowPos].location.x
-                        outPoint.y += wght * input.lines[lineIdx].points[pIndex + windowPos].location.y
-                    }
-                    let origPoint = outLines[lineIdx].points[pIndex].location
-
-                    outLines[lineIdx].points[pIndex].location = origPoint * CGFloat(1 - strength) + outPoint * strength
-                }
-            }
-        }
-
-        // Temporary non-cached non-optimized smoothing
-        // simply treat every stroke as brand new and smooth the entire set
-        for lineIdx in 0 ..< input.lines.count {
-            smooth(lineIdx: lineIdx)
-        }
         for delta in input.deltas {
             switch delta {
-            case .updatedPolyline(let lineIdx, _):
-                let count = outLines[lineIdx].points.count
-                outDeltas.append(.updatedPolyline(index: lineIdx, updatedIndexes: IndexSet(0..<count)))
+            case .addedPolyline(let strokeIndex):
+                assert(strokeIndex == lines.count)
+                let line = input.lines[strokeIndex]
+                lines.append(line)
+                let indexes = IndexSet(integersIn: 0..<line.points.count)
+                smoothStroke(stroke: &lines[strokeIndex], at: indexes, input: line)
+                outDeltas.append(delta)
+            case .completedPolyline(let strokeIndex):
+                lines[strokeIndex].isComplete = true
+                outDeltas.append(delta)
+            case .updatedPolyline(let strokeIndex, let indexes):
+                let line = input.lines[strokeIndex]
+                let updatedIndexes = smoothStroke(stroke: &lines[strokeIndex], at: indexes, input: line)
+                outDeltas.append(.updatedPolyline(index: strokeIndex, updatedIndexes: updatedIndexes))
             default:
                 outDeltas.append(delta)
             }
         }
 
-        let output = Produces(lines: outLines, deltas: outDeltas)
-        self.lines = output.lines
-        consumers.forEach({ $0.process(output) })
-        return output
+        return Produces(lines: lines, deltas: outDeltas)
     }
 
     // MARK: - Private
+
+    @discardableResult
+    private func smoothStroke(stroke: inout Polyline, at indexes: IndexSet?, input: Polyline) -> IndexSet {
+        if input.points.count > stroke.points.count {
+            stroke.points.append(contentsOf: input.points[stroke.points.count...])
+        } else if input.points.count < stroke.points.count {
+            stroke.points.removeSubrange(input.points.count...)
+        }
+        let outIndexes = { () -> IndexSet in
+            if let indexes = indexes {
+                var outIndexes = IndexSet()
+                for pIndex in indexes {
+                    for i in pIndex - window ... pIndex + window {
+                        guard i >= 0, i < stroke.points.count else { continue }
+                        outIndexes.insert(i)
+                    }
+                }
+                return outIndexes
+            }
+            return IndexSet(stroke.points.indices)
+        }()
+
+        for pIndex in outIndexes {
+            let minWin = min(min(window, pIndex), stroke.points.count - 1 - pIndex)
+            // copy over the point in question so that not only our location will be smoothed below,
+            // but also the azimuth/altitude/etc will be the same
+            stroke.points[pIndex] = input.points[pIndex]
+            if minWin > 1 {
+                var outPoint = CGPoint.zero
+                for windowPos in -minWin ... minWin {
+                    let wght = weight(0, windowPos, minWin, order, deriv)
+                    outPoint.x += wght * input.points[pIndex + windowPos].location.x
+                    outPoint.y += wght * input.points[pIndex + windowPos].location.y
+                }
+                let origPoint = stroke.points[pIndex].location
+
+                stroke.points[pIndex].location = origPoint * CGFloat(1 - strength) + outPoint * strength
+            }
+        }
+
+        return outIndexes
+    }
 
     private func clearCaches() {
         // clear all of our caches, a setting has changed so all of our smoothed curves are now entirely out of date
