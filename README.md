@@ -273,7 +273,7 @@ Next steps:
 ### Filters:
 
 - [x] Implement naive SavitzkyGolay smoothing
-- [ ] Implement optimized SavitzkyGolay smoothing
+- [x] Implement optimized SavitzkyGolay smoothing
 - [ ] Implement naive DouglasPeucker filtering
 - [ ] Implement optimized DouglasPeucker filtering
 - [ ] Implement naive DistanceThinning filtering
