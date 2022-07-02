@@ -22,21 +22,12 @@ open class NaiveSavitzkyGolay: ProducerConsumer {
     private let deriv: Int // 0 is smooth, 1 is first derivative, etc
     private let order: Int
     private var consumers: [(process: (Produces) -> Void, reset: () -> Void)] = []
-    private var knownLines = IndexSet()
 
     // MARK: Public
     public private(set) var lines: [Polyline] = []
 
-    public var enabled: Bool = true {
-        didSet {
-            clearCaches()
-        }
-    }
-    @Clamped(2...12) public var window: Int = 2 {
-        didSet {
-            clearCaches()
-        }
-    }
+    public var enabled: Bool = true
+    @Clamped(2...12) public var window: Int = 2
     @Clamped(0...1) public var strength: CGFloat = 1
 
     // MARK: Init
@@ -51,7 +42,6 @@ open class NaiveSavitzkyGolay: ProducerConsumer {
 
     public func reset() {
         consumers.forEach({ $0.reset() })
-        knownLines = IndexSet()
     }
 
     // MARK: - Producer<Polyline>
@@ -114,13 +104,6 @@ open class NaiveSavitzkyGolay: ProducerConsumer {
         self.lines = output.lines
         consumers.forEach({ $0.process(output) })
         return output
-    }
-
-    // MARK: - Private
-
-    private func clearCaches() {
-        // clear all of our caches, a setting has changed so all of our smoothed curves are now entirely out of date
-        // and we'll need to resmooth the entire corpus of strokes next time.
     }
 
     // MARK: - Coefficients

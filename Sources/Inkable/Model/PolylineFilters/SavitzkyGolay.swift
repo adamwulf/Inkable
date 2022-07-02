@@ -27,16 +27,8 @@ open class SavitzkyGolay: ProducerConsumer {
 
     public private(set) var lines: [Polyline] = []
 
-    public var enabled: Bool = true {
-        didSet {
-            clearCaches()
-        }
-    }
-    @Clamped(2...12) public var window: Int = 2 {
-        didSet {
-            clearCaches()
-        }
-    }
+    public var enabled: Bool = true
+    @Clamped(2...12) public var window: Int = 2
     @Clamped(0...1) public var strength: CGFloat = 1
 
     // MARK: Init
@@ -144,12 +136,6 @@ open class SavitzkyGolay: ProducerConsumer {
         }
 
         return outIndexes
-    }
-
-    private func clearCaches() {
-        // clear all of our caches, a setting has changed so all of our smoothed curves are now entirely out of date
-        // and we'll need to resmooth the entire corpus of strokes next time.
-        lines = []
     }
 
     // MARK: - Coefficients
