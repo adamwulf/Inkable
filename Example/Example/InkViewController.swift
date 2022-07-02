@@ -28,7 +28,7 @@ class InkViewController: UIViewController {
     var linesView = PolylineView(frame: .zero)
     var curvesView = BezierView(frame: .zero)
 
-    let savitzkyGolay = NaiveSavitzkyGolay()
+    let savitzkyGolay = SavitzkyGolay()
     let douglasPeucker = NaiveDouglasPeucker()
     let pointDistance = NaivePointDistance()
 

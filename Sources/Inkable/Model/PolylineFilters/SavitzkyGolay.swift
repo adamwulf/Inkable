@@ -70,6 +70,10 @@ open class SavitzkyGolay: ProducerConsumer {
 
     @discardableResult
     public func produce(with input: Consumes) -> Produces {
+        guard enabled else {
+            consumers.forEach({ $0.process(input) })
+            return input
+        }
         var outDeltas: [PolylineStream.Delta] = []
         for delta in input.deltas {
             switch delta {
@@ -92,7 +96,10 @@ open class SavitzkyGolay: ProducerConsumer {
             }
         }
 
-        return Produces(lines: lines, deltas: outDeltas)
+        let output = Produces(lines: lines, deltas: outDeltas)
+        self.lines = output.lines
+        consumers.forEach({ $0.process(output) })
+        return output
     }
 
     // MARK: - Private
@@ -142,6 +149,7 @@ open class SavitzkyGolay: ProducerConsumer {
     private func clearCaches() {
         // clear all of our caches, a setting has changed so all of our smoothed curves are now entirely out of date
         // and we'll need to resmooth the entire corpus of strokes next time.
+        lines = []
     }
 
     // MARK: - Coefficients
