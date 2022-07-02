@@ -24,7 +24,7 @@ open class TouchPathStream: ProducerConsumer {
 
     public enum Delta: Equatable, CustomDebugStringConvertible {
         case addedTouchPath(index: Int)
-        case updatedTouchPath(index: Int, updatedIndexes: IndexSet)
+        case updatedTouchPath(index: Int, updatedIndexes: MinMaxIndex)
         case completedTouchPath(index: Int)
         case unhandled(event: DrawEvent)
 

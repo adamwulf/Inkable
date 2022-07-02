@@ -28,12 +28,12 @@ open class LineSmoother: Smoother {
         return line.points.count - 1
     }
 
-    public func elementIndexes(for line: Polyline, at lineIndexes: IndexSet, with bezier: UIBezierPath) -> IndexSet {
+    public func elementIndexes(for line: Polyline, at lineIndexes: MinMaxIndex, with bezier: UIBezierPath) -> MinMaxIndex {
         return lineIndexes
     }
 
-    public func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: UIBezierPath) -> IndexSet {
+    public func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: UIBezierPath) -> MinMaxIndex {
         assert(lineIndex >= 0 && lineIndex < line.points.count)
-        return IndexSet(integer: lineIndex)
+        return MinMaxIndex(lineIndex)
     }
 }

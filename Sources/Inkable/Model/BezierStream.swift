@@ -32,7 +32,7 @@ open class BezierStream: ProducerConsumer {
 
     public enum Delta: Equatable, CustomDebugStringConvertible {
         case addedBezierPath(index: Int)
-        case updatedBezierPath(index: Int, updatedIndexes: IndexSet)
+        case updatedBezierPath(index: Int, updatedIndexes: MinMaxIndex)
         case completedBezierPath(index: Int)
         case unhandled(event: DrawEvent)
 
@@ -96,7 +96,7 @@ open class BezierStream: ProducerConsumer {
                 assert(indexToIndex[lineIndex] == nil, "Cannot add existing line")
                 let line = input.lines[lineIndex]
                 let builder = BezierBuilder(smoother: smoother)
-                builder.update(with: line, at: IndexSet(0 ..< line.points.count))
+                builder.update(with: line, at: MinMaxIndex(0 ..< line.points.count))
                 let builderIndex = builders.count
                 indexToIndex[lineIndex] = builderIndex
                 builders.append(builder)
@@ -132,21 +132,20 @@ open class BezierStream: ProducerConsumer {
         }
 
         @discardableResult
-        func update(with line: Polyline, at lineIndexes: IndexSet) -> IndexSet {
+        func update(with line: Polyline, at lineIndexes: MinMaxIndex) -> MinMaxIndex {
             let updatedPathIndexes = smoother.elementIndexes(for: line, at: lineIndexes, with: path)
+            guard
+                let min = updatedPathIndexes.first,
+                let max = updatedPathIndexes.last
+            else {
+                return updatedPathIndexes
+            }
             let updatedPath: UIBezierPath
-            if let min = updatedPathIndexes.min(),
-               min - 1 < path.elementCount,
+            if min - 1 < path.elementCount,
                min - 1 >= 0 {
                 updatedPath = path.trimming(toElement: min - 1, andTValue: 1.0)
             } else {
                 updatedPath = path.buildEmpty()
-            }
-            guard
-                let min = updatedPathIndexes.min(),
-                let max = updatedPathIndexes.max()
-            else {
-                return updatedPathIndexes
             }
             for elementIndex in min ... max {
                 assert(elementIndex <= elements.count, "Invalid element index")

@@ -77,7 +77,7 @@ class PolylineTests: XCTestCase {
         XCTAssertEqual(polylineOutput.lines[0].points[1].location, CGPoint(x: 220, y: 120))
         XCTAssertTrue(polylineOutput.lines[0].isComplete)
 
-        XCTAssertEqual(polylineOutput.deltas[0], .updatedPolyline(index: 0, updatedIndexes: IndexSet([0, 1])))
+        XCTAssertEqual(polylineOutput.deltas[0], .updatedPolyline(index: 0, updatedIndexes: MinMaxIndex([0, 1])))
         XCTAssertEqual(polylineOutput.deltas[1], .completedPolyline(index: 0))
     }
 
@@ -124,7 +124,7 @@ class PolylineTests: XCTestCase {
         XCTAssertEqual(polylineOutput.lines[0].points[1].location, CGPoint(x: 220, y: 120))
         XCTAssertTrue(polylineOutput.lines[0].isComplete)
 
-        XCTAssertEqual(polylineOutput.deltas[0], .updatedPolyline(index: 0, updatedIndexes: IndexSet([0, 1, 2])))
+        XCTAssertEqual(polylineOutput.deltas[0], .updatedPolyline(index: 0, updatedIndexes: MinMaxIndex([0, 1, 2])))
         XCTAssertEqual(polylineOutput.deltas[1], .completedPolyline(index: 0))
     }
 }

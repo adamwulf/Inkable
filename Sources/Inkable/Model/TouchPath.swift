@@ -23,8 +23,15 @@ open class TouchPath {
 
     // MARK: - Public Properties
     public private(set) var touchIdentifier: String
+
+    private var _points: [Point]?
     public var points: [Point] {
-        return confirmedPoints + predictedPoints
+        if let _points = _points {
+            return _points
+        }
+        let ret = confirmedPoints + predictedPoints
+        _points = ret
+        return ret
     }
     public var bounds: CGRect {
         return points.reduce(.null) { partialResult, point -> CGRect in
@@ -42,9 +49,17 @@ open class TouchPath {
 
     // MARK: - Private Properties
     /// Confirmed points have at least one non-predictive point
-    private var confirmedPoints: [Point]
+    private var confirmedPoints: [Point] {
+        didSet {
+            _points = nil
+        }
+    }
     /// Predicted points have only a single prediction event, and have been predicted in our most recent `process()` round
-    private var predictedPoints: [Point]
+    private var predictedPoints: [Point] {
+        didSet {
+            _points = nil
+        }
+    }
     /// Consumable points are previously predicted points that were not used up by the previous `process()` when creating confirmed points.
     /// these should be used before any newly predicted points
     private var consumable: [Point]
@@ -66,8 +81,8 @@ open class TouchPath {
     }
 
     @discardableResult
-    func add(touchEvents: [TouchEvent]) -> IndexSet {
-        var indexSet = IndexSet()
+    func add(touchEvents: [TouchEvent]) -> MinMaxIndex {
+        var indexSet = MinMaxIndex()
         let startingCount = points.count
 
         for event in touchEvents {

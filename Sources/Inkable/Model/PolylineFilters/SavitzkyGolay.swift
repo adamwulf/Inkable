@@ -19,7 +19,7 @@ open class SavitzkyGolay: ProducerConsumer {
 
     // MARK: - Private
 
-    private let coeffs = Coeffs(index: 0)
+    private var coeffs: [Coeffs] = []
     private let deriv: Int // 0 is smooth, 1 is first derivative, etc
     private let order: Int
     private var consumers: [(process: (Produces) -> Void, reset: () -> Void)] = []
@@ -74,7 +74,7 @@ open class SavitzkyGolay: ProducerConsumer {
                 assert(strokeIndex == lines.count)
                 let line = input.lines[strokeIndex]
                 lines.append(line)
-                let indexes = IndexSet(integersIn: 0..<line.points.count)
+                let indexes = MinMaxIndex(0..<line.points.count)
                 smoothStroke(stroke: &lines[strokeIndex], at: indexes, input: line)
                 outDeltas.append(delta)
             case .completedPolyline(let strokeIndex):
@@ -98,23 +98,23 @@ open class SavitzkyGolay: ProducerConsumer {
     // MARK: - Private
 
     @discardableResult
-    private func smoothStroke(stroke: inout Polyline, at indexes: IndexSet?, input: Polyline) -> IndexSet {
+    private func smoothStroke(stroke: inout Polyline, at indexes: MinMaxIndex?, input: Polyline) -> MinMaxIndex {
         if input.points.count > stroke.points.count {
             stroke.points.append(contentsOf: input.points[stroke.points.count...])
         } else if input.points.count < stroke.points.count {
             stroke.points.removeSubrange(input.points.count...)
         }
-        let outIndexes = { () -> IndexSet in
+        let outIndexes = { () -> MinMaxIndex in
             if let indexes = indexes,
-               let minIndex = indexes.min(),
-               let maxIndex = indexes.max() {
-                var outIndexes = IndexSet()
+               let minIndex = indexes.first,
+               let maxIndex = indexes.last {
+                var outIndexes = MinMaxIndex()
                 let start = max(0, minIndex - window)
                 let end = min(stroke.points.count - 1, maxIndex + window)
                 outIndexes.insert(integersIn: start...end)
                 return outIndexes
             }
-            return IndexSet(stroke.points.indices)
+            return MinMaxIndex(stroke.points.indices)
         }()
 
         for pIndex in outIndexes {
@@ -122,10 +122,13 @@ open class SavitzkyGolay: ProducerConsumer {
             // copy over the point in question so that not only our location will be smoothed below,
             // but also the azimuth/altitude/etc will be the same
             stroke.points[pIndex] = input.points[pIndex]
+            while coeffs.count < minWin + 1 {
+                coeffs.append(Coeffs(index: 0, windowSize: coeffs.count))
+            }
             if minWin > 1 {
                 var outPoint = CGPoint.zero
                 for windowPos in -minWin ... minWin {
-                    let wght = coeffs.weight(windowPos, minWin, order, deriv)
+                    let wght = coeffs[minWin].weight(windowPos, order, deriv)
                     outPoint.x += wght * input.points[pIndex + windowPos].location.x
                     outPoint.y += wght * input.points[pIndex + windowPos].location.y
                 }
@@ -143,15 +146,17 @@ open class SavitzkyGolay: ProducerConsumer {
 class Coeffs {
 
     private let index: Int
-    private var cache: [Int: [CGFloat]] = [:]
+    private let windowSize: Int
+    private var cache: [CGFloat]?
 
-    init(index: Int) {
+    init(index: Int, windowSize: Int) {
         self.index = index
+        self.windowSize = windowSize
     }
 
-    func weight(_ windowLoc: Int, _ windowSize: Int, _ order: Int, _ derivative: Int) -> CGFloat {
+    func weight(_ windowLoc: Int, _ order: Int, _ derivative: Int) -> CGFloat {
         guard abs(windowLoc) <= windowSize else { fatalError("Invalid coefficient") }
-        if let cached = cache[windowSize] {
+        if let cached = cache {
             return cached[abs(windowLoc)]
         }
         var coeffs: [CGFloat] = []
@@ -159,7 +164,7 @@ class Coeffs {
             coeffs.append(Self.calcWeight(index, windowLoc, windowSize, order, derivative))
         }
 
-        cache[windowSize] = coeffs
+        cache = coeffs
 
         return coeffs[abs(windowLoc)]
     }
@@ -212,6 +217,7 @@ class Coeffs {
         return sum
     }
 
+    #if DEBUG
     static func testCoeff(deriv: Int) {
         for m in 2...12 {
             // for a window of 2*m+1 points ( from p[-m] => p[m],
@@ -225,4 +231,5 @@ class Coeffs {
             }
         }
     }
+    #endif
 }

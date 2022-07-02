@@ -77,7 +77,7 @@ class BezierStreamTests: XCTestCase {
 
         XCTAssertEqual(output2.paths.count, 1)
         XCTAssertEqual(output2.deltas.count, 2)
-        XCTAssertEqual(output2.deltas[0], .updatedBezierPath(index: 0, updatedIndexes: IndexSet(4..<simpleEvents.count)))
+        XCTAssertEqual(output2.deltas[0], .updatedBezierPath(index: 0, updatedIndexes: MinMaxIndex(4..<simpleEvents.count)))
         XCTAssertEqual(output2.deltas[1], .completedBezierPath(index: 0))
     }
 

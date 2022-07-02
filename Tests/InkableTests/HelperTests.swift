@@ -1,5 +1,5 @@
 //
-//  OrderedSetTests.swift
+//  HelperTests.swift
 //  InkableTests
 //
 //  Created by Adam Wulf on 5/1/21.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import Inkable
 
-class OrderedSetTests: XCTestCase {
+class HelperTests: XCTestCase {
     public typealias OrderedIndexSet = OrderedSet<Int>
 
     func testReplaceOne() throws {
@@ -80,5 +80,18 @@ class OrderedSetTests: XCTestCase {
         XCTAssertEqual(set[2], 5)
         XCTAssertEqual(set.index(of: 4), 1)
         XCTAssertEqual(set.index(of: 5), 2)
+    }
+
+    func testMinMax() throws {
+        let range = MinMaxIndex(0..<5)
+        var closed = MinMaxIndex(0...5)
+
+        XCTAssertEqual(range.first, 0)
+        XCTAssertEqual(range.last, 4)
+        XCTAssertEqual(closed.first, 0)
+        XCTAssertEqual(closed.last, 5)
+
+        closed.remove(5)
+        XCTAssertEqual(closed.last, 4)
     }
 }

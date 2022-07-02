@@ -21,7 +21,7 @@ open class PolylineStream: ProducerConsumer {
 
     public enum Delta: Equatable, CustomDebugStringConvertible {
         case addedPolyline(index: Int)
-        case updatedPolyline(index: Int, updatedIndexes: IndexSet)
+        case updatedPolyline(index: Int, updatedIndexes: MinMaxIndex)
         case completedPolyline(index: Int)
         case unhandled(event: DrawEvent)
 

@@ -26,24 +26,24 @@ open class AntigrainSmoother: Smoother {
 
         if elementIndex == 1 {
             return Self.newCurve(smoothFactor: smoothFactor,
-                                 p1: line.points[0],
+                                 p1: line.points[0].location,
                                  p2: line.points[1],
-                                 p3: line.points[2])
+                                 p3: line.points[2].location)
         }
 
         if line.isComplete && elementIndex == maxIndex(for: line) {
             return Self.newCurve(smoothFactor: smoothFactor,
-                                 p0: line.points[elementIndex - 2],
-                                 p1: line.points[elementIndex - 1],
+                                 p0: line.points[elementIndex - 2].location,
+                                 p1: line.points[elementIndex - 1].location,
                                  p2: line.points[elementIndex],
-                                 p3: line.points[elementIndex])
+                                 p3: line.points[elementIndex].location)
         }
 
         return Self.newCurve(smoothFactor: smoothFactor,
-                             p0: line.points[elementIndex - 2],
-                             p1: line.points[elementIndex - 1],
+                             p0: line.points[elementIndex - 2].location,
+                             p1: line.points[elementIndex - 1].location,
                              p2: line.points[elementIndex],
-                             p3: line.points[elementIndex + 1])
+                             p3: line.points[elementIndex + 1].location)
     }
 
     public func maxIndex(for line: Polyline) -> Int {
@@ -51,8 +51,8 @@ open class AntigrainSmoother: Smoother {
         return Swift.max(0, lastIndex - 1) + (line.points.count > 2 && line.isComplete ? 1 : 0)
     }
 
-    public func elementIndexes(for line: Polyline, at lineIndexes: IndexSet, with bezier: UIBezierPath) -> IndexSet {
-        var curveIndexes = IndexSet()
+    public func elementIndexes(for line: Polyline, at lineIndexes: MinMaxIndex, with bezier: UIBezierPath) -> MinMaxIndex {
+        var curveIndexes = MinMaxIndex()
 
         for index in lineIndexes {
             elementIndexes(for: line, at: index, with: bezier, into: &curveIndexes)
@@ -61,8 +61,8 @@ open class AntigrainSmoother: Smoother {
         return curveIndexes
     }
 
-    public func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: UIBezierPath) -> IndexSet {
-        var ret = IndexSet()
+    public func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: UIBezierPath) -> MinMaxIndex {
+        var ret = MinMaxIndex()
         elementIndexes(for: line, at: lineIndex, with: bezier, into: &ret)
         return ret
     }
@@ -76,7 +76,7 @@ open class AntigrainSmoother: Smoother {
     // 5 => 7, 6, 5, 4
     // 6 => 8, 7, 6, 5
     // 7 => 9, 8, 7, 6
-    private func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: UIBezierPath, into indexes: inout IndexSet) {
+    private func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: UIBezierPath, into indexes: inout MinMaxIndex) {
         guard lineIndex >= 0 else {
             return
         }
@@ -100,10 +100,10 @@ open class AntigrainSmoother: Smoother {
     // MARK: - Helper
 
     private static func newCurve(smoothFactor: CGFloat,
-                                 p0: Polyline.Point? = nil,
-                                 p1: Polyline.Point,
+                                 p0: CGPoint? = nil,
+                                 p1: CGPoint,
                                  p2: Polyline.Point,
-                                 p3: Polyline.Point) -> BezierStream.Element {
+                                 p3: CGPoint) -> BezierStream.Element {
         let p0 = p0 ?? p1
 
         let c1 = CGPoint(x: (p0.x + p1.x) / 2.0, y: (p0.y + p1.y) / 2.0)
@@ -129,7 +129,7 @@ open class AntigrainSmoother: Smoother {
                             y: m2.y + (c2.y - m2.y) * smoothFactor + p2.y - m2.y)
 
         if ctrl1.x.isNaN || ctrl1.y.isNaN {
-            ctrl1 = p1.location
+            ctrl1 = p1
         }
 
         if ctrl2.x.isNaN || ctrl2.y.isNaN {

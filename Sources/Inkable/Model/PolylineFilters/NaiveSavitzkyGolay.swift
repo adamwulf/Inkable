@@ -94,7 +94,7 @@ open class NaiveSavitzkyGolay: ProducerConsumer {
             switch delta {
             case .updatedPolyline(let lineIdx, _):
                 let count = outLines[lineIdx].points.count
-                outDeltas.append(.updatedPolyline(index: lineIdx, updatedIndexes: IndexSet(0..<count)))
+                outDeltas.append(.updatedPolyline(index: lineIdx, updatedIndexes: MinMaxIndex(0..<count)))
             default:
                 outDeltas.append(delta)
             }

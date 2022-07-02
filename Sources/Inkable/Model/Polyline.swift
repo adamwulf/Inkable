@@ -35,8 +35,8 @@ public struct Polyline {
         self.points = points
     }
 
-    mutating func update(with path: TouchPath, indexSet: IndexSet) -> IndexSet {
-        var indexesToRemove = IndexSet()
+    mutating func update(with path: TouchPath, indexSet: MinMaxIndex) -> MinMaxIndex {
+        var indexesToRemove = MinMaxIndex()
         for index in indexSet {
             if index < path.points.count {
                 if index < points.count {

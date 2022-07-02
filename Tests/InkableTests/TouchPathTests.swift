@@ -53,7 +53,7 @@ class TouchPathTests: XCTestCase {
         XCTAssertEqual(altOutput1.deltas[0], .addedTouchPath(index: 0))
 
         XCTAssertEqual(altOutput2.deltas.count, 2)
-        XCTAssertEqual(altOutput2.deltas[0], .updatedTouchPath(index: 0, updatedIndexes: IndexSet([0, 1])))
+        XCTAssertEqual(altOutput2.deltas[0], .updatedTouchPath(index: 0, updatedIndexes: MinMaxIndex([0, 1])))
         XCTAssertEqual(altOutput2.deltas[1], .completedTouchPath(index: 0))
 
         XCTAssertEqual(touchStream.paths, altStream.paths)
@@ -144,7 +144,7 @@ class TouchPathTests: XCTestCase {
         XCTAssertEqual(altOutput1.deltas[0], .addedTouchPath(index: 0))
 
         XCTAssertEqual(altOutput2.deltas.count, 2)
-        XCTAssertEqual(altOutput2.deltas[0], .updatedTouchPath(index: 0, updatedIndexes: IndexSet([0, 1, 2])))
+        XCTAssertEqual(altOutput2.deltas[0], .updatedTouchPath(index: 0, updatedIndexes: MinMaxIndex([0, 1, 2])))
         XCTAssertEqual(altOutput2.deltas[1], .completedTouchPath(index: 0))
 
         XCTAssertEqual(altOutput2.paths.count, 1)
@@ -342,9 +342,9 @@ class TouchPathTests: XCTestCase {
         XCTAssertEqual(output.paths[1].points[1].event.location, CGPoint(x: 220, y: 120))
 
         XCTAssertEqual(output.deltas.count, 4)
-        XCTAssertEqual(output.deltas[0], .updatedTouchPath(index: 0, updatedIndexes: IndexSet([1])))
+        XCTAssertEqual(output.deltas[0], .updatedTouchPath(index: 0, updatedIndexes: MinMaxIndex([1])))
         XCTAssertEqual(output.deltas[1], .completedTouchPath(index: 0))
-        XCTAssertEqual(output.deltas[2], .updatedTouchPath(index: 1, updatedIndexes: IndexSet([1])))
+        XCTAssertEqual(output.deltas[2], .updatedTouchPath(index: 1, updatedIndexes: MinMaxIndex([1])))
         XCTAssertEqual(output.deltas[3], .completedTouchPath(index: 1))
     }
 }
