@@ -87,6 +87,7 @@ class PolylineView: UIView, Consumer {
     override func draw(_ rect: CGRect) {
         guard !isHidden else { return }
 
+        let scale = max(renderTransform.a, renderTransform.d)
         let context = UIGraphicsGetCurrentContext()
         context?.saveGState()
         context?.concatenate(renderTransform)
@@ -95,7 +96,7 @@ class PolylineView: UIView, Consumer {
             UIColor.red.setStroke()
 
             let path = UIBezierPath()
-            path.lineWidth = Self.lineWidth
+            path.lineWidth = Self.lineWidth / scale
             for point in polyline.points {
                 if point.event.phase == .began {
                     path.move(to: point.location)

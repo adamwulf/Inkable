@@ -91,15 +91,16 @@ class PointsView: UIView, Consumer {
     override func draw(_ rect: CGRect) {
         guard !isHidden else { return }
 
+        let scale = max(renderTransform.a, renderTransform.d)
         let context = UIGraphicsGetCurrentContext()
         context?.saveGState()
         context?.concatenate(renderTransform)
 
         for path in model.paths {
             for point in path.points {
-                var radius: CGFloat = Self.maxRadius
+                var radius: CGFloat = Self.maxRadius / scale
                 if point.event.isUpdate {
-                    radius = Self.maxRadius / 2
+                    radius = Self.maxRadius / 2 / scale
                     if !point.expectsUpdate {
                         UIColor.isFinal.setFill()
                     } else {

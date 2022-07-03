@@ -87,13 +87,14 @@ class BezierView: UIView, Consumer {
     override func draw(_ rect: CGRect) {
         guard !isHidden else { return }
 
+        let scale = max(renderTransform.a, renderTransform.d)
         let context = UIGraphicsGetCurrentContext()
         context?.saveGState()
         context?.concatenate(renderTransform)
 
         for path in model.paths {
             let path = path.copy() as! UIBezierPath
-            path.lineWidth = Self.lineWidth
+            path.lineWidth = Self.lineWidth / scale
 
             UIColor.green.setStroke()
 
