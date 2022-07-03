@@ -14,6 +14,7 @@ class PolylineView: UIView, Consumer {
     typealias Consumes = PolylineStream.Produces
 
     private static let lineWidth: CGFloat = 1
+    private let color: UIColor
 
     var renderTransform: CGAffineTransform = .identity {
         didSet {
@@ -23,7 +24,8 @@ class PolylineView: UIView, Consumer {
 
     // MARK: - Init
 
-    override init(frame: CGRect) {
+    init(frame: CGRect, color: UIColor = .red) {
+        self.color = color
         super.init(frame: frame)
         backgroundColor = .clear
         isOpaque = false
@@ -31,6 +33,7 @@ class PolylineView: UIView, Consumer {
     }
 
     required init?(coder: NSCoder) {
+        self.color = .red
         super.init(coder: coder)
         backgroundColor = .clear
         isOpaque = false
@@ -93,7 +96,7 @@ class PolylineView: UIView, Consumer {
         context?.concatenate(renderTransform)
 
         for polyline in model.lines {
-            UIColor.red.setStroke()
+            color.setStroke()
 
             let path = UIBezierPath()
             path.lineWidth = Self.lineWidth / scale

@@ -25,6 +25,7 @@ class InkViewController: UIViewController {
 
     let eventView = UIView()
     let pointsView = PointsView(frame: .zero)
+    let savitzkyGolayView = PolylineView(frame: .zero, color: .purple)
     var linesView = PolylineView(frame: .zero)
     var curvesView = BezierView(frame: .zero)
 
@@ -42,6 +43,7 @@ class InkViewController: UIViewController {
         douglasPeucker.addConsumer(pointDistance)
         pointDistance.addConsumer(savitzkyGolay)
         savitzkyGolay.addConsumer(bezierStream)
+        savitzkyGolay.addConsumer(savitzkyGolayView)
         bezierStream.addConsumer(curvesView)
         bezierStream.addConsumer { (_) in
             // noop
@@ -52,6 +54,7 @@ class InkViewController: UIViewController {
         super.viewDidLayoutSubviews()
         pointsView.setNeedsDisplay()
         linesView.setNeedsDisplay()
+        savitzkyGolayView.setNeedsDisplay()
         curvesView.setNeedsDisplay()
     }
 
@@ -61,23 +64,27 @@ class InkViewController: UIViewController {
         view.addSubview(eventView)
         view.addSubview(pointsView)
         view.addSubview(linesView)
+        view.addSubview(savitzkyGolayView)
         view.addSubview(curvesView)
 
         eventView.layoutHuggingParent(safeArea: true)
         pointsView.layoutHuggingParent(safeArea: true)
         linesView.layoutHuggingParent(safeArea: true)
+        savitzkyGolayView.layoutHuggingParent(safeArea: true)
         curvesView.layoutHuggingParent(safeArea: true)
     }
 
     func reset() {
         self.pointsView.reset()
         self.linesView.reset()
+        self.savitzkyGolayView.reset()
         self.curvesView.reset()
     }
 
     func clearTransform() {
         pointsView.renderTransform = .identity
         linesView.renderTransform = .identity
+        savitzkyGolayView.renderTransform = .identity
         curvesView.renderTransform = .identity
     }
 
@@ -89,6 +96,7 @@ class InkViewController: UIViewController {
         guard pointsView.renderTransform == .identity else {
             pointsView.renderTransform = .identity
             linesView.renderTransform = .identity
+            savitzkyGolayView.renderTransform = .identity
             curvesView.renderTransform = .identity
             return
         }
@@ -102,6 +110,7 @@ class InkViewController: UIViewController {
             .translatedBy(x: -targetFrame.origin.x, y: -targetFrame.origin.y)
         pointsView.renderTransform = transform
         linesView.renderTransform = transform
+        savitzkyGolayView.renderTransform = transform
         curvesView.renderTransform = transform
     }
 }
@@ -115,9 +124,11 @@ extension InkViewController {
         pointsView.isHidden = !pointsEnabled
         linesView.isHidden = !linesEnabled
         curvesView.isHidden = !curvesEnabled
+        savitzkyGolayView.isHidden = !savitzkyGolay.enabled || linesView.isHidden
     }
 
     func smoothingChanged(savitzkyGolayEnabled: Bool) {
         savitzkyGolay.enabled = savitzkyGolayEnabled
+        savitzkyGolayView.isHidden = !savitzkyGolay.enabled || linesView.isHidden
     }
 }
