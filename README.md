@@ -278,13 +278,6 @@ Next steps:
 - [ ] Implement naive DistanceThinning filtering
 - [ ] Implement optimized DistanceThinning filtering
 
-
-## Inspiration
-
-The code is a Swift rewrite and successor to [DrawUI](https://github.com/adamwulf/DrawUI). Its
-[archived objective-c branch](https://github.com/adamwulf/DrawUI/tree/archived/objective-c) contains
-features that will likely show up here at some point.
- 
  
 ## Support
 
