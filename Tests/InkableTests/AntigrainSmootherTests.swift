@@ -4,6 +4,7 @@
 //
 //  Created by Adam Wulf on 10/31/20.
 //
+// swiftlint:disable line_length
 
 import XCTest
 @testable import Inkable

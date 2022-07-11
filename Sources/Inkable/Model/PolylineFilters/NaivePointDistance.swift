@@ -53,7 +53,8 @@ open class NaivePointDistance: ProducerConsumer {
             return input
         }
 
-        // TODO: implement filtering a stroke's points by their distance
+        // Future: implement filtering a stroke's points by their distance
+
         consumers.forEach({ $0.process(input) })
         return input
     }

@@ -106,7 +106,7 @@ class InkViewController: UIViewController {
         let targetSize = view.bounds.expand(by: -50)
         let scale = max(targetFrame.size.width / targetSize.width, targetFrame.size.height / targetSize.height)
         let transform: CGAffineTransform = .identity
-            .scaledBy(x: 1/scale, y: 1/scale)
+            .scaledBy(x: 1 / scale, y: 1 / scale)
             .translatedBy(x: -targetFrame.origin.x, y: -targetFrame.origin.y)
         pointsView.renderTransform = transform
         linesView.renderTransform = transform

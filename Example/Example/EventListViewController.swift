@@ -140,7 +140,7 @@ class EventListViewController: UITableViewController {
                 currentEventIndex = index
             }
         } else if index < allEvents.count,
-                  case let toProcess = Array(allEvents[currentEventIndex+1...index]),
+                  case let toProcess = Array(allEvents[currentEventIndex + 1...index]),
                   !toProcess.isEmpty {
             touchEventStream.process(events: toProcess)
             currentEventIndex = index

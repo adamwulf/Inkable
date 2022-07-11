@@ -10,7 +10,7 @@ import UIKit
 import Inkable
 import UniformTypeIdentifiers
 
-protocol SettingsViewControllerDelegate {
+protocol SettingsViewControllerDelegate: AnyObject {
     var isFitToSize: Bool { get }
 
     func visibilityChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool)
@@ -120,7 +120,6 @@ class SettingsViewController: UITableViewController {
             cell.accessoryType = .none
         case .importEvents, .exportEvents, .clearScreen:
             cell.accessoryType = .none
-            break
         }
 
         cell.contentConfiguration = content

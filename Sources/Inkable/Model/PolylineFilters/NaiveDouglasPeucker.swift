@@ -54,7 +54,8 @@ open class NaiveDouglasPeucker: ProducerConsumer {
             return input
         }
 
-        // TODO: implement Douglas-Peucker algorithm to reduce the number of points
+        // Future: implement Douglas-Peucker algorithm to reduce the number of points
+
         consumers.forEach({ $0.process(input) })
         return input
     }
