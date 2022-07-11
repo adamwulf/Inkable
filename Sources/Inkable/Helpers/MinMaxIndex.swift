@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Represents a range of Int indexes
 public struct MinMaxIndex: Equatable {
     private var start: Int
     private var end: Int

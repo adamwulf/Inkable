@@ -1,34 +1,41 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "ClippingBezier",
-        "repositoryURL": "https://github.com/adamwulf/ClippingBezier.git",
-        "state": {
-          "branch": null,
-          "revision": "9cde6dd3396ad59d3636e4c6e3f55847de48bf30",
-          "version": "1.2.0"
-        }
-      },
-      {
-        "package": "PerformanceBezier",
-        "repositoryURL": "https://github.com/adamwulf/PerformanceBezier.git",
-        "state": {
-          "branch": null,
-          "revision": "5737bfcfe7b69ea79a02853f75ae838892f5db51",
-          "version": "1.3.0"
-        }
-      },
-      {
-        "package": "SwiftToolbox",
-        "repositoryURL": "https://github.com/adamwulf/SwiftToolbox.git",
-        "state": {
-          "branch": "main",
-          "revision": "7f3f1c615bf9a1564bea4a6f40051e803757e55a",
-          "version": null
-        }
+  "pins" : [
+    {
+      "identity" : "clippingbezier",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adamwulf/ClippingBezier.git",
+      "state" : {
+        "revision" : "b6405e29fc840f89869cbfcbc5ee34ef9d5dfafe",
+        "version" : "1.2.2"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "performancebezier",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adamwulf/PerformanceBezier.git",
+      "state" : {
+        "revision" : "b3cc82221836a8ce1f0692033d58b1ff836c57f8",
+        "version" : "1.3.2"
+      }
+    },
+    {
+      "identity" : "swift-docc-plugin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-docc-plugin",
+      "state" : {
+        "revision" : "3303b164430d9a7055ba484c8ead67a52f7b74f6",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swifttoolbox",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adamwulf/SwiftToolbox.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1b287f2708d4020ba00a1776ebf0464e6549291e"
+      }
+    }
+  ],
+  "version" : 2
 }

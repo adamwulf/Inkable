@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Transforms TouchPaths into Polylines
 open class PolylineStream: ProducerConsumer {
 
     public struct Produces {

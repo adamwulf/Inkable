@@ -83,7 +83,7 @@ An example application is provided that sets up a basic pipeline to process `UIT
 including import/export of the raw event data, as well as the ability to replay the event data to see
 how the path is built up during the stroke.
 
-<img src='Docs/example.png'/>
+<img src='chart/example.png'/>
 
 
 ## Data Flow chart
@@ -95,7 +95,7 @@ Polyline filters.
  
  <a href='https://adamwulf.github.io/Inkable/'>View the chart with tooltips here</a>.
  
- <a href='https://adamwulf.github.io/Inkable/'><img src='Docs/graph.png'/></a>
+ <a href='https://adamwulf.github.io/Inkable/'><img src='chart/graph.png'/></a>
  
 Since `UITouch` information can arrive faster than a gesture recognizer can process and callback
 with the touch information, the `UITouches` are sent to the gesture recognizer in batches through

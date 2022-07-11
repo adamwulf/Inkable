@@ -10,6 +10,7 @@ import UIKit
 import PerformanceBezier
 import SwiftToolbox
 
+/// Transforms Polyline input into UIBezierPath output
 open class BezierStream: ProducerConsumer {
 
     public struct Produces {
