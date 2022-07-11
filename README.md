@@ -1,5 +1,7 @@
 # Inkable
 
+[![CI](https://github.com/adamwulf/Inkable/actions/workflows/swift.yml/badge.svg)](https://github.com/adamwulf/Inkable/actions/workflows/swift.yml)
+
 ## The Problem
 
 Building high performance digital ink is difficult. The Apple Pencil provides UITouch input through
