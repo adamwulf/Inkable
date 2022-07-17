@@ -127,5 +127,13 @@ extension Polyline {
 
             self.touchPoint = touchPoint
         }
+
+        public var description: String {
+            return "(\(location.x), \(location.y))"
+        }
+    }
+
+    public var description: String {
+        return "[\(points.map(\.description).joined(separator: ","))]"
     }
 }

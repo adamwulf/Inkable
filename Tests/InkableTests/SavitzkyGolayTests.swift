@@ -47,20 +47,20 @@ class SavitzkyGolayTests: XCTestCase {
     }
 
     func testUnknownPolylineIndex() throws {
+        guard
+            let jsonFile = Bundle.module.url(forResource: "unknown-polyline-index", withExtension: "json")
+        else {
+            XCTFail("Could not load json")
+            return
+        }
+
         for _ in 0..<10 {
             try autoreleasepool {
-                guard
-                    let jsonFile = Bundle.module.url(forResource: "unknown-polyline-index", withExtension: "json")
-                else {
-                    XCTFail("Could not load json")
-                    return
-                }
-
                 let data = try Data(contentsOf: jsonFile)
                 let events = try JSONDecoder().decode([TouchEvent].self, from: data)
                 let touchStream = TouchPathStream()
                 let polylineStream = PolylineStream()
-                let savitzkyGolayFilter = SavitzkyGolay()
+                let savitzkyGolayFilter = NaiveSavitzkyGolay()
                 let smoother = BezierStream(smoother: AntigrainSmoother())
                 touchStream.addConsumer(polylineStream)
                 polylineStream.addConsumer(savitzkyGolayFilter)

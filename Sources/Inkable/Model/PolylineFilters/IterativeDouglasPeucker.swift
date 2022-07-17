@@ -1,5 +1,5 @@
 //
-//  NaiveDouglasPeucker.swift
+//  IterativeDouglasPeucker.swift
 //  Inkable
 //
 //  Created by Adam Wulf on 8/18/20.
@@ -9,9 +9,9 @@ import Foundation
 import CoreGraphics
 import SwiftToolbox
 
-/// Removes points from `strokes` according to the Ramer-Douglas-Peucker algorithm
-/// https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
-open class NaiveDouglasPeucker: ProducerConsumer {
+/// Naive implementation that removes recursion from the Douglas-Peucker algorithm
+/// https://namekdev.net/2014/06/iterative-version-of-ramer-douglas-peucker-line-simplification-algorithm/
+open class IterativeDouglasPeucker: ProducerConsumer {
 
     public typealias Consumes = PolylineStream.Produces
     public typealias Produces = PolylineStream.Produces
@@ -105,36 +105,50 @@ open class NaiveDouglasPeucker: ProducerConsumer {
 
     func douglasPeucker(for points: [Polyline.Point]) -> [Polyline.Point] {
         guard points.count > 2 else { return points }
-        var dmax: CGFloat = 0
-        var index: Int = 0
-        let lastItem: Int = points.count
-        let line = Line(points[0], points[lastItem - 1])
 
-        for i in 0..<lastItem {
-            let d = perpendicularDistance(from: points[i], to: line)
-            if d > dmax {
-                index = i
-                dmax = d
+        var stack: [Range<Int>] = []
+        stack.append(0..<points.count)
+
+        var bitArray = Array(repeating: true, count: points.count)
+
+        while let range = stack.pop() {
+            guard range.count > 2 else { continue }
+            let startIndex = range.startIndex
+            let endIndex: Int = range.endIndex
+
+            var dmax: CGFloat = 0
+            var index: Int = startIndex
+            let line = Line(points[startIndex], points[endIndex - 1])
+            for i in startIndex + 1..<endIndex where bitArray[i] {
+                let d = perpendicularDistance(from: points[i], to: line)
+                if d > dmax {
+                    index = i
+                    dmax = d
+                }
+            }
+
+            // If max distance is greater than epsilon, recursively simplify
+            if dmax > epsilon {
+                // Recursive call
+                stack.append(startIndex..<index + 1)
+                stack.append(index..<endIndex)
+            } else {
+                for i in startIndex + 1..<endIndex - 1 {
+                    bitArray[i] = false
+                }
             }
         }
 
-        // If max distance is greater than epsilon, recursively simplify
-        if dmax > epsilon {
-            // Recursive call
-            let rangeA = points[0...index]
-            let rangeB = points[index..<lastItem]
-            let resultA = douglasPeucker(for: Array(points[rangeA.startIndex..<rangeA.endIndex]))
-            let resultB = douglasPeucker(for: Array(points[rangeB.startIndex..<rangeB.endIndex]))
-
-            // Build the result list
-            return resultA[0..<resultA.count - 1] + resultB
-        } else {
-            return [points[0], points[lastItem - 1]]
+        var points = points
+        for i in bitArray.indices.reversed() where !bitArray[i] {
+            points.remove(at: i)
         }
+
+        return points
     }
 }
 
-extension NaiveDouglasPeucker {
+extension IterativeDouglasPeucker {
     typealias Line = (start: Polyline.Point, end: Polyline.Point)
 
     func perpendicularDistance(from point: Polyline.Point, to line: Line) -> CGFloat {

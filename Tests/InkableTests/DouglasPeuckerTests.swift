@@ -10,23 +10,93 @@ import XCTest
 
 class DouglasPeuckerTests: XCTestCase {
 
-    func testSimpleSmoothing() throws {
+    func testDouglasPeucker() throws {
         let touchId: UITouchIdentifier = UUID().uuidString
-        let completeEvents = [Event(id: touchId, loc: CGPoint(x: 100, y: 100), pred: false),
-                              Event(id: touchId, loc: CGPoint(x: 110, y: 105), pred: false),
-                              Event(id: touchId, loc: CGPoint(x: 120, y: 108), pred: false),
-                              Event(id: touchId, loc: CGPoint(x: 125, y: 112), pred: false),
-                              Event(id: touchId, loc: CGPoint(x: 140, y: 116), pred: false),
-                              Event(id: touchId, loc: CGPoint(x: 150, y: 116), pred: false)]
+        let completeEvents = [Event(id: touchId, loc: CGPoint(x: -6.19, y: -3.46), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: -4.99, y: 1.16), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: -2.79, y: -2.22), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: -1.87, y: 0.58), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: 0.77, y: 0.22), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: -1.15, y: 3.06), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: 5.33, y: -1.12), pred: false)]
         let touchEvents = TouchEvent.newFrom(completeEvents)
         let touchStream = TouchPathStream()
         let polylineStream = PolylineStream()
-        let smoothing = NaiveDouglasPeucker()
+        let naive = NaiveDouglasPeucker(epsilon: 5.47722)
+        let iterative = IterativeDouglasPeucker(epsilon: 5.47722)
 
-        touchStream.nextStep(polylineStream).nextStep(smoothing)
+        touchStream.nextStep(polylineStream)
+        polylineStream.nextStep(naive)
+        polylineStream.nextStep(iterative)
         touchStream.produce(with: touchEvents)
 
-        let naiveOutput = smoothing.lines
+        let expected = Polyline(points: [polylineStream.lines[0].points.first!, polylineStream.lines[0].points.last!])
+
+        XCTAssert(naive.lines[0] == expected)
+        XCTAssert(iterative.lines[0] == expected)
+    }
+
+    func testDouglasPeucker2() throws {
+        let touchId: UITouchIdentifier = UUID().uuidString
+        let completeEvents = [Event(id: touchId, loc: CGPoint(x: 0, y: 0), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: 50, y: 1), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: 100, y: 0), pred: false)]
+        let touchEvents = TouchEvent.newFrom(completeEvents)
+        let touchStream = TouchPathStream()
+        let polylineStream = PolylineStream()
+        let naive = NaiveDouglasPeucker(epsilon: 2)
+        let iterative = IterativeDouglasPeucker(epsilon: 2)
+
+        touchStream.nextStep(polylineStream)
+        polylineStream.nextStep(naive)
+        polylineStream.nextStep(iterative)
+        touchStream.produce(with: touchEvents)
+
+        XCTAssertEqual(naive.lines[0].description, "[(0.0, 0.0),(100.0, 0.0)]")
+        XCTAssertEqual(iterative.lines[0].description, "[(0.0, 0.0),(100.0, 0.0)]")
+    }
+
+    func testNaiveDouglasPeucker3() throws {
+        let touchId: UITouchIdentifier = UUID().uuidString
+        let completeEvents = [Event(id: touchId, loc: CGPoint(x: 0, y: 0), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: 50, y: 1), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: 100, y: 0), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: 101, y: 50), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: 100, y: 100), pred: false)]
+        let touchEvents = TouchEvent.newFrom(completeEvents)
+        let touchStream = TouchPathStream()
+        let polylineStream = PolylineStream()
+        let naive = NaiveDouglasPeucker(epsilon: 2)
+        let iterative = IterativeDouglasPeucker(epsilon: 2)
+
+        touchStream.nextStep(polylineStream)
+        polylineStream.nextStep(naive)
+        polylineStream.nextStep(iterative)
+        touchStream.produce(with: touchEvents)
+
+        XCTAssertEqual(naive.lines[0].description, "[(0.0, 0.0),(100.0, 0.0),(100.0, 100.0)]")
+        XCTAssertEqual(iterative.lines[0].description, "[(0.0, 0.0),(100.0, 0.0),(100.0, 100.0)]")
+    }
+
+    func testSplitEventSmoothing() throws {
+        let touchId: UITouchIdentifier = UUID().uuidString
+        let completeEvents = [Event(id: touchId, loc: CGPoint(x: 0, y: 0), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: 50, y: 1), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: 100, y: 0), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: 101, y: 50), pred: false),
+                              Event(id: touchId, loc: CGPoint(x: 100, y: 100), pred: false)]
+        let touchEvents = TouchEvent.newFrom(completeEvents)
+        let touchStream = TouchPathStream()
+        let polylineStream = PolylineStream()
+        let naive = NaiveDouglasPeucker()
+        let iterative = IterativeDouglasPeucker(epsilon: 2)
+
+        touchStream.nextStep(polylineStream)
+        polylineStream.nextStep(naive)
+        polylineStream.nextStep(iterative)
+        touchStream.produce(with: touchEvents)
+
+        XCTAssert(naive.lines[0] == iterative.lines[0])
 
         for split in 0..<touchEvents.count {
             let left = Array(touchEvents[0..<split])
@@ -34,54 +104,58 @@ class DouglasPeuckerTests: XCTestCase {
 
             let altTouchStream = TouchPathStream()
             let altPolylineStream = PolylineStream()
-            let altSmoothing = NaiveDouglasPeucker()
+            let altNaive = NaiveDouglasPeucker()
+            let altIterative = IterativeDouglasPeucker()
 
-            altTouchStream.nextStep(altPolylineStream).nextStep(altSmoothing)
+            altTouchStream.nextStep(altPolylineStream)
+            altPolylineStream.nextStep(altNaive)
+            altPolylineStream.nextStep(altIterative)
             altTouchStream.produce(with: left)
             altTouchStream.produce(with: right)
 
-            let optimizedOutput = altSmoothing.lines
-
-            XCTAssert(naiveOutput[0] == optimizedOutput[0], "failed in split \(split)")
+            XCTAssert(naive.lines[0] == altNaive.lines[0], "failed in split \(split)")
+            XCTAssert(naive.lines[0] == altIterative.lines[0], "failed in split \(split)")
         }
     }
 
     func testUnknownPolylineIndex() throws {
+        guard
+            let jsonFile = Bundle.module.url(forResource: "unknown-polyline-index", withExtension: "json")
+        else {
+            XCTFail("Could not load json")
+            return
+        }
+
         for _ in 0..<10 {
             try autoreleasepool {
-                guard
-                    let jsonFile = Bundle.module.url(forResource: "unknown-polyline-index", withExtension: "json")
-                else {
-                    XCTFail("Could not load json")
-                    return
-                }
-
                 let data = try Data(contentsOf: jsonFile)
                 let events = try JSONDecoder().decode([TouchEvent].self, from: data)
                 let touchStream = TouchPathStream()
                 let polylineStream = PolylineStream()
-                let douglasPeuckerFilter = NaiveDouglasPeucker()
-                let smoother = BezierStream(smoother: AntigrainSmoother())
+                let naiveFilter = NaiveDouglasPeucker()
+                let iterativeFilter = NaiveDouglasPeucker()
                 touchStream.addConsumer(polylineStream)
-                polylineStream.addConsumer(douglasPeuckerFilter)
-                douglasPeuckerFilter.addConsumer(smoother)
+                polylineStream.addConsumer(naiveFilter)
+                polylineStream.addConsumer(iterativeFilter)
                 touchStream.produce(with: events)
+
+                XCTAssertEqual(naiveFilter.lines, iterativeFilter.lines)
 
                 for split in 1..<events.count {
                     let altStream = TouchPathStream()
                     let altPolylineStream = PolylineStream()
-                    let altDouglasPeuckerFilter = NaiveDouglasPeucker()
-                    let altSmoother = BezierStream(smoother: AntigrainSmoother())
+                    let altNaiveFilter = NaiveDouglasPeucker()
+                    let altIterativeFilter = IterativeDouglasPeucker()
                     altStream.addConsumer(altPolylineStream)
-                    altPolylineStream.addConsumer(altDouglasPeuckerFilter)
-                    altDouglasPeuckerFilter.addConsumer(altSmoother)
+                    altPolylineStream.addConsumer(altNaiveFilter)
+                    altPolylineStream.addConsumer(altIterativeFilter)
                     altStream.produce(with: Array(events[0 ..< split]))
                     altStream.produce(with: Array(events[split ..< events.count]))
 
                     XCTAssertEqual(touchStream.paths, altStream.paths)
                     XCTAssertEqual(polylineStream.lines, altPolylineStream.lines)
-                    XCTAssertEqual(douglasPeuckerFilter.lines, altDouglasPeuckerFilter.lines)
-                    XCTAssertEqual(smoother.paths, altSmoother.paths)
+                    XCTAssertEqual(naiveFilter.lines, altNaiveFilter.lines)
+                    XCTAssertEqual(naiveFilter.lines, altIterativeFilter.lines)
                 }
             }
         }
