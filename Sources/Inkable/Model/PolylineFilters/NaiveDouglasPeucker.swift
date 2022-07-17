@@ -34,6 +34,7 @@ open class NaiveDouglasPeucker: ProducerConsumer {
     // MARK: - ProducerConsumer<Polyline>
 
     public func reset() {
+        self.lines = []
         consumers.forEach({ $0.reset() })
     }
 
