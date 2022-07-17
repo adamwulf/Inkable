@@ -14,7 +14,7 @@ protocol SettingsViewControllerDelegate: AnyObject {
     var isFitToSize: Bool { get }
 
     func visibilityChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool)
-    func smoothingChanged(savitzkyGolayEnabled: Bool)
+    func smoothingChanged(savitzkyGolayEnabled: Bool, douglasPeuckerEnabled: Bool)
     func clearAllData()
     func importEvents(_ events: [DrawEvent])
     func exportEvents(sender: UIView)
@@ -29,6 +29,7 @@ class SettingsViewController: UITableViewController {
         case showLines
         case showCurves
         case smoothSavitzkyGolay
+        case smoothDouglasPeucker
         case importEvents
         case exportEvents
         case clearScreen
@@ -44,6 +45,8 @@ class SettingsViewController: UITableViewController {
                 return "Curves"
             case .smoothSavitzkyGolay:
                 return "Savitzky-Golay"
+            case .smoothDouglasPeucker:
+                return "Douglas-Peucker"
             case .importEvents:
                 return "Import"
             case .exportEvents:
@@ -59,12 +62,13 @@ class SettingsViewController: UITableViewController {
     var settingsDelegate: SettingsViewControllerDelegate?
 
     private let navigation: [Section] = [("Visibility", [.showPoints, .showLines, .showCurves]),
-                                         ("Smoothing", [.smoothSavitzkyGolay]),
+                                         ("Smoothing", [.smoothSavitzkyGolay, .smoothDouglasPeucker]),
                                          ("Data", [.importEvents, .exportEvents, .clearScreen, .sizeToFit])]
     private var pointsEnabled: Bool = true
     private var linesEnabled: Bool = true
     private var curvesEnabled: Bool = true
     private var savitzkyGolayEnabled: Bool = true
+    private var douglasPeuckerEnabled: Bool = true
 
     private static let SimpleCell = "SimpleCell"
 
@@ -112,6 +116,8 @@ class SettingsViewController: UITableViewController {
             cell.accessoryType = curvesEnabled ? .checkmark : .none
         case .smoothSavitzkyGolay:
             cell.accessoryType = savitzkyGolayEnabled ? .checkmark : .none
+        case .smoothDouglasPeucker:
+            cell.accessoryType = douglasPeuckerEnabled ? .checkmark : .none
         case .sizeToFit:
             if let settingsDelegate = settingsDelegate,
                settingsDelegate.isFitToSize {
@@ -140,12 +146,13 @@ class SettingsViewController: UITableViewController {
         }
 
         func visibilityChanged() {
-            self.settingsDelegate?.visibilityChanged(pointsEnabled: self.pointsEnabled,
-                                                linesEnabled: self.linesEnabled,
-                                                curvesEnabled: self.curvesEnabled)
+            settingsDelegate?.visibilityChanged(pointsEnabled: pointsEnabled,
+                                                linesEnabled: linesEnabled,
+                                                curvesEnabled: curvesEnabled)
         }
         func smoothingChanged() {
-            self.settingsDelegate?.smoothingChanged(savitzkyGolayEnabled: self.savitzkyGolayEnabled)
+            settingsDelegate?.smoothingChanged(savitzkyGolayEnabled: savitzkyGolayEnabled,
+                                               douglasPeuckerEnabled: douglasPeuckerEnabled)
         }
 
         switch option {
@@ -160,6 +167,9 @@ class SettingsViewController: UITableViewController {
             visibilityChanged()
         case .smoothSavitzkyGolay:
             savitzkyGolayEnabled = !savitzkyGolayEnabled
+            smoothingChanged()
+        case .smoothDouglasPeucker:
+            douglasPeuckerEnabled = !douglasPeuckerEnabled
             smoothingChanged()
         case .importEvents:
             let picker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.json, UTType.text], asCopy: true)

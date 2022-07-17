@@ -39,8 +39,8 @@ extension SplitViewController: SettingsViewControllerDelegate {
         inkViewController?.visibilityChanged(pointsEnabled: pointsEnabled, linesEnabled: linesEnabled, curvesEnabled: curvesEnabled)
     }
 
-    func smoothingChanged(savitzkyGolayEnabled: Bool) {
-        inkViewController?.smoothingChanged(savitzkyGolayEnabled: savitzkyGolayEnabled)
+    func smoothingChanged(savitzkyGolayEnabled: Bool, douglasPeuckerEnabled: Bool) {
+        inkViewController?.smoothingChanged(savitzkyGolayEnabled: savitzkyGolayEnabled, douglasPeuckerEnabled: douglasPeuckerEnabled)
         eventListViewController?.replayEvents()
     }
 

@@ -26,6 +26,7 @@ class InkViewController: UIViewController {
     let eventView = UIView()
     let pointsView = PointsView(frame: .zero)
     let savitzkyGolayView = PolylineView(frame: .zero, color: .purple)
+    let douglasPeuckerView = PolylineView(frame: .zero, color: .purple)
     var linesView = PolylineView(frame: .zero)
     var curvesView = BezierView(frame: .zero)
 
@@ -127,8 +128,10 @@ extension InkViewController {
         savitzkyGolayView.isHidden = !savitzkyGolay.enabled || linesView.isHidden
     }
 
-    func smoothingChanged(savitzkyGolayEnabled: Bool) {
+    func smoothingChanged(savitzkyGolayEnabled: Bool, douglasPeuckerEnabled: Bool) {
         savitzkyGolay.enabled = savitzkyGolayEnabled
         savitzkyGolayView.isHidden = !savitzkyGolay.enabled || linesView.isHidden
+        douglasPeucker.enabled = douglasPeuckerEnabled
+        douglasPeuckerView.isHidden = !douglasPeucker.enabled || linesView.isHidden
     }
 }
