@@ -89,7 +89,7 @@ class DouglasPeuckerTests: XCTestCase {
         let touchStream = TouchPathStream()
         let polylineStream = PolylineStream()
         let naive = NaiveDouglasPeucker()
-        let iterative = IterativeDouglasPeucker(epsilon: 2)
+        let iterative = IterativeDouglasPeucker()
 
         touchStream.nextStep(polylineStream)
         polylineStream.nextStep(naive)
