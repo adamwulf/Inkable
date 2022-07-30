@@ -18,12 +18,21 @@ class InkViewController: UIViewController {
     var linesEventsView = PolylineView(frame: .zero)
     let linesSavitzkyGolayView = PolylineView(frame: .zero, color: .purple)
     let linesDouglasPeuckerView = PolylineView(frame: .zero, color: .purple)
-    var curvesView = BezierView(frame: .zero)
+
+    let bezierStreamEvents: BezierStream
+    let bezierStreamSavitzkyGolay: BezierStream
+
+    var curvesEventsView = BezierView(frame: .zero)
+    var curvesSavitzkyGolayView = BezierView(frame: .zero)
+    var curvesDouglasPeuckerView = BezierView(frame: .zero)
 
     required init?(coder: NSCoder) {
+        let inkModel = AppDelegate.shared.inkModel
+        bezierStreamEvents = BezierStream(smoother: inkModel.bezierStream.smoother)
+        bezierStreamSavitzkyGolay = BezierStream(smoother: inkModel.bezierStream.smoother)
+
         super.init(coder: coder)
 
-        let inkModel = AppDelegate.shared.inkModel
         // points
         inkModel.lineStream.addConsumer(pointsEventsView)
         inkModel.savitzkyGolay.addConsumer(pointsSavitzkyGolayView)
@@ -35,7 +44,15 @@ class InkViewController: UIViewController {
         inkModel.douglasPeucker.addConsumer(linesDouglasPeuckerView)
 
         // curves
-        inkModel.bezierStream.addConsumer(curvesView)
+
+        inkModel.lineStream
+            .nextStep(bezierStreamEvents)
+            .addConsumer(curvesEventsView)
+        inkModel.savitzkyGolay
+            .nextStep(bezierStreamSavitzkyGolay)
+            .addConsumer(curvesSavitzkyGolayView)
+        inkModel.bezierStream.addConsumer(curvesDouglasPeuckerView)
+
         eventView.addGestureRecognizer(inkModel.touchEventStream.gesture)
     }
 
@@ -47,7 +64,9 @@ class InkViewController: UIViewController {
         linesEventsView.setNeedsDisplay()
         linesSavitzkyGolayView.setNeedsDisplay()
         linesDouglasPeuckerView.setNeedsDisplay()
-        curvesView.setNeedsDisplay()
+        curvesEventsView.setNeedsDisplay()
+        curvesSavitzkyGolayView.setNeedsDisplay()
+        curvesDouglasPeuckerView.setNeedsDisplay()
     }
 
     override func viewDidLoad() {
@@ -60,7 +79,9 @@ class InkViewController: UIViewController {
         view.addSubview(linesEventsView)
         view.addSubview(linesSavitzkyGolayView)
         view.addSubview(linesDouglasPeuckerView)
-        view.addSubview(curvesView)
+        view.addSubview(curvesEventsView)
+        view.addSubview(curvesSavitzkyGolayView)
+        view.addSubview(curvesDouglasPeuckerView)
 
         eventView.layoutHuggingParent(safeArea: true)
         pointsEventsView.layoutHuggingParent(safeArea: true)
@@ -69,7 +90,9 @@ class InkViewController: UIViewController {
         linesEventsView.layoutHuggingParent(safeArea: true)
         linesSavitzkyGolayView.layoutHuggingParent(safeArea: true)
         linesDouglasPeuckerView.layoutHuggingParent(safeArea: true)
-        curvesView.layoutHuggingParent(safeArea: true)
+        curvesEventsView.layoutHuggingParent(safeArea: true)
+        curvesSavitzkyGolayView.layoutHuggingParent(safeArea: true)
+        curvesDouglasPeuckerView.layoutHuggingParent(safeArea: true)
     }
 
     func clearTransform() {
@@ -79,7 +102,9 @@ class InkViewController: UIViewController {
         linesEventsView.renderTransform = .identity
         linesSavitzkyGolayView.renderTransform = .identity
         linesDouglasPeuckerView.renderTransform = .identity
-        curvesView.renderTransform = .identity
+        curvesEventsView.renderTransform = .identity
+        curvesSavitzkyGolayView.renderTransform = .identity
+        curvesDouglasPeuckerView.renderTransform = .identity
     }
 
     var isFitToSize: Bool {
@@ -94,10 +119,12 @@ class InkViewController: UIViewController {
             linesEventsView.renderTransform = .identity
             linesSavitzkyGolayView.renderTransform = .identity
             linesDouglasPeuckerView.renderTransform = .identity
-            curvesView.renderTransform = .identity
+            curvesEventsView.renderTransform = .identity
+            curvesSavitzkyGolayView.renderTransform = .identity
+            curvesDouglasPeuckerView.renderTransform = .identity
             return
         }
-        let targetFrame = curvesView.model.paths.reduce(CGRect.null, { $0.union($1.bounds) }).expand(by: 10)
+        let targetFrame = curvesDouglasPeuckerView.model.paths.reduce(CGRect.null, { $0.union($1.bounds) }).expand(by: 10)
         guard targetFrame != .null else { return }
 
         let targetSize = view.bounds.expand(by: -50)
@@ -111,7 +138,9 @@ class InkViewController: UIViewController {
         linesEventsView.renderTransform = transform
         linesSavitzkyGolayView.renderTransform = transform
         linesDouglasPeuckerView.renderTransform = transform
-        curvesView.renderTransform = transform
+        curvesEventsView.renderTransform = transform
+        curvesSavitzkyGolayView.renderTransform = transform
+        curvesDouglasPeuckerView.renderTransform = transform
     }
 }
 
@@ -123,7 +152,9 @@ extension InkViewController {
         linesEventsView.isHidden = viewSettings.lineVisiblity != .originalEvents
         linesSavitzkyGolayView.isHidden = viewSettings.lineVisiblity != .savitzkeyGolay
         linesDouglasPeuckerView.isHidden = viewSettings.lineVisiblity != .douglasPeuker
-        curvesView.isHidden = viewSettings.curveVisibility != .bezier
+        curvesEventsView.isHidden = viewSettings.curveVisibility != .originalEvents
+        curvesSavitzkyGolayView.isHidden = viewSettings.curveVisibility != .savitzkeyGolay
+        curvesDouglasPeuckerView.isHidden = viewSettings.curveVisibility != .douglasPeuker
     }
 
     func smoothingChanged(savitzkyGolayEnabled: Bool, douglasPeuckerEnabled: Bool) {

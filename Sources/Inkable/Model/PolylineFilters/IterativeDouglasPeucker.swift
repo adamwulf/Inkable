@@ -28,7 +28,7 @@ open class IterativeDouglasPeucker: ProducerConsumer {
 
     // MARK: Init
 
-    public init (epsilon: CGFloat = 2) {
+    public init (epsilon: CGFloat = 0.45) {
         self.epsilon = epsilon
     }
 

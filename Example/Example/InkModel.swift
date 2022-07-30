@@ -12,17 +12,17 @@ class InkModel {
     let touchEventStream = TouchEventStream()
     let touchPathStream = TouchPathStream()
     let lineStream = PolylineStream()
+    let pointDistance = NaivePointDistance()
     let savitzkyGolay = SavitzkyGolay()
     let douglasPeucker = IterativeDouglasPeucker()
-    let pointDistance = NaivePointDistance()
     let bezierStream = BezierStream(smoother: AntigrainSmoother())
 
     init() {
         touchEventStream.addConsumer(touchPathStream)
         touchPathStream.addConsumer(lineStream)
-        lineStream.addConsumer(savitzkyGolay)
+        lineStream.addConsumer(pointDistance)
+        pointDistance.addConsumer(savitzkyGolay)
         savitzkyGolay.addConsumer(douglasPeucker)
-        douglasPeucker.addConsumer(pointDistance)
-        pointDistance.addConsumer(bezierStream)
+        douglasPeucker.addConsumer(bezierStream)
     }
 }

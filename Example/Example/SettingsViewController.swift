@@ -31,7 +31,9 @@ class SettingsViewController: UITableViewController {
         case showOriginalLines
         case showSavitzkyGolayLines
         case showDouglasPeuckerLines
-        case showCurves
+        case showOriginalCurves
+        case showSavitzkyGolayCurves
+        case showDouglasPeuckerCurves
         case smoothSavitzkyGolay
         case smoothDouglasPeucker
         case importEvents
@@ -53,8 +55,12 @@ class SettingsViewController: UITableViewController {
                 return "Savitzky-Golay"
             case .showDouglasPeuckerLines:
                 return "Douglas-Peucker"
-            case .showCurves:
-                return "Curves"
+            case .showOriginalCurves:
+                return "Original Events"
+            case .showSavitzkyGolayCurves:
+                return "Savitzky-Golay"
+            case .showDouglasPeuckerCurves:
+                return "Douglas-Peucker"
             case .smoothSavitzkyGolay:
                 return "Savitzky-Golay"
             case .smoothDouglasPeucker:
@@ -75,7 +81,7 @@ class SettingsViewController: UITableViewController {
 
     private let navigation: [Section] = [("Point Visibility", [.showOriginalPoints, .showSavitzkyGolayPoints, .showDouglasPeuckerPoints]),
                                          ("Line Visibility", [.showOriginalLines, .showSavitzkyGolayLines, .showDouglasPeuckerLines]),
-                                         ("Visibility", [.showCurves]),
+                                         ("Curve Visibility", [.showOriginalCurves, .showSavitzkyGolayCurves, .showDouglasPeuckerCurves]),
                                          ("Smoothing", [.smoothSavitzkyGolay, .smoothDouglasPeucker]),
                                          ("Data", [.importEvents, .exportEvents, .clearScreen, .sizeToFit])]
     private var viewSettings: ViewSettings = ViewSettings()
@@ -138,8 +144,12 @@ class SettingsViewController: UITableViewController {
             cell.accessoryType = viewSettings.lineVisiblity == .savitzkeyGolay ? .checkmark : .none
         case .showDouglasPeuckerLines:
             cell.accessoryType = viewSettings.lineVisiblity == .douglasPeuker ? .checkmark : .none
-        case .showCurves:
-            cell.accessoryType = viewSettings.curveVisibility == .bezier ? .checkmark : .none
+        case .showOriginalCurves:
+            cell.accessoryType = viewSettings.curveVisibility == .originalEvents ? .checkmark : .none
+        case .showSavitzkyGolayCurves:
+            cell.accessoryType = viewSettings.curveVisibility == .savitzkeyGolay ? .checkmark : .none
+        case .showDouglasPeuckerCurves:
+            cell.accessoryType = viewSettings.curveVisibility == .douglasPeuker ? .checkmark : .none
         case .smoothSavitzkyGolay:
             cell.accessoryType = savitzkyGolayEnabled ? .checkmark : .none
         case .smoothDouglasPeucker:
@@ -198,8 +208,14 @@ class SettingsViewController: UITableViewController {
         case .showDouglasPeuckerLines:
             viewSettings.lineVisiblity = (viewSettings.lineVisiblity == .douglasPeuker) ? .none : .douglasPeuker
             visibilityChanged()
-        case .showCurves:
-            viewSettings.curveVisibility = (viewSettings.curveVisibility == .bezier) ? .none : .bezier
+        case .showOriginalCurves:
+            viewSettings.curveVisibility = (viewSettings.curveVisibility == .originalEvents) ? .none : .originalEvents
+            visibilityChanged()
+        case .showSavitzkyGolayCurves:
+            viewSettings.curveVisibility = (viewSettings.curveVisibility == .savitzkeyGolay) ? .none : .savitzkeyGolay
+            visibilityChanged()
+        case .showDouglasPeuckerCurves:
+            viewSettings.curveVisibility = (viewSettings.curveVisibility == .douglasPeuker) ? .none : .douglasPeuker
             visibilityChanged()
         case .smoothSavitzkyGolay:
             savitzkyGolayEnabled = !savitzkyGolayEnabled

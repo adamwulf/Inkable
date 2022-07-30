@@ -53,7 +53,7 @@ open class BezierStream: ProducerConsumer {
 
     // MARK: - Private
 
-    var smoother: Smoother
+    public private(set) var smoother: Smoother
     var consumers: [(process: (Produces) -> Void, reset: () -> Void)] = []
     private var builders: [BezierBuilder] = []
     /// Maps the index of a TouchPointCollection from our input to the index of the matching stroke in `strokes`

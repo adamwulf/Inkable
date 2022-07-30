@@ -28,21 +28,7 @@ struct ViewSettings {
         }
     }
 
-    enum CurveSelection: CaseIterable {
-        case none
-        case bezier
-
-        var name: String {
-            switch self {
-            case .none:
-                return "None"
-            case .bezier:
-                return "Bezier Curves"
-            }
-        }
-    }
-
     var pointVisibility: PolyLineSelection = .douglasPeuker
     var lineVisiblity: PolyLineSelection = .douglasPeuker
-    var curveVisibility: CurveSelection = .bezier
+    var curveVisibility: PolyLineSelection = .douglasPeuker
 }
