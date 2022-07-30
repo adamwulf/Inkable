@@ -26,7 +26,7 @@ open class NaiveSavitzkyGolay: ProducerConsumer {
     // MARK: Public
     public private(set) var lines: [Polyline] = []
 
-    public var enabled: Bool = true
+    public var isEnabled: Bool = true
     @Clamped(2...12) public var window: Int = 2
     @Clamped(0...1) public var strength: CGFloat = 1
 
@@ -58,7 +58,7 @@ open class NaiveSavitzkyGolay: ProducerConsumer {
 
     @discardableResult
     public func produce(with input: Consumes) -> Produces {
-        guard enabled else {
+        guard isEnabled else {
             consumers.forEach({ $0.process(input) })
             return input
         }

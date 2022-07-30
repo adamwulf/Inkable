@@ -23,7 +23,7 @@ open class IterativeDouglasPeucker: ProducerConsumer {
     // MARK: - Public
 
     public private(set) var lines: [Polyline] = []
-    public var enabled: Bool = true
+    public var isEnabled: Bool = true
     public let epsilon: CGFloat
 
     // MARK: Init
@@ -53,7 +53,7 @@ open class IterativeDouglasPeucker: ProducerConsumer {
 
     @discardableResult
     public func produce(with input: Consumes) -> Produces {
-        guard enabled else {
+        guard isEnabled else {
             consumers.forEach({ $0.process(input) })
             return input
         }

@@ -28,7 +28,7 @@ open class BezierStream: ProducerConsumer {
 
     public private(set) var paths: [UIBezierPath] = []
     private(set) var produced: Produces?
-    public var enabled: Bool = true {
+    public var isEnabled: Bool = true {
         didSet {
             replay()
         }
@@ -92,7 +92,7 @@ open class BezierStream: ProducerConsumer {
 
     @discardableResult
     public func produce(with input: Consumes) -> Produces {
-        guard enabled else {
+        guard isEnabled else {
             waiting.append(input)
             return produced ?? Produces(paths: [], deltas: [])
         }
@@ -132,7 +132,7 @@ open class BezierStream: ProducerConsumer {
 
     private var waiting: [Consumes] = []
     private func replay() {
-        guard enabled else { return }
+        guard isEnabled else { return }
         for input in waiting {
             consume(input)
         }

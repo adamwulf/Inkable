@@ -19,7 +19,7 @@ open class NaivePointDistance: ProducerConsumer {
 
     // MARK: - Public
 
-    public var enabled: Bool = true
+    public var isEnabled: Bool = true
 
     // MARK: Init
 
@@ -46,7 +46,7 @@ open class NaivePointDistance: ProducerConsumer {
 
     @discardableResult
     public func produce(with input: Consumes) -> Produces {
-        guard enabled else {
+        guard isEnabled else {
             consumers.forEach({ $0.process(input) })
             return input
         }
