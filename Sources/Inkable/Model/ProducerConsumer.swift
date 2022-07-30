@@ -17,7 +17,7 @@ public protocol Producer {
     associatedtype Produces
 
     func addConsumer<Customer>(_ consumer: Customer) where Customer: Consumer, Customer.Consumes == Produces
-    func addConsumer(_ block: @escaping (Produces) -> Void)
+    func addConsumer(_ block: @escaping (Produces) -> Void, reset: @escaping () -> Void)
     func reset()
 }
 
@@ -29,7 +29,11 @@ extension Producer {
     }
 
     public func nextStep(_ block: @escaping (Produces) -> Void) {
-        addConsumer(block)
+        addConsumer(block, reset: { })
+    }
+
+    func addConsumer(_ block: @escaping (Produces) -> Void) {
+        addConsumer(block, reset: { })
     }
 }
 
@@ -49,7 +53,7 @@ class ExampleStream: Producer {
     typealias Produces = [TouchEvent]
 
     var consumerResets: [() -> Void] = []
-    var consumers: [(Produces) -> Void] = []
+    private var consumers: [(process: (Produces) -> Void, reset: () -> Void)] = []
 
     // Alternate idea to wrap them in an object instead of a loose closure
     struct AnyConsumer {
@@ -59,14 +63,12 @@ class ExampleStream: Producer {
 
     func addConsumer<Customer>(_ consumer: Customer) where Customer: Consumer, Customer.Consumes == Produces {
         wrappedCustomers.append(AnyConsumer(process: consumer.consume))
-        consumers.append({ (produces: Produces) in
-            consumer.consume(produces)
-        })
+        consumers.append((process: consumer.consume, reset: consumer.reset))
         consumerResets.append(consumer.reset)
     }
-    func addConsumer(_ block: @escaping ([TouchEvent]) -> Void) {
+    func addConsumer(_ block: @escaping ([TouchEvent]) -> Void, reset: @escaping () -> Void) {
         wrappedCustomers.append(AnyConsumer(process: block))
-        consumers.append(block)
+        consumers.append((process: block, reset: reset))
     }
     func reset() {
         consumerResets.forEach({ $0() })

@@ -17,8 +17,6 @@ class EventListViewController: UITableViewController {
     private var playButton: UIBarButtonItem!
     private var displayLink: CADisplayLink!
 
-    weak var inkViewController: InkViewController?
-
     init() {
         super.init(style: .grouped)
         finishSetup()
@@ -35,13 +33,13 @@ class EventListViewController: UITableViewController {
         displayLink.isPaused = true
         displayLink.add(to: .main, forMode: .default)
 
-        AppDelegate.shared.inkModel.touchEventStream.addConsumer { (updatedEvents) in
+        AppDelegate.shared.inkModel.touchEventStream.addConsumer({ (updatedEvents) in
             if self.currentEventIndex >= self.allEvents.count - 1 {
                 self.allEvents.append(contentsOf: updatedEvents)
                 self.currentEventIndex = self.allEvents.count - 1
             }
             self.scheduleReload()
-        }
+        }, reset: {})
     }
 
     override func viewDidLoad() {
@@ -126,7 +124,6 @@ class EventListViewController: UITableViewController {
         if index <= currentEventIndex {
             allEvents = []
             AppDelegate.shared.inkModel.touchEventStream.reset()
-            inkViewController?.reset()
             currentEventIndex = -1
             if index == -1 || index >= events.count {
                 AppDelegate.shared.inkModel.touchEventStream.process(events: events)
@@ -151,7 +148,6 @@ class EventListViewController: UITableViewController {
         currentEventIndex = -1
         allEvents = []
         AppDelegate.shared.inkModel.touchEventStream.reset()
-        inkViewController?.reset()
         reloadTable()
     }
 

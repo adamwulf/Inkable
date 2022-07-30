@@ -50,8 +50,8 @@ open class NaiveSavitzkyGolay: ProducerConsumer {
         consumers.append((process: consumer.consume, reset: consumer.reset))
     }
 
-    public func addConsumer(_ block: @escaping (Produces) -> Void) {
-        consumers.append((process: block, reset: {}))
+    public func addConsumer(_ block: @escaping (Produces) -> Void, reset: @escaping () -> Void) {
+        consumers.append((process: block, reset: reset))
     }
 
     // MARK: - Consumer<Polyline>

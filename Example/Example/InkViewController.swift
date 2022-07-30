@@ -50,6 +50,10 @@ class InkViewController: UIViewController {
         linesView.layoutHuggingParent(safeArea: true)
         savitzkyGolayView.layoutHuggingParent(safeArea: true)
         curvesView.layoutHuggingParent(safeArea: true)
+
+        AppDelegate.shared.inkModel.touchEventStream.addConsumer({ _ in }, reset: { [weak self] in
+            self?.reset()
+        })
     }
 
     func reset() {

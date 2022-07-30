@@ -29,7 +29,6 @@ class SplitViewController: UISplitViewController {
         super.viewDidLoad()
 
         settingsViewController?.settingsDelegate = self
-        eventListViewController?.inkViewController = inkViewController
     }
 }
 
