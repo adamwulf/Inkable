@@ -33,8 +33,8 @@ class SplitViewController: UISplitViewController {
 }
 
 extension SplitViewController: SettingsViewControllerDelegate {
-    func visibilityChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool) {
-        inkViewController?.visibilityChanged(pointsEnabled: pointsEnabled, linesEnabled: linesEnabled, curvesEnabled: curvesEnabled)
+    func visibilityChanged(_ viewSettings: ViewSettings) {
+        inkViewController?.visibilityChanged(viewSettings)
     }
 
     func smoothingChanged(savitzkyGolayEnabled: Bool, douglasPeuckerEnabled: Bool) {

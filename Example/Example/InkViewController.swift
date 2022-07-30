@@ -11,7 +11,10 @@ import Inkable
 class InkViewController: UIViewController {
 
     let eventView = UIView()
-    let pointsView = PointsView(frame: .zero)
+    let pointsEventsView = PointsView(frame: .zero)
+    let pointsSavitzkyGolayView = PointsView(frame: .zero)
+    let pointsDouglasPeukerView = PointsView(frame: .zero)
+
     let savitzkyGolayView = PolylineView(frame: .zero, color: .purple)
     let douglasPeuckerView = PolylineView(frame: .zero, color: .purple)
     var linesView = PolylineView(frame: .zero)
@@ -21,16 +24,23 @@ class InkViewController: UIViewController {
         super.init(coder: coder)
 
         let inkModel = AppDelegate.shared.inkModel
-        inkModel.lineStream.addConsumer(pointsView)
+        // points
+        inkModel.lineStream.addConsumer(pointsEventsView)
+        inkModel.savitzkyGolay.addConsumer(pointsSavitzkyGolayView)
+        inkModel.douglasPeucker.addConsumer(pointsDouglasPeukerView)
+
+        // lines
         inkModel.lineStream.addConsumer(linesView)
         inkModel.savitzkyGolay.addConsumer(savitzkyGolayView)
+
+        // curves
         inkModel.bezierStream.addConsumer(curvesView)
         eventView.addGestureRecognizer(inkModel.touchEventStream.gesture)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        pointsView.setNeedsDisplay()
+        pointsEventsView.setNeedsDisplay()
         linesView.setNeedsDisplay()
         savitzkyGolayView.setNeedsDisplay()
         curvesView.setNeedsDisplay()
@@ -40,13 +50,17 @@ class InkViewController: UIViewController {
         super.viewDidLoad()
 
         view.addSubview(eventView)
-        view.addSubview(pointsView)
+        view.addSubview(pointsEventsView)
+        view.addSubview(pointsSavitzkyGolayView)
+        view.addSubview(pointsDouglasPeukerView)
         view.addSubview(linesView)
         view.addSubview(savitzkyGolayView)
         view.addSubview(curvesView)
 
         eventView.layoutHuggingParent(safeArea: true)
-        pointsView.layoutHuggingParent(safeArea: true)
+        pointsEventsView.layoutHuggingParent(safeArea: true)
+        pointsSavitzkyGolayView.layoutHuggingParent(safeArea: true)
+        pointsDouglasPeukerView.layoutHuggingParent(safeArea: true)
         linesView.layoutHuggingParent(safeArea: true)
         savitzkyGolayView.layoutHuggingParent(safeArea: true)
         curvesView.layoutHuggingParent(safeArea: true)
@@ -57,26 +71,30 @@ class InkViewController: UIViewController {
     }
 
     func reset() {
-        self.pointsView.reset()
-        self.linesView.reset()
-        self.savitzkyGolayView.reset()
-        self.curvesView.reset()
+//        self.pointsEventsView.reset()
+//        self.linesView.reset()
+//        self.savitzkyGolayView.reset()
+//        self.curvesView.reset()
     }
 
     func clearTransform() {
-        pointsView.renderTransform = .identity
+        pointsEventsView.renderTransform = .identity
+        pointsSavitzkyGolayView.renderTransform = .identity
+        pointsDouglasPeukerView.renderTransform = .identity
         linesView.renderTransform = .identity
         savitzkyGolayView.renderTransform = .identity
         curvesView.renderTransform = .identity
     }
 
     var isFitToSize: Bool {
-        return pointsView.renderTransform != .identity
+        return pointsEventsView.renderTransform != .identity
     }
 
     func toggleSizeToFit() {
-        guard pointsView.renderTransform == .identity else {
-            pointsView.renderTransform = .identity
+        guard pointsEventsView.renderTransform == .identity else {
+            pointsEventsView.renderTransform = .identity
+            pointsSavitzkyGolayView.renderTransform = .identity
+            pointsDouglasPeukerView.renderTransform = .identity
             linesView.renderTransform = .identity
             savitzkyGolayView.renderTransform = .identity
             curvesView.renderTransform = .identity
@@ -90,7 +108,9 @@ class InkViewController: UIViewController {
         let transform: CGAffineTransform = .identity
             .scaledBy(x: 1 / scale, y: 1 / scale)
             .translatedBy(x: -targetFrame.origin.x, y: -targetFrame.origin.y)
-        pointsView.renderTransform = transform
+        pointsEventsView.renderTransform = transform
+        pointsSavitzkyGolayView.renderTransform = transform
+        pointsDouglasPeukerView.renderTransform = transform
         linesView.renderTransform = transform
         savitzkyGolayView.renderTransform = transform
         curvesView.renderTransform = transform
@@ -102,10 +122,14 @@ extension InkViewController {
         self.reset()
     }
 
-    func visibilityChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool) {
-        pointsView.isHidden = !pointsEnabled
-        linesView.isHidden = !linesEnabled
-        curvesView.isHidden = !curvesEnabled
+    func visibilityChanged(_ viewSettings: ViewSettings) {
+        pointsEventsView.isHidden = viewSettings.pointVisibility != .originalEvents
+        pointsSavitzkyGolayView.isHidden = viewSettings.pointVisibility != .savitzkeyGolay
+        pointsDouglasPeukerView.isHidden = viewSettings.pointVisibility != .douglasPeuker
+        linesView.isHidden = viewSettings.lineVisiblity != .douglasPeuker
+        curvesView.isHidden = viewSettings.curveVisibility != .bezier
+        savitzkyGolayView.isHidden = viewSettings.lineVisiblity != .savitzkeyGolay
+        douglasPeuckerView.isHidden = viewSettings.lineVisiblity != .douglasPeuker
         let inkModel = AppDelegate.shared.inkModel
         savitzkyGolayView.isHidden = !inkModel.savitzkyGolay.enabled || linesView.isHidden
     }
@@ -113,8 +137,6 @@ extension InkViewController {
     func smoothingChanged(savitzkyGolayEnabled: Bool, douglasPeuckerEnabled: Bool) {
         let inkModel = AppDelegate.shared.inkModel
         inkModel.savitzkyGolay.enabled = savitzkyGolayEnabled
-        savitzkyGolayView.isHidden = !inkModel.savitzkyGolay.enabled || linesView.isHidden
         inkModel.douglasPeucker.enabled = douglasPeuckerEnabled
-        douglasPeuckerView.isHidden = !inkModel.douglasPeucker.enabled || linesView.isHidden
     }
 }

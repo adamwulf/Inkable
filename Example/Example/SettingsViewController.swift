@@ -13,7 +13,7 @@ import UniformTypeIdentifiers
 protocol SettingsViewControllerDelegate: AnyObject {
     var isFitToSize: Bool { get }
 
-    func visibilityChanged(pointsEnabled: Bool, linesEnabled: Bool, curvesEnabled: Bool)
+    func visibilityChanged(_ viewSettings: ViewSettings)
     func smoothingChanged(savitzkyGolayEnabled: Bool, douglasPeuckerEnabled: Bool)
     func clearAllData()
     func importEvents(_ events: [DrawEvent])
@@ -23,8 +23,8 @@ protocol SettingsViewControllerDelegate: AnyObject {
 
 class SettingsViewController: UITableViewController {
 
-    typealias Section = (title: String, options: [Settings])
-    enum Settings {
+    typealias Section = (title: String, options: [Rows])
+    enum Rows {
         case showPoints
         case showLines
         case showCurves
@@ -64,9 +64,7 @@ class SettingsViewController: UITableViewController {
     private let navigation: [Section] = [("Visibility", [.showPoints, .showLines, .showCurves]),
                                          ("Smoothing", [.smoothSavitzkyGolay, .smoothDouglasPeucker]),
                                          ("Data", [.importEvents, .exportEvents, .clearScreen, .sizeToFit])]
-    private var pointsEnabled: Bool = true
-    private var linesEnabled: Bool = true
-    private var curvesEnabled: Bool = true
+    private var viewSettings: ViewSettings = ViewSettings()
     private var savitzkyGolayEnabled: Bool = true
     private var douglasPeuckerEnabled: Bool = true
 
@@ -76,6 +74,12 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Self.SimpleCell)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        settingsDelegate?.visibilityChanged(viewSettings)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -109,11 +113,11 @@ class SettingsViewController: UITableViewController {
         content.secondaryText = nil
         switch option {
         case .showPoints:
-            cell.accessoryType = pointsEnabled ? .checkmark : .none
+            cell.accessoryType = viewSettings.pointVisibility == .douglasPeuker ? .checkmark : .none
         case .showLines:
-            cell.accessoryType = linesEnabled ? .checkmark : .none
+            cell.accessoryType = viewSettings.lineVisiblity == .douglasPeuker ? .checkmark : .none
         case .showCurves:
-            cell.accessoryType = curvesEnabled ? .checkmark : .none
+            cell.accessoryType = viewSettings.curveVisibility == .bezier ? .checkmark : .none
         case .smoothSavitzkyGolay:
             cell.accessoryType = savitzkyGolayEnabled ? .checkmark : .none
         case .smoothDouglasPeucker:
@@ -146,9 +150,7 @@ class SettingsViewController: UITableViewController {
         }
 
         func visibilityChanged() {
-            settingsDelegate?.visibilityChanged(pointsEnabled: pointsEnabled,
-                                                linesEnabled: linesEnabled,
-                                                curvesEnabled: curvesEnabled)
+            settingsDelegate?.visibilityChanged(viewSettings)
         }
         func smoothingChanged() {
             settingsDelegate?.smoothingChanged(savitzkyGolayEnabled: savitzkyGolayEnabled,
@@ -157,13 +159,13 @@ class SettingsViewController: UITableViewController {
 
         switch option {
         case .showPoints:
-            pointsEnabled = !pointsEnabled
+            viewSettings.pointVisibility = (viewSettings.pointVisibility == .douglasPeuker) ? .none : .douglasPeuker
             visibilityChanged()
         case .showLines:
-            linesEnabled = !linesEnabled
+            viewSettings.lineVisiblity = (viewSettings.lineVisiblity == .douglasPeuker) ? .none : .douglasPeuker
             visibilityChanged()
         case .showCurves:
-            curvesEnabled = !curvesEnabled
+            viewSettings.curveVisibility = (viewSettings.curveVisibility == .bezier) ? .none : .bezier
             visibilityChanged()
         case .smoothSavitzkyGolay:
             savitzkyGolayEnabled = !savitzkyGolayEnabled

@@ -100,7 +100,7 @@ class PointsView: UIView, Consumer {
             for point in path.points {
                 var radius: CGFloat = Self.maxRadius / scale
                 if point.event.isUpdate {
-                    radius = Self.maxRadius / 2 / scale
+                    radius = Self.maxRadius * 3 / 4 / scale
                     if !point.expectsUpdate {
                         UIColor.isFinal.setFill()
                     } else {
