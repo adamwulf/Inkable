@@ -115,7 +115,7 @@ class PointsView: UIView, Consumer {
                         UIColor.isIntial.setFill()
                     }
                 }
-                UIBezierPath(ovalIn: CGRect(origin: point.event.location, size: CGSize.zero).expand(by: radius)).fill()
+                UIBezierPath(ovalIn: CGRect(origin: point.location, size: CGSize.zero).expand(by: radius)).fill()
             }
         }
 

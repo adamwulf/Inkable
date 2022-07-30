@@ -20,9 +20,9 @@ class InkModel {
     init() {
         touchEventStream.addConsumer(touchPathStream)
         touchPathStream.addConsumer(lineStream)
-        lineStream.addConsumer(douglasPeucker)
+        lineStream.addConsumer(savitzkyGolay)
+        savitzkyGolay.addConsumer(douglasPeucker)
         douglasPeucker.addConsumer(pointDistance)
-        pointDistance.addConsumer(savitzkyGolay)
-        savitzkyGolay.addConsumer(bezierStream)
+        pointDistance.addConsumer(bezierStream)
     }
 }
