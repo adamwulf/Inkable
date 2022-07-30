@@ -11,7 +11,7 @@ import Inkable
 
 class PointsView: UIView, Consumer {
 
-    typealias Consumes = TouchPathStream.Produces
+    typealias Consumes = PolylineStream.Produces
 
     private static let maxRadius: CGFloat = 2
 
@@ -46,9 +46,9 @@ class PointsView: UIView, Consumer {
     // MARK: - TouchPathStream Consumer
 
     private var pathBounds: [String: CGRect] = [:]
-    private var model: Consumes = Consumes(paths: [], deltas: [])
+    private var model: Consumes = Consumes(lines: [], deltas: [])
 
-    func setNeedsDisplay(in path: TouchPath) {
+    func setNeedsDisplay(in path: Polyline) {
         if let oldBounds = pathBounds[path.touchIdentifier] {
             setNeedsDisplay(oldBounds.expand(by: Self.maxRadius).applying(renderTransform))
         }
@@ -56,21 +56,21 @@ class PointsView: UIView, Consumer {
         setNeedsDisplay(path.bounds.expand(by: Self.maxRadius).applying(renderTransform))
     }
 
-    func consume(_ input: TouchPathStream.Produces) {
+    func consume(_ input: PolylineStream.Produces) {
         model = input
 
         for delta in input.deltas {
             switch delta {
-            case .addedTouchPath(let index):
-                let path = model.paths[index]
+            case .addedPolyline(let index):
+                let path = model.lines[index]
                 setNeedsDisplay(in: path)
-            case .updatedTouchPath(let index, _):
+            case .updatedPolyline(let index, _):
                 // We could only setNeedsDisplay for the rect of the modified elements of the path.
                 // For now, we'll set the entire path as needing display, but something to possibly revisit
-                let path = model.paths[index]
+                let path = model.lines[index]
                 setNeedsDisplay(in: path)
-            case .completedTouchPath(let index):
-                let path = model.paths[index]
+            case .completedPolyline(let index):
+                let path = model.lines[index]
                 setNeedsDisplay(in: path)
             case .unhandled(let event):
                 if event as? GestureCallbackEvent != nil {
@@ -82,7 +82,7 @@ class PointsView: UIView, Consumer {
     }
 
     func reset() {
-        model = Consumes(paths: [], deltas: [])
+        model = Consumes(lines: [], deltas: [])
         setNeedsDisplay()
     }
 
@@ -96,7 +96,7 @@ class PointsView: UIView, Consumer {
         context?.saveGState()
         context?.concatenate(renderTransform)
 
-        for path in model.paths {
+        for path in model.lines {
             for point in path.points {
                 var radius: CGFloat = Self.maxRadius / scale
                 if point.event.isUpdate {

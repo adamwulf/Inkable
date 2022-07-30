@@ -21,7 +21,7 @@ class InkViewController: UIViewController {
         super.init(coder: coder)
 
         let inkModel = AppDelegate.shared.inkModel
-        inkModel.touchPathStream.addConsumer(pointsView)
+        inkModel.lineStream.addConsumer(pointsView)
         inkModel.lineStream.addConsumer(linesView)
         inkModel.savitzkyGolay.addConsumer(savitzkyGolayView)
         inkModel.bezierStream.addConsumer(curvesView)
