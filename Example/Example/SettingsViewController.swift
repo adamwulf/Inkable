@@ -25,7 +25,9 @@ class SettingsViewController: UITableViewController {
 
     typealias Section = (title: String, options: [Rows])
     enum Rows {
-        case showPoints
+        case showOriginalPoints
+        case showSavitzkyGolayPoints
+        case showDouglasPeuckerPoints
         case showLines
         case showCurves
         case smoothSavitzkyGolay
@@ -37,8 +39,12 @@ class SettingsViewController: UITableViewController {
 
         var name: String {
             switch self {
-            case .showPoints:
-                return "Points"
+            case .showOriginalPoints:
+                return "Original Events"
+            case .showSavitzkyGolayPoints:
+                return "Savitzky-Golay"
+            case .showDouglasPeuckerPoints:
+                return "Douglas-Peucker"
             case .showLines:
                 return "Lines"
             case .showCurves:
@@ -61,7 +67,8 @@ class SettingsViewController: UITableViewController {
 
     var settingsDelegate: SettingsViewControllerDelegate?
 
-    private let navigation: [Section] = [("Visibility", [.showPoints, .showLines, .showCurves]),
+    private let navigation: [Section] = [("Point Visibility", [.showOriginalPoints, .showSavitzkyGolayPoints, .showDouglasPeuckerPoints]),
+                                         ("Visibility", [.showLines, .showCurves]),
                                          ("Smoothing", [.smoothSavitzkyGolay, .smoothDouglasPeucker]),
                                          ("Data", [.importEvents, .exportEvents, .clearScreen, .sizeToFit])]
     private var viewSettings: ViewSettings = ViewSettings()
@@ -112,7 +119,11 @@ class SettingsViewController: UITableViewController {
         content.text = option.name
         content.secondaryText = nil
         switch option {
-        case .showPoints:
+        case .showOriginalPoints:
+            cell.accessoryType = viewSettings.pointVisibility == .originalEvents ? .checkmark : .none
+        case .showSavitzkyGolayPoints:
+            cell.accessoryType = viewSettings.pointVisibility == .savitzkeyGolay ? .checkmark : .none
+        case .showDouglasPeuckerPoints:
             cell.accessoryType = viewSettings.pointVisibility == .douglasPeuker ? .checkmark : .none
         case .showLines:
             cell.accessoryType = viewSettings.lineVisiblity == .douglasPeuker ? .checkmark : .none
@@ -158,7 +169,13 @@ class SettingsViewController: UITableViewController {
         }
 
         switch option {
-        case .showPoints:
+        case .showOriginalPoints:
+            viewSettings.pointVisibility = (viewSettings.pointVisibility == .originalEvents) ? .none : .originalEvents
+            visibilityChanged()
+        case .showSavitzkyGolayPoints:
+            viewSettings.pointVisibility = (viewSettings.pointVisibility == .savitzkeyGolay) ? .none : .savitzkeyGolay
+            visibilityChanged()
+        case .showDouglasPeuckerPoints:
             viewSettings.pointVisibility = (viewSettings.pointVisibility == .douglasPeuker) ? .none : .douglasPeuker
             visibilityChanged()
         case .showLines:
@@ -186,7 +203,7 @@ class SettingsViewController: UITableViewController {
             settingsDelegate?.toggleSizeToFit()
         }
 
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.reloadRows(in: indexPath.section, with: .automatic)
     }
 }
 
