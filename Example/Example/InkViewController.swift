@@ -155,6 +155,10 @@ extension InkViewController {
         curvesEventsView.isHidden = viewSettings.curveVisibility != .originalEvents
         curvesSavitzkyGolayView.isHidden = viewSettings.curveVisibility != .savitzkeyGolay
         curvesDouglasPeuckerView.isHidden = viewSettings.curveVisibility != .douglasPeuker
+
+        bezierStreamEvents.enabled = !curvesEventsView.isHidden
+        bezierStreamSavitzkyGolay.enabled = !curvesSavitzkyGolayView.isHidden
+        AppDelegate.shared.inkModel.bezierStream.enabled = !curvesDouglasPeuckerView.isHidden
     }
 
     func smoothingChanged(savitzkyGolayEnabled: Bool, douglasPeuckerEnabled: Bool) {

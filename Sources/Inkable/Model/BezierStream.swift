@@ -28,6 +28,11 @@ open class BezierStream: ProducerConsumer {
 
     public private(set) var paths: [UIBezierPath] = []
     private(set) var produced: Produces?
+    public var enabled: Bool = true {
+        didSet {
+            replay()
+        }
+    }
 
     public typealias Consumes = PolylineStream.Produces
 
@@ -87,6 +92,10 @@ open class BezierStream: ProducerConsumer {
 
     @discardableResult
     public func produce(with input: Consumes) -> Produces {
+        guard enabled else {
+            waiting.append(input)
+            return produced ?? Produces(paths: [], deltas: [])
+        }
         var deltas: [Delta] = []
 
         for delta in input.deltas {
@@ -119,6 +128,15 @@ open class BezierStream: ProducerConsumer {
         paths = output.paths
         consumers.forEach({ $0.process(output) })
         return output
+    }
+
+    private var waiting: [Consumes] = []
+    private func replay() {
+        guard enabled else { return }
+        for input in waiting {
+            consume(input)
+        }
+        waiting.removeAll()
     }
 
     private class BezierBuilder {
