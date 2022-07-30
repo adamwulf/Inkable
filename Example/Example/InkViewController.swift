@@ -10,19 +10,6 @@ import Inkable
 
 class InkViewController: UIViewController {
 
-    weak var eventListViewController: EventListViewController? {
-        didSet {
-            eventListViewController?.touchEventStream.addConsumer(touchPathStream)
-            if let eventListViewController = eventListViewController {
-                eventView.addGestureRecognizer(eventListViewController.touchEventStream.gesture)
-            }
-        }
-    }
-
-    let touchPathStream = TouchPathStream()
-    let lineStream = PolylineStream()
-    let bezierStream = BezierStream(smoother: AntigrainSmoother())
-
     let eventView = UIView()
     let pointsView = PointsView(frame: .zero)
     let savitzkyGolayView = PolylineView(frame: .zero, color: .purple)
@@ -30,25 +17,15 @@ class InkViewController: UIViewController {
     var linesView = PolylineView(frame: .zero)
     var curvesView = BezierView(frame: .zero)
 
-    let savitzkyGolay = SavitzkyGolay()
-    let douglasPeucker = NaiveDouglasPeucker()
-    let pointDistance = NaivePointDistance()
-
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 
-        touchPathStream.addConsumer(lineStream)
-        touchPathStream.addConsumer(pointsView)
-        lineStream.addConsumer(douglasPeucker)
-        lineStream.addConsumer(linesView)
-        douglasPeucker.addConsumer(pointDistance)
-        pointDistance.addConsumer(savitzkyGolay)
-        savitzkyGolay.addConsumer(bezierStream)
-        savitzkyGolay.addConsumer(savitzkyGolayView)
-        bezierStream.addConsumer(curvesView)
-        bezierStream.addConsumer { (_) in
-            // noop
-        }
+        let inkModel = AppDelegate.shared.inkModel
+        inkModel.touchPathStream.addConsumer(pointsView)
+        inkModel.lineStream.addConsumer(linesView)
+        inkModel.savitzkyGolay.addConsumer(savitzkyGolayView)
+        inkModel.bezierStream.addConsumer(curvesView)
+        eventView.addGestureRecognizer(inkModel.touchEventStream.gesture)
     }
 
     override func viewDidLayoutSubviews() {
@@ -125,13 +102,15 @@ extension InkViewController {
         pointsView.isHidden = !pointsEnabled
         linesView.isHidden = !linesEnabled
         curvesView.isHidden = !curvesEnabled
-        savitzkyGolayView.isHidden = !savitzkyGolay.enabled || linesView.isHidden
+        let inkModel = AppDelegate.shared.inkModel
+        savitzkyGolayView.isHidden = !inkModel.savitzkyGolay.enabled || linesView.isHidden
     }
 
     func smoothingChanged(savitzkyGolayEnabled: Bool, douglasPeuckerEnabled: Bool) {
-        savitzkyGolay.enabled = savitzkyGolayEnabled
-        savitzkyGolayView.isHidden = !savitzkyGolay.enabled || linesView.isHidden
-        douglasPeucker.enabled = douglasPeuckerEnabled
-        douglasPeuckerView.isHidden = !douglasPeucker.enabled || linesView.isHidden
+        let inkModel = AppDelegate.shared.inkModel
+        inkModel.savitzkyGolay.enabled = savitzkyGolayEnabled
+        savitzkyGolayView.isHidden = !inkModel.savitzkyGolay.enabled || linesView.isHidden
+        inkModel.douglasPeucker.enabled = douglasPeuckerEnabled
+        douglasPeuckerView.isHidden = !inkModel.douglasPeucker.enabled || linesView.isHidden
     }
 }

@@ -30,7 +30,6 @@ class SplitViewController: UISplitViewController {
 
         settingsViewController?.settingsDelegate = self
         eventListViewController?.inkViewController = inkViewController
-        inkViewController?.eventListViewController = eventListViewController
     }
 }
 

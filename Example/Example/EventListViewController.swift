@@ -13,7 +13,6 @@ class EventListViewController: UITableViewController {
     private var currentTableCount = 0
     private var currentEventIndex = -1
     var allEvents: [DrawEvent] = []
-    let touchEventStream = TouchEventStream()
 
     private var playButton: UIBarButtonItem!
     private var displayLink: CADisplayLink!
@@ -36,7 +35,7 @@ class EventListViewController: UITableViewController {
         displayLink.isPaused = true
         displayLink.add(to: .main, forMode: .default)
 
-        self.touchEventStream.addConsumer { (updatedEvents) in
+        AppDelegate.shared.inkModel.touchEventStream.addConsumer { (updatedEvents) in
             if self.currentEventIndex >= self.allEvents.count - 1 {
                 self.allEvents.append(contentsOf: updatedEvents)
                 self.currentEventIndex = self.allEvents.count - 1
@@ -109,7 +108,7 @@ class EventListViewController: UITableViewController {
     @objc func nextEvent() {
         if currentEventIndex < allEvents.count - 1 {
             let event = allEvents[currentEventIndex + 1]
-            touchEventStream.process(events: [event])
+            AppDelegate.shared.inkModel.touchEventStream.process(events: [event])
             currentEventIndex += 1
             scheduleReload()
         } else {
@@ -126,23 +125,23 @@ class EventListViewController: UITableViewController {
         let events = allEvents
         if index <= currentEventIndex {
             allEvents = []
-            touchEventStream.reset()
+            AppDelegate.shared.inkModel.touchEventStream.reset()
             inkViewController?.reset()
             currentEventIndex = -1
             if index == -1 || index >= events.count {
-                touchEventStream.process(events: events)
+                AppDelegate.shared.inkModel.touchEventStream.process(events: events)
             } else {
                 allEvents = events
                 if !allEvents.isEmpty {
                     let toProcess = Array(allEvents[0...index])
-                    touchEventStream.process(events: toProcess)
+                    AppDelegate.shared.inkModel.touchEventStream.process(events: toProcess)
                 }
                 currentEventIndex = index
             }
         } else if index < allEvents.count,
                   case let toProcess = Array(allEvents[currentEventIndex + 1...index]),
                   !toProcess.isEmpty {
-            touchEventStream.process(events: toProcess)
+            AppDelegate.shared.inkModel.touchEventStream.process(events: toProcess)
             currentEventIndex = index
         }
         // we don't need to reload the table explicitly here, since the event list is unchanged
@@ -151,7 +150,7 @@ class EventListViewController: UITableViewController {
     func reset() {
         currentEventIndex = -1
         allEvents = []
-        touchEventStream.reset()
+        AppDelegate.shared.inkModel.touchEventStream.reset()
         inkViewController?.reset()
         reloadTable()
     }
@@ -161,7 +160,7 @@ class EventListViewController: UITableViewController {
         replayEvents(through: allEvents.count - 1)
         let existingIdentifiers = allEvents.map({ $0.identifier })
         let filtered = events.filter({ !existingIdentifiers.contains($0.identifier) })
-        touchEventStream.process(events: filtered)
+        AppDelegate.shared.inkModel.touchEventStream.process(events: filtered)
     }
 
     // MARK: - Reload
@@ -172,7 +171,7 @@ class EventListViewController: UITableViewController {
     }
 
     @objc private func reloadTable() {
-        touchEventStream.gesture.isEnabled = currentEventIndex >= allEvents.count - 1
+        AppDelegate.shared.inkModel.touchEventStream.gesture.isEnabled = currentEventIndex >= allEvents.count - 1
         timer = nil
         tableView.beginUpdates()
         if allEvents.count < currentTableCount {
@@ -274,7 +273,7 @@ class EventListViewController: UITableViewController {
             eventsToProcess.append(event)
         }
         if !eventsToProcess.isEmpty {
-            touchEventStream.process(events: eventsToProcess)
+            AppDelegate.shared.inkModel.touchEventStream.process(events: eventsToProcess)
         }
         currentEventIndex += eventsToProcess.count
         reloadTable()
