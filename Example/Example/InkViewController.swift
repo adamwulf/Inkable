@@ -61,7 +61,6 @@ class InkViewController: UIViewController {
         panGesture.minimumNumberOfTouches = 2
         panGesture.delegate = self
         panGesture.cancelsTouchesInView = true
-        inkModel.touchEventStream.gesture.delegate = self
 
         eventView.addGestureRecognizer(inkModel.touchEventStream.gesture)
         eventView.addGestureRecognizer(pinchGesture)
