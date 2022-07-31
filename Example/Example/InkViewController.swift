@@ -137,6 +137,7 @@ class InkViewController: UIViewController {
     private var originalRenderTransform: CGAffineTransform = .identity
 
     private func adjustCount(for gesture: UIGestureRecognizer) {
+        guard gesture.state != .changed else { return }
         if gesture.state == .began {
             activeGestureCount += 1
         } else if [.ended, .cancelled].contains(gesture.state) {
@@ -163,9 +164,6 @@ class InkViewController: UIViewController {
                 .translated(by: location)
                 .scaled(by: gesture.scale)
                 .translated(by: -location)
-            if gesture.state == .ended {
-                activeGestureCount -= 1
-            }
         case .cancelled, .failed:
             updatedTransform = originalRenderTransform
         default:

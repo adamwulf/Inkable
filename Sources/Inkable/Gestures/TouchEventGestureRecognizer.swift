@@ -81,6 +81,7 @@ public class TouchEventGestureRecognizer: UIGestureRecognizer, UIGestureRecogniz
             return TouchEvent(coalescedTouch: touch, touch: touch, in: view, isUpdate: false, isPrediction: false, phase: .cancelled)
         }))
         state = .failed
+        activeTouches.removeAll()
     }
 
     // MARK: - UIGestureRecognizer
