@@ -171,6 +171,10 @@ class InkViewController: UIViewController {
             return
         }
 
+        if gesture.state == .ended {
+            originalRenderTransform = updatedTransform
+        }
+
         updateTransform(updatedTransform)
     }
 
