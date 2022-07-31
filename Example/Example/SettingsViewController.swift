@@ -94,6 +94,20 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Self.SimpleCell)
+
+        NotificationCenter.default.addObserver(forName: .InkControllerDidZoom, object: nil, queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            let path = self.navigation.compactMap({ section, sectionNum in
+                return section.options.compactMap({ row, rowNum -> IndexPath? in
+                    if row == .sizeToFit {
+                        return IndexPath(row: rowNum, section: sectionNum)
+                    }
+                    return nil
+                }).first
+            })
+            guard !path.isEmpty else { return }
+            self.tableView.reloadRows(at: path, with: .automatic)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

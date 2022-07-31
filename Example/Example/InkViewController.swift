@@ -145,6 +145,8 @@ class InkViewController: UIViewController {
         }
         if activeGestureCount > 0 {
             AppDelegate.shared.inkModel.touchEventStream.gesture.fail()
+        } else {
+            NotificationCenter.default.post(name: .InkControllerDidZoom, object: self)
         }
     }
 

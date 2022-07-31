@@ -15,6 +15,7 @@
 		C5054493270A5D13009E4FA9 /* Inkable in Frameworks */ = {isa = PBXBuildFile; productRef = C5054492270A5D13009E4FA9 /* Inkable */; };
 		C520F8742895C0630031A0DD /* InkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C520F8732895C0630031A0DD /* InkModel.swift */; };
 		C520F8762895C7170031A0DD /* ViewSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C520F8752895C7170031A0DD /* ViewSettings.swift */; };
+		C520F87D289649CA0031A0DD /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C520F87C289649CA0031A0DD /* Notifications.swift */; };
 		C54CD17A2867BB0C00870745 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD1792867BB0C00870745 /* SplitViewController.swift */; };
 		C54CD17C2867BB3300870745 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17B2867BB3300870745 /* SettingsViewController.swift */; };
 		C54CD17F2867C3EA00870745 /* PointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54CD17E2867C3EA00870745 /* PointsView.swift */; };
@@ -37,6 +38,7 @@
 		C5054490270A5CB7009E4FA9 /* Inkable */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Inkable; path = ..; sourceTree = "<group>"; };
 		C520F8732895C0630031A0DD /* InkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkModel.swift; sourceTree = "<group>"; };
 		C520F8752895C7170031A0DD /* ViewSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSettings.swift; sourceTree = "<group>"; };
+		C520F87C289649CA0031A0DD /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		C54CD1792867BB0C00870745 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		C54CD17B2867BB3300870745 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C54CD17E2867C3EA00870745 /* PointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsView.swift; sourceTree = "<group>"; };
@@ -81,8 +83,7 @@
 		C505446F270A5C42009E4FA9 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				C520F8732895C0630031A0DD /* InkModel.swift */,
-				C520F8752895C7170031A0DD /* ViewSettings.swift */,
+				C520F87B289649B60031A0DD /* Model */,
 				C54CD194286A45BF00870745 /* Extensions */,
 				C54CD17D2867C3E000870745 /* View Layers */,
 				C5054470270A5C42009E4FA9 /* AppDelegate.swift */,
@@ -112,6 +113,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C520F87B289649B60031A0DD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C520F8732895C0630031A0DD /* InkModel.swift */,
+				C520F8752895C7170031A0DD /* ViewSettings.swift */,
+				C520F87C289649CA0031A0DD /* Notifications.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C54CD17D2867C3E000870745 /* View Layers */ = {
@@ -216,6 +227,7 @@
 				C520F8742895C0630031A0DD /* InkModel.swift in Sources */,
 				C54CD192286A354200870745 /* InkViewController.swift in Sources */,
 				C5054473270A5C42009E4FA9 /* SceneDelegate.swift in Sources */,
+				C520F87D289649CA0031A0DD /* Notifications.swift in Sources */,
 				C54CD198286B7EB000870745 /* UITouch+Extensions.swift in Sources */,
 				C54CD17C2867BB3300870745 /* SettingsViewController.swift in Sources */,
 				C54CD17F2867C3EA00870745 /* PointsView.swift in Sources */,
