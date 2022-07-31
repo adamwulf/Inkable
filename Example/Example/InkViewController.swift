@@ -7,6 +7,7 @@
 
 import UIKit
 import Inkable
+import SwiftToolbox
 
 class InkViewController: UIViewController {
 
@@ -53,7 +54,18 @@ class InkViewController: UIViewController {
             .addConsumer(curvesSavitzkyGolayView)
         inkModel.bezierStream.addConsumer(curvesDouglasPeuckerView)
 
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(didPinch))
+        pinchGesture.delegate = self
+        pinchGesture.cancelsTouchesInView = true
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan))
+        panGesture.minimumNumberOfTouches = 2
+        panGesture.delegate = self
+        panGesture.cancelsTouchesInView = true
+        inkModel.touchEventStream.gesture.delegate = self
+
         eventView.addGestureRecognizer(inkModel.touchEventStream.gesture)
+        eventView.addGestureRecognizer(pinchGesture)
+        eventView.addGestureRecognizer(panGesture)
     }
 
     override func viewDidLayoutSubviews() {
@@ -96,15 +108,7 @@ class InkViewController: UIViewController {
     }
 
     func clearTransform() {
-        pointsEventsView.renderTransform = .identity
-        pointsSavitzkyGolayView.renderTransform = .identity
-        pointsDouglasPeukerView.renderTransform = .identity
-        linesEventsView.renderTransform = .identity
-        linesSavitzkyGolayView.renderTransform = .identity
-        linesDouglasPeuckerView.renderTransform = .identity
-        curvesEventsView.renderTransform = .identity
-        curvesSavitzkyGolayView.renderTransform = .identity
-        curvesDouglasPeuckerView.renderTransform = .identity
+        updateTransform(.identity)
     }
 
     var isFitToSize: Bool {
@@ -113,15 +117,7 @@ class InkViewController: UIViewController {
 
     func toggleSizeToFit() {
         guard pointsEventsView.renderTransform == .identity else {
-            pointsEventsView.renderTransform = .identity
-            pointsSavitzkyGolayView.renderTransform = .identity
-            pointsDouglasPeukerView.renderTransform = .identity
-            linesEventsView.renderTransform = .identity
-            linesSavitzkyGolayView.renderTransform = .identity
-            linesDouglasPeuckerView.renderTransform = .identity
-            curvesEventsView.renderTransform = .identity
-            curvesSavitzkyGolayView.renderTransform = .identity
-            curvesDouglasPeuckerView.renderTransform = .identity
+            clearTransform()
             return
         }
         let targetFrame = curvesDouglasPeuckerView.model.paths.reduce(CGRect.null, { $0.union($1.bounds) }).expand(by: 10)
@@ -132,6 +128,68 @@ class InkViewController: UIViewController {
         let transform: CGAffineTransform = .identity
             .scaledBy(x: 1 / scale, y: 1 / scale)
             .translatedBy(x: -targetFrame.origin.x, y: -targetFrame.origin.y)
+        updateTransform(transform)
+    }
+
+    // MARK: - Actions
+
+    private var activeGestureCount: Int = 0
+    private var originalRenderTransform: CGAffineTransform = .identity
+
+    private func adjustCount(for gesture: UIGestureRecognizer) {
+        if gesture.state == .began {
+            activeGestureCount += 1
+        } else if [.ended, .cancelled].contains(gesture.state) {
+            activeGestureCount -= 1
+        }
+        if activeGestureCount > 0 {
+            AppDelegate.shared.inkModel.touchEventStream.gesture.fail()
+        }
+    }
+
+    @objc func didPinch(_ gesture: UIPinchGestureRecognizer) {
+        adjustCount(for: gesture)
+        let updatedTransform: CGAffineTransform
+
+        switch gesture.state {
+        case .possible:
+            return
+        case .began:
+            originalRenderTransform = pointsEventsView.renderTransform
+            updatedTransform = originalRenderTransform
+        case .changed, .ended:
+            let location = gesture.location(in: eventView)
+            updatedTransform = originalRenderTransform
+                .translated(by: location)
+                .scaled(by: gesture.scale)
+                .translated(by: -location)
+            if gesture.state == .ended {
+                activeGestureCount -= 1
+            }
+        case .cancelled, .failed:
+            updatedTransform = originalRenderTransform
+        default:
+            return
+        }
+
+        updateTransform(updatedTransform)
+    }
+
+    @objc func didPan(_ gesture: UIPanGestureRecognizer) {
+        adjustCount(for: gesture)
+        guard [.changed, .ended].contains(gesture.state) else { return }
+        let originalTranslation = gesture.translation(in: eventView) / originalRenderTransform.scale
+        originalRenderTransform = originalRenderTransform.translated(by: originalTranslation)
+
+        let translation = gesture.translation(in: eventView) / pointsEventsView.renderTransform.scale
+        let transform = pointsEventsView.renderTransform.translated(by: translation)
+        updateTransform(transform)
+        gesture.setTranslation(.zero, in: eventView)
+    }
+
+    // MARK: - Private
+
+    private func updateTransform(_ transform: CGAffineTransform) {
         pointsEventsView.renderTransform = transform
         pointsSavitzkyGolayView.renderTransform = transform
         pointsDouglasPeukerView.renderTransform = transform
@@ -141,6 +199,13 @@ class InkViewController: UIViewController {
         curvesEventsView.renderTransform = transform
         curvesSavitzkyGolayView.renderTransform = transform
         curvesDouglasPeuckerView.renderTransform = transform
+    }
+}
+
+extension InkViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        let eventGesture = AppDelegate.shared.inkModel.touchEventStream.gesture
+        return gestureRecognizer != eventGesture && otherGestureRecognizer != eventGesture
     }
 }
 

@@ -86,6 +86,7 @@ open class TouchPath {
         let startingCount = points.count
 
         for event in touchEvents {
+            print("phase: \(event.phase)")
             assert(touchIdentifier == event.touchIdentifier)
             if event.isPrediction {
                 assert(!isComplete, "Cannot predict events to a complete pointCollection")

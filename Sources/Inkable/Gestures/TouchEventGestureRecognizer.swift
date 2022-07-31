@@ -12,8 +12,18 @@ public class TouchEventGestureRecognizer: UIGestureRecognizer, UIGestureRecogniz
     // MARK: - Private
     public var callback: (([DrawEvent]) -> Void)?
     private var activeTouches: Set<UITouch>
+    private var proxyDelegate: UIGestureRecognizerDelegate?
 
     // MARK: - Init
+
+    override public var delegate: UIGestureRecognizerDelegate? {
+        get {
+            return proxyDelegate
+        }
+        set {
+            proxyDelegate = newValue
+        }
+    }
 
     public override init(target: Any?, action: Selector?) {
         self.activeTouches = Set()
@@ -24,7 +34,7 @@ public class TouchEventGestureRecognizer: UIGestureRecognizer, UIGestureRecogniz
         delaysTouchesBegan = false
         delaysTouchesEnded = false
         allowedTouchTypes = [NSNumber(value: UITouch.TouchType.direct.rawValue), NSNumber(value: UITouch.TouchType.stylus.rawValue)]
-        delegate = self
+        super.delegate = self
     }
 
     // MARK: - Process Touch Events
@@ -63,6 +73,14 @@ public class TouchEventGestureRecognizer: UIGestureRecognizer, UIGestureRecogniz
         allTouchEvents.append(GestureCallbackEvent())
 
         callback?(allTouchEvents)
+    }
+
+    public func fail() {
+        guard let view = view, !activeTouches.isEmpty else { return }
+        callback?(activeTouches.map({ touch in
+            return TouchEvent(coalescedTouch: touch, touch: touch, in: view, isUpdate: false, isPrediction: false, phase: .cancelled)
+        }))
+        state = .failed
     }
 
     // MARK: - UIGestureRecognizer
@@ -130,11 +148,28 @@ extension TouchEventGestureRecognizer {
 
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                                   shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return false
+        return proxyDelegate?.gestureRecognizer?(gestureRecognizer, shouldRequireFailureOf: otherGestureRecognizer) ?? false
     }
 
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                                   shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return false
+        return proxyDelegate?.gestureRecognizer?(gestureRecognizer, shouldBeRequiredToFailBy: otherGestureRecognizer) ?? false
+    }
+
+    @available(iOS 13.4, *)
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive event: UIEvent) -> Bool {
+        return proxyDelegate?.gestureRecognizer?(gestureRecognizer, shouldReceive: event) ?? true
+    }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return proxyDelegate?.gestureRecognizer?(gestureRecognizer, shouldReceive: touch) ?? true
+    }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
+        return proxyDelegate?.gestureRecognizer?(gestureRecognizer, shouldReceive: press) ?? true
+    }
+
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

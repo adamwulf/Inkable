@@ -99,12 +99,17 @@ open class TouchEvent: DrawEvent {
         return expectsForceUpdate || expectsAzimuthUpdate || expectsLocationUpdate
     }
 
-    public convenience init(coalescedTouch: UITouch, touch: UITouch, in view: UIView, isUpdate: Bool, isPrediction: Bool) {
+    public convenience init(coalescedTouch: UITouch,
+                            touch: UITouch,
+                            in view: UIView,
+                            isUpdate: Bool,
+                            isPrediction: Bool,
+                            phase: UITouch.Phase? = nil) {
         self.init(identifier: UUID.init().uuidString,
                   touchIdentifier: touch.identifer,
                   timestamp: coalescedTouch.timestamp,
                   type: coalescedTouch.type,
-                  phase: coalescedTouch.phase,
+                  phase: phase ?? coalescedTouch.phase,
                   force: coalescedTouch.force,
                   maximumPossibleForce: coalescedTouch.maximumPossibleForce,
                   altitudeAngle: coalescedTouch.altitudeAngle,

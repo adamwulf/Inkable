@@ -56,7 +56,7 @@ open class TouchEventStream: Producer {
 
     // MARK: - GestureEventStream
 
-    public var gesture: UIGestureRecognizer {
+    public var gesture: TouchEventGestureRecognizer {
         lazyGesture = lazyGesture ?? TouchEventGestureRecognizer(target: self, action: #selector(gestureDidTouch(_:)))
         lazyGesture?.callback = { [weak self] touchEvents in
             self?.recentEvents.append(contentsOf: touchEvents)
