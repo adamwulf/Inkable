@@ -240,47 +240,11 @@ This will convert single-width stroked-path beziers into variable-width filled-p
 force, velocity, or angle to inform the stroke width.
 
 
-## TODO
+## Roadmap 
 
-Next steps:
-
-1. [x] Unit tests for existing Steps 1, 2
-2. [x] Ability to save/load json files containing touch event data
-3. [x] Unit tests for `TouchPathStream`
-4. [x] Unit tests for `PolylineStream`
-4. [x] Unit tests for `BezierStream`
-5. [x] Create UIBezierPath cubic smoothing
-7. [x] Example app showing the stream of events and the output from each step
-8. [ ] Add list of `TouchPath.Points` to the Example app
-9. [ ] Allow encode/decode of arbitrary `DrawEvent` subclass instead of only `TouchEvent`
-
-### Smoothing:
-
-- [x] SmoothStroke model for generating fixed-width UIBezierPaths
-- [ ] SmoothStroke model for generating variable-width UIBezierPaths
+A rough roadmap for features is tracked in [TODO.md](TODO.md).
 
 
-### Renderers:
-
-- [x] Basic CGContext rendering
-       - with and without background image
-- [x] naive DrawRect
-- [x] smarter DrawRect
-- [ ] CAShapeLayer
-- [ ] CAShapeLayer with flattened cache 
-- [ ] SceneKit (git@github.com:adamwulf/SKDraw.git)
-
-
-### Filters:
-
-- [x] Implement naive SavitzkyGolay smoothing
-- [x] Implement optimized SavitzkyGolay smoothing
-- [ ] Implement naive DouglasPeucker filtering
-- [ ] Implement optimized DouglasPeucker filtering
-- [ ] Implement naive DistanceThinning filtering
-- [ ] Implement optimized DistanceThinning filtering
-
- 
 ## Support
 
 Has Inkable saved you time? Become a [Github Sponsor](https://github.com/sponsors/adamwulf) and buy me a coffee ☕️ 😄
