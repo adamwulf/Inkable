@@ -73,6 +73,7 @@ open class BezierStream: ProducerConsumer {
     // MARK: - Consumer<Polyline>
 
     public func reset() {
+        waiting = []
         builders = []
         indexToIndex = [:]
         consumers.forEach({ $0.reset() })

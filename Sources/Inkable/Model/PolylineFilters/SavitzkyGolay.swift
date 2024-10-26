@@ -43,8 +43,8 @@ open class SavitzkyGolay: ProducerConsumer {
     // MARK: - ProducerConsumer<Polyline>
 
     public func reset() {
-        consumers.forEach({ $0.reset() })
         lines = []
+        consumers.forEach({ $0.reset() })
     }
 
     // MARK: - Producer<Polyline>
