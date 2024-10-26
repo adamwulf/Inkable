@@ -14,7 +14,7 @@ open class LineSmoother: Smoother {
         // noop
     }
 
-    public func element(for line: Polyline, at elementIndex: Int) -> BezierStream.Element {
+    public func element(for line: Polyline, at elementIndex: Int) -> BezierElementStream.Element {
         assert(elementIndex >= 0 && elementIndex <= maxIndex(for: line))
 
         if elementIndex == 0 {

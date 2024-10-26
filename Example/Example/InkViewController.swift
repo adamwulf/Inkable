@@ -20,8 +20,8 @@ class InkViewController: UIViewController {
     let linesSavitzkyGolayView = PolylineView(frame: .zero, color: .purple)
     let linesDouglasPeuckerView = PolylineView(frame: .zero, color: .purple)
 
-    let bezierStreamEvents: BezierStream
-    let bezierStreamSavitzkyGolay: BezierStream
+    let bezierStreamEvents: BezierElementStream
+    let bezierStreamSavitzkyGolay: BezierElementStream
 
     var curvesEventsView = BezierView(frame: .zero)
     var curvesSavitzkyGolayView = BezierView(frame: .zero)
@@ -29,8 +29,8 @@ class InkViewController: UIViewController {
 
     required init?(coder: NSCoder) {
         let inkModel = AppDelegate.shared.inkModel
-        bezierStreamEvents = BezierStream(smoother: inkModel.bezierStream.smoother)
-        bezierStreamSavitzkyGolay = BezierStream(smoother: inkModel.bezierStream.smoother)
+        bezierStreamEvents = BezierElementStream(smoother: inkModel.bezierElementStream.smoother)
+        bezierStreamSavitzkyGolay = BezierElementStream(smoother: inkModel.bezierElementStream.smoother)
 
         super.init(coder: coder)
 
@@ -48,11 +48,13 @@ class InkViewController: UIViewController {
 
         inkModel.lineStream
             .nextStep(bezierStreamEvents)
+            .nextStep(BezierPathStream())
             .addConsumer(curvesEventsView)
         inkModel.savitzkyGolay
             .nextStep(bezierStreamSavitzkyGolay)
+            .nextStep(BezierPathStream())
             .addConsumer(curvesSavitzkyGolayView)
-        inkModel.bezierStream.addConsumer(curvesDouglasPeuckerView)
+        inkModel.bezierPathStream.addConsumer(curvesDouglasPeuckerView)
 
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(didPinch))
         pinchGesture.delegate = self
@@ -226,7 +228,7 @@ extension InkViewController {
 
         bezierStreamEvents.isEnabled = !curvesEventsView.isHidden
         bezierStreamSavitzkyGolay.isEnabled = !curvesSavitzkyGolayView.isHidden
-        AppDelegate.shared.inkModel.bezierStream.isEnabled = !curvesDouglasPeuckerView.isHidden
+        AppDelegate.shared.inkModel.bezierPathStream.isEnabled = !curvesDouglasPeuckerView.isHidden
     }
 
     func smoothingChanged(savitzkyGolayEnabled: Bool, douglasPeuckerEnabled: Bool) {

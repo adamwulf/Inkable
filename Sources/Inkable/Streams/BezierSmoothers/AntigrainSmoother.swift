@@ -17,7 +17,7 @@ open class AntigrainSmoother: Smoother {
         self.smoothFactor = smoothFactor
     }
 
-    public func element(for line: Polyline, at elementIndex: Int) -> BezierStream.Element {
+    public func element(for line: Polyline, at elementIndex: Int) -> BezierElementStream.Element {
         assert(elementIndex >= 0 && elementIndex <= maxIndex(for: line))
 
         if elementIndex == 0 {
@@ -103,7 +103,7 @@ open class AntigrainSmoother: Smoother {
                                  p0: CGPoint? = nil,
                                  p1: CGPoint,
                                  p2: Polyline.Point,
-                                 p3: CGPoint) -> BezierStream.Element {
+                                 p3: CGPoint) -> BezierElementStream.Element {
         let p0 = p0 ?? p1
 
         let c1 = CGPoint(x: (p0.x + p1.x) / 2.0, y: (p0.y + p1.y) / 2.0)

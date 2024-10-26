@@ -11,7 +11,7 @@ import Inkable
 
 class BezierView: UIView, Consumer {
 
-    typealias Consumes = BezierStream.Produces
+    typealias Consumes = BezierPathStream.Produces
 
     private static let lineWidth: CGFloat = 1
 
@@ -47,7 +47,7 @@ class BezierView: UIView, Consumer {
 
     private(set) var model: Consumes = Consumes(paths: [], deltas: [])
 
-    func consume(_ input: BezierStream.Produces) {
+    func consume(_ input: BezierPathStream.Produces) {
         let previousModel = model
         model = input
 
