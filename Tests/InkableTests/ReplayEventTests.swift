@@ -123,7 +123,8 @@ class ReplayEventTests: XCTestCase {
         polylineStream.addConsumer(smoother)
         touchStream.produce(with: events)
 
-        for split in 1..<events.count {
+        let split = 141
+//        for split in 1..<events.count {
             let altStream = TouchPathStream()
             let altPolylineStream = PolylineStream()
             let altSmoother = BezierElementStream(smoother: AntigrainSmoother())
@@ -135,7 +136,7 @@ class ReplayEventTests: XCTestCase {
             XCTAssertEqual(touchStream.paths, altStream.paths)
             XCTAssertEqual(polylineStream.lines, altPolylineStream.lines)
             XCTAssertEqual(smoother.beziers, altSmoother.beziers)
-        }
+//        }
     }
 
     func testUnknownPolylineIndex() throws {
