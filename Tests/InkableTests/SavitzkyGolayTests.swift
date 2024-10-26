@@ -61,7 +61,7 @@ class SavitzkyGolayTests: XCTestCase {
                 let touchStream = TouchPathStream()
                 let polylineStream = PolylineStream()
                 let savitzkyGolayFilter = NaiveSavitzkyGolay()
-                let smoother = BezierStream(smoother: AntigrainSmoother())
+                let smoother = BezierElementStream(smoother: AntigrainSmoother())
                 touchStream.addConsumer(polylineStream)
                 polylineStream.addConsumer(savitzkyGolayFilter)
                 savitzkyGolayFilter.addConsumer(smoother)
@@ -71,7 +71,7 @@ class SavitzkyGolayTests: XCTestCase {
                     let altStream = TouchPathStream()
                     let altPolylineStream = PolylineStream()
                     let altSavitzkyGolayFilter = SavitzkyGolay()
-                    let altSmoother = BezierStream(smoother: AntigrainSmoother())
+                    let altSmoother = BezierElementStream(smoother: AntigrainSmoother())
                     altStream.addConsumer(altPolylineStream)
                     altPolylineStream.addConsumer(altSavitzkyGolayFilter)
                     altSavitzkyGolayFilter.addConsumer(altSmoother)
@@ -81,7 +81,7 @@ class SavitzkyGolayTests: XCTestCase {
                     XCTAssertEqual(touchStream.paths, altStream.paths)
                     XCTAssertEqual(polylineStream.lines, altPolylineStream.lines)
                     XCTAssertEqual(savitzkyGolayFilter.lines, altSavitzkyGolayFilter.lines)
-                    XCTAssertEqual(smoother.paths, altSmoother.paths)
+                    XCTAssertEqual(smoother.beziers, altSmoother.beziers)
                 }
             }
         }

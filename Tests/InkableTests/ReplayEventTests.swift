@@ -22,7 +22,7 @@ class ReplayEventTests: XCTestCase {
         let events = try JSONDecoder().decode([TouchEvent].self, from: data)
         let touchStream = TouchPathStream()
         let polylineStream = PolylineStream()
-        let smoother = BezierStream(smoother: AntigrainSmoother())
+        let smoother = BezierElementStream(smoother: AntigrainSmoother())
         touchStream.addConsumer(polylineStream)
         polylineStream.addConsumer(smoother)
         touchStream.produce(with: events)
@@ -30,7 +30,7 @@ class ReplayEventTests: XCTestCase {
         for split in 1..<events.count {
             let altStream = TouchPathStream()
             let altPolylineStream = PolylineStream()
-            let altSmoother = BezierStream(smoother: AntigrainSmoother())
+            let altSmoother = BezierElementStream(smoother: AntigrainSmoother())
             altStream.addConsumer(altPolylineStream)
             altPolylineStream.addConsumer(altSmoother)
             altStream.produce(with: Array(events[0 ..< split]))
@@ -38,7 +38,7 @@ class ReplayEventTests: XCTestCase {
 
             XCTAssertEqual(touchStream.paths, altStream.paths)
             XCTAssertEqual(polylineStream.lines, altPolylineStream.lines)
-            XCTAssertEqual(smoother.paths, altSmoother.paths)
+            XCTAssertEqual(smoother.beziers, altSmoother.beziers)
         }
     }
 
@@ -54,7 +54,7 @@ class ReplayEventTests: XCTestCase {
         let events = try JSONDecoder().decode([TouchEvent].self, from: data)
         let touchStream = TouchPathStream()
         let polylineStream = PolylineStream()
-        let smoother = BezierStream(smoother: AntigrainSmoother())
+        let smoother = BezierElementStream(smoother: AntigrainSmoother())
         touchStream.addConsumer(polylineStream)
         polylineStream.addConsumer(smoother)
         touchStream.produce(with: events)
@@ -62,7 +62,7 @@ class ReplayEventTests: XCTestCase {
         for split in 1..<events.count {
             let altStream = TouchPathStream()
             let altPolylineStream = PolylineStream()
-            let altSmoother = BezierStream(smoother: AntigrainSmoother())
+            let altSmoother = BezierElementStream(smoother: AntigrainSmoother())
             altStream.addConsumer(altPolylineStream)
             altPolylineStream.addConsumer(altSmoother)
             altStream.produce(with: Array(events[0 ..< split]))
@@ -70,7 +70,7 @@ class ReplayEventTests: XCTestCase {
 
             XCTAssertEqual(touchStream.paths, altStream.paths)
             XCTAssertEqual(polylineStream.lines, altPolylineStream.lines)
-            XCTAssertEqual(smoother.paths, altSmoother.paths, "error at split index \(split)")
+            XCTAssertEqual(smoother.beziers, altSmoother.beziers, "error at split index \(split)")
         }
     }
 
@@ -86,7 +86,7 @@ class ReplayEventTests: XCTestCase {
         let events = try JSONDecoder().decode([TouchEvent].self, from: data)
         let touchStream = TouchPathStream()
         let polylineStream = PolylineStream()
-        let smoother = BezierStream(smoother: AntigrainSmoother())
+        let smoother = BezierElementStream(smoother: AntigrainSmoother())
         touchStream.addConsumer(polylineStream)
         polylineStream.addConsumer(smoother)
         touchStream.produce(with: events)
@@ -94,7 +94,7 @@ class ReplayEventTests: XCTestCase {
         for split in 1..<events.count {
             let altStream = TouchPathStream()
             let altPolylineStream = PolylineStream()
-            let altSmoother = BezierStream(smoother: AntigrainSmoother())
+            let altSmoother = BezierElementStream(smoother: AntigrainSmoother())
             altStream.addConsumer(altPolylineStream)
             altPolylineStream.addConsumer(altSmoother)
             altStream.produce(with: Array(events[0 ..< split]))
@@ -102,7 +102,7 @@ class ReplayEventTests: XCTestCase {
 
             XCTAssertEqual(touchStream.paths, altStream.paths)
             XCTAssertEqual(polylineStream.lines, altPolylineStream.lines)
-            XCTAssertEqual(smoother.paths, altSmoother.paths)
+            XCTAssertEqual(smoother.beziers, altSmoother.beziers)
         }
     }
 
@@ -118,7 +118,7 @@ class ReplayEventTests: XCTestCase {
         let events = try JSONDecoder().decode([TouchEvent].self, from: data)
         let touchStream = TouchPathStream()
         let polylineStream = PolylineStream()
-        let smoother = BezierStream(smoother: AntigrainSmoother())
+        let smoother = BezierElementStream(smoother: AntigrainSmoother())
         touchStream.addConsumer(polylineStream)
         polylineStream.addConsumer(smoother)
         touchStream.produce(with: events)
@@ -126,7 +126,7 @@ class ReplayEventTests: XCTestCase {
         for split in 1..<events.count {
             let altStream = TouchPathStream()
             let altPolylineStream = PolylineStream()
-            let altSmoother = BezierStream(smoother: AntigrainSmoother())
+            let altSmoother = BezierElementStream(smoother: AntigrainSmoother())
             altStream.addConsumer(altPolylineStream)
             altPolylineStream.addConsumer(altSmoother)
             altStream.produce(with: Array(events[0 ..< split]))
@@ -134,7 +134,7 @@ class ReplayEventTests: XCTestCase {
 
             XCTAssertEqual(touchStream.paths, altStream.paths)
             XCTAssertEqual(polylineStream.lines, altPolylineStream.lines)
-            XCTAssertEqual(smoother.paths, altSmoother.paths)
+            XCTAssertEqual(smoother.beziers, altSmoother.beziers)
         }
     }
 
@@ -150,7 +150,7 @@ class ReplayEventTests: XCTestCase {
         let events = try JSONDecoder().decode([TouchEvent].self, from: data)
         let touchStream = TouchPathStream()
         let polylineStream = PolylineStream()
-        let smoother = BezierStream(smoother: AntigrainSmoother())
+        let smoother = BezierElementStream(smoother: AntigrainSmoother())
         touchStream.addConsumer(polylineStream)
         polylineStream.addConsumer(smoother)
         touchStream.produce(with: events)
@@ -158,7 +158,7 @@ class ReplayEventTests: XCTestCase {
         for split in 1..<events.count {
             let altStream = TouchPathStream()
             let altPolylineStream = PolylineStream()
-            let altSmoother = BezierStream(smoother: AntigrainSmoother())
+            let altSmoother = BezierElementStream(smoother: AntigrainSmoother())
             altStream.addConsumer(altPolylineStream)
             altPolylineStream.addConsumer(altSmoother)
             altStream.produce(with: Array(events[0 ..< split]))
@@ -166,7 +166,7 @@ class ReplayEventTests: XCTestCase {
 
             XCTAssertEqual(touchStream.paths, altStream.paths)
             XCTAssertEqual(polylineStream.lines, altPolylineStream.lines)
-            XCTAssertEqual(smoother.paths, altSmoother.paths)
+            XCTAssertEqual(smoother.beziers, altSmoother.beziers)
         }
     }
 }

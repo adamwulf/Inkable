@@ -183,4 +183,16 @@ extension Polyline {
         }
         return true
     }
+
+    // Assert that the defined points along the Polyline align exactly with
+    // the element endpoints along the Bezier path.
+    static func == (lhs: Polyline, rhs: BezierElementStream.Bezier) -> Bool {
+        guard lhs.points.count == rhs.elements.count else { return false }
+        for (i, point) in lhs.points.enumerated() {
+            guard point.location == rhs.elements[i].endPoint.location else {
+                return false
+            }
+        }
+        return true
+    }
 }

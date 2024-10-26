@@ -27,7 +27,7 @@ open class BezierElementStream: ProducerConsumer {
         }
     }
     
-    public struct Bezier {
+    public struct Bezier: Equatable {
         public var elements: [Element]
         
         init(elements: [Element]) {
@@ -39,7 +39,15 @@ open class BezierElementStream: ProducerConsumer {
         case moveTo(point: Polyline.Point)
         case lineTo(point: Polyline.Point)
         case curveTo(point: Polyline.Point, ctrl1: CGPoint, ctrl2: CGPoint)
-        
+
+        var endPoint: Polyline.Point {
+            switch self {
+            case .moveTo(let point): return point
+            case .lineTo(let point): return point
+            case .curveTo(let point, _, _): return point
+            }
+        }
+
         public var debugDescription: String {
             switch self {
             case .moveTo(let point):
@@ -71,7 +79,8 @@ open class BezierElementStream: ProducerConsumer {
             }
         }
     }
-    
+
+    var produced: Produces?
     public private(set) var smoother: Smoother
     private var builders: [ElementBuilder] = []
     private var indexToIndex: [Int: Int] = [:]
@@ -85,7 +94,11 @@ open class BezierElementStream: ProducerConsumer {
         }
     }
     private var waiting: [Consumes] = []
-    
+
+    var beziers: [Bezier] {
+        return builders.map({ Bezier(elements: $0.elements) })
+    }
+
     public init(smoother: Smoother) {
         self.smoother = smoother
     }
@@ -141,6 +154,7 @@ open class BezierElementStream: ProducerConsumer {
         
         let output = Produces(beziers: builders.map({ Bezier(elements: $0.elements) }), deltas: deltas)
         consumers.forEach({ $0.process(output) })
+        produced = output
         return output
     }
     

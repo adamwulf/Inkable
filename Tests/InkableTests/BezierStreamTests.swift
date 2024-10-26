@@ -21,12 +21,12 @@ class BezierStreamTests: XCTestCase {
         let line = Polyline(points: points)
         let polylineOutput = PolylineStream.Produces(lines: [line], deltas: [.addedPolyline(index: 0)])
 
-        let bezierStream = BezierStream(smoother: AntigrainSmoother())
+        let bezierStream = BezierElementStream(smoother: AntigrainSmoother())
 
         let bezierOutput = bezierStream.produce(with: polylineOutput)
 
-        XCTAssert(polylineOutput.lines[0] == bezierOutput.paths[0])
-        XCTAssertEqual(bezierOutput.deltas[0], .addedBezierPath(index: 0))
+        XCTAssert(polylineOutput.lines[0] == bezierOutput.beziers[0])
+        XCTAssertEqual(bezierOutput.deltas[0], .addedBezier(index: 0))
     }
 
     func testGeneratedLines() throws {
@@ -35,18 +35,18 @@ class BezierStreamTests: XCTestCase {
 
         let touchPathStream = TouchPathStream()
         let polylineStream = PolylineStream()
-        let bezierStream = BezierStream(smoother: AntigrainSmoother())
+        let bezierStream = BezierElementStream(smoother: AntigrainSmoother())
 
         let touchPathOutput = touchPathStream.produce(with: touchEvents)
         let polylineOutput = polylineStream.produce(with: touchPathOutput)
         let bezierOutput = bezierStream.produce(with: polylineOutput)
 
-        XCTAssertEqual(bezierOutput.paths.count, 1)
+        XCTAssertEqual(bezierOutput.beziers.count, 1)
         XCTAssertEqual(bezierOutput.deltas.count, 2)
 
-        XCTAssert(polylineOutput.lines[0] == bezierOutput.paths[0])
-        XCTAssertEqual(bezierOutput.deltas[0], .addedBezierPath(index: 0))
-        XCTAssertEqual(bezierOutput.deltas[1], .completedBezierPath(index: 0))
+        XCTAssert(polylineOutput.lines[0] == bezierOutput.beziers[0])
+        XCTAssertEqual(bezierOutput.deltas[0], .addedBezier(index: 0))
+        XCTAssertEqual(bezierOutput.deltas[1], .completedBezier(index: 0))
     }
 
     func testUpdatedLines() throws {
@@ -54,7 +54,7 @@ class BezierStreamTests: XCTestCase {
         let touchEvents = TouchEvent.newFrom(simpleEvents)
 
         let touchPathStream = TouchPathStream()
-        let bezierStream = BezierStream(smoother: AntigrainSmoother())
+        let bezierStream = BezierElementStream(smoother: AntigrainSmoother())
 
         touchPathStream
             .nextStep(PolylineStream())
@@ -67,18 +67,18 @@ class BezierStreamTests: XCTestCase {
 
         guard let output1 = bezierStream.produced else { XCTFail(); return }
 
-        XCTAssertEqual(output1.paths.count, 1)
+        XCTAssertEqual(output1.beziers.count, 1)
         XCTAssertEqual(output1.deltas.count, 1)
-        XCTAssertEqual(output1.deltas[0], .addedBezierPath(index: 0))
+        XCTAssertEqual(output1.deltas[0], .addedBezier(index: 0))
 
         touchPathStream.produce(with: lastEvents)
 
         guard let output2 = bezierStream.produced else { XCTFail(); return }
 
-        XCTAssertEqual(output2.paths.count, 1)
+        XCTAssertEqual(output2.beziers.count, 1)
         XCTAssertEqual(output2.deltas.count, 2)
-        XCTAssertEqual(output2.deltas[0], .updatedBezierPath(index: 0, updatedIndexes: MinMaxIndex(4..<simpleEvents.count)))
-        XCTAssertEqual(output2.deltas[1], .completedBezierPath(index: 0))
+        XCTAssertEqual(output2.deltas[0], .updatedBezier(index: 0, updatedIndexes: MinMaxIndex(4..<simpleEvents.count)))
+        XCTAssertEqual(output2.deltas[1], .completedBezier(index: 0))
     }
 
     // This tests that the BezierStream can remove elements of a path when the input Polyline is truncated to fewer
@@ -100,18 +100,18 @@ class BezierStreamTests: XCTestCase {
         let allElementCount = { () -> Int in
             let touchPathStream = TouchPathStream()
             let polylineStream = PolylineStream()
-            let bezierStream = BezierStream(smoother: AntigrainSmoother())
+            let bezierStream = BezierElementStream(smoother: AntigrainSmoother())
 
             touchPathStream
                 .nextStep(polylineStream)
                 .nextStep(bezierStream)
             touchPathStream.consume(touchEvents)
-            return bezierStream.paths.first?.elementCount ?? 0
+            return bezierStream.beziers.first?.elements.count ?? 0
         }()
 
         let touchPathStream = TouchPathStream()
         let polylineStream = PolylineStream()
-        let bezierStream = BezierStream(smoother: AntigrainSmoother())
+        let bezierStream = BezierElementStream(smoother: AntigrainSmoother())
 
         touchPathStream
             .nextStep(polylineStream)
@@ -122,13 +122,13 @@ class BezierStreamTests: XCTestCase {
 
         touchPathStream.produce(with: firstEvents)
 
-        XCTAssertEqual(bezierStream.paths.count, 1)
-        XCTAssertEqual(bezierStream.paths[0].elementCount, polylineStream.lines[0].points.count - 1)
+        XCTAssertEqual(bezierStream.beziers.count, 1)
+        XCTAssertEqual(bezierStream.beziers[0].elements.count, polylineStream.lines[0].points.count - 1)
 
         touchPathStream.produce(with: lastEvents)
 
-        XCTAssertEqual(bezierStream.paths.count, 1)
-        XCTAssertEqual(bezierStream.paths[0].elementCount, allElementCount)
+        XCTAssertEqual(bezierStream.beziers.count, 1)
+        XCTAssertEqual(bezierStream.beziers[0].elements.count, allElementCount)
     }
 
     func testIsEnabledFlag() throws {
@@ -142,19 +142,19 @@ class BezierStreamTests: XCTestCase {
         let line = Polyline(points: points)
         let polylineOutput = PolylineStream.Produces(lines: [line], deltas: [.addedPolyline(index: 0)])
 
-        let bezierStream = BezierStream(smoother: AntigrainSmoother())
+        let bezierStream = BezierElementStream(smoother: AntigrainSmoother())
         bezierStream.isEnabled = false
 
         var bezierOutput = bezierStream.produce(with: polylineOutput)
 
-        XCTAssert(bezierOutput.paths.isEmpty)
+        XCTAssert(bezierOutput.beziers.isEmpty)
         XCTAssert(bezierOutput.deltas.isEmpty)
 
         bezierStream.isEnabled = true
 
         bezierOutput = bezierStream.produced!
 
-        XCTAssert(polylineOutput.lines[0] == bezierOutput.paths[0])
-        XCTAssertEqual(bezierOutput.deltas[0], .addedBezierPath(index: 0))
+        XCTAssert(polylineOutput.lines[0] == bezierOutput.beziers[0])
+        XCTAssertEqual(bezierOutput.deltas[0], .addedBezier(index: 0))
     }
 }
