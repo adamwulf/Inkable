@@ -175,7 +175,7 @@ open class BezierElementStream: ProducerConsumer {
         
         @discardableResult
         func update(with line: Polyline, at lineIndexes: MinMaxIndex) -> MinMaxIndex {
-            let updatedElementIndexes = smoother.elementIndexes(for: line, at: lineIndexes, with: UIBezierPath())
+            var updatedElementIndexes = smoother.elementIndexes(for: line, at: lineIndexes, with: UIBezierPath())
             guard
                 let min = updatedElementIndexes.first,
                 let max = updatedElementIndexes.last
@@ -197,7 +197,12 @@ open class BezierElementStream: ProducerConsumer {
                     }
                 }
             }
-            
+
+            while elements.count > smoother.maxIndex(for: line) {
+                elements.removeLast()
+                updatedElementIndexes.insert(elements.count)
+            }
+
             return updatedElementIndexes
         }
     }
