@@ -69,6 +69,15 @@ open class BezierElementStream: ProducerConsumer {
     private var indexToIndex: [Int: Int] = [:]
     private var consumers: [(process: (Produces) -> Void, reset: () -> Void)] = []
     
+    public var isEnabled: Bool = true {
+        didSet {
+            if isEnabled {
+                replay()
+            }
+        }
+    }
+    private var waiting: [Consumes] = []
+    
     public init(smoother: Smoother) {
         self.smoother = smoother
     }
@@ -76,6 +85,7 @@ open class BezierElementStream: ProducerConsumer {
     public func reset() {
         builders = []
         indexToIndex = [:]
+        waiting = []
         consumers.forEach({ $0.reset() })
     }
     
@@ -89,6 +99,11 @@ open class BezierElementStream: ProducerConsumer {
     
     @discardableResult
     public func produce(with input: Consumes) -> Produces {
+        guard isEnabled else {
+            waiting.append(input)
+            return Produces.empty
+        }
+        
         var deltas: [Delta] = []
         
         for delta in input.deltas {
@@ -119,6 +134,13 @@ open class BezierElementStream: ProducerConsumer {
         let output = Produces(elements: builders.map({ $0.elements }), deltas: deltas)
         consumers.forEach({ $0.process(output) })
         return output
+    }
+    
+    private func replay() {
+        for input in waiting {
+            _ = produce(with: input)
+        }
+        waiting.removeAll()
     }
     
     private class ElementBuilder {
@@ -199,10 +221,20 @@ open class BezierPathStream: ProducerConsumer {
     private var paths: [UIBezierPath] = []
     private var consumers: [(process: (Produces) -> Void, reset: () -> Void)] = []
     
+    public var isEnabled: Bool = true {
+        didSet {
+            if isEnabled {
+                replay()
+            }
+        }
+    }
+    private var waiting: [Consumes] = []
+    
     public init() {}
     
     public func reset() {
         paths = []
+        waiting = []
         consumers.forEach({ $0.reset() })
     }
     
@@ -216,6 +248,11 @@ open class BezierPathStream: ProducerConsumer {
     
     @discardableResult
     public func produce(with input: Consumes) -> Produces {
+        guard isEnabled else {
+            waiting.append(input)
+            return Produces.empty
+        }
+        
         var deltas: [Delta] = []
         
         for delta in input.deltas {
@@ -244,6 +281,13 @@ open class BezierPathStream: ProducerConsumer {
         let output = Produces(paths: paths, deltas: deltas)
         consumers.forEach({ $0.process(output) })
         return output
+    }
+    
+    private func replay() {
+        for input in waiting {
+            _ = produce(with: input)
+        }
+        waiting.removeAll()
     }
 }
 
