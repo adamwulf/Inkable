@@ -15,15 +15,23 @@ open class BezierElementStream: ProducerConsumer {
     public typealias Consumes = PolylineStream.Produces
     
     public struct Produces {
-        public var elements: [[Element]]
+        public var beziers: [Bezier]
         public var deltas: [Delta]
-        public init(elements: [[Element]], deltas: [Delta]) {
-            self.elements = elements
+        init(beziers: [Bezier], deltas: [Delta]) {
+            self.beziers = beziers
             self.deltas = deltas
         }
         
         public static var empty: Produces {
-            return Produces(elements: [], deltas: [])
+            return Produces(beziers: [], deltas: [])
+        }
+    }
+    
+    public struct Bezier {
+        public var elements: [Element]
+        
+        init(elements: [Element]) {
+            self.elements = elements
         }
     }
     
@@ -45,19 +53,19 @@ open class BezierElementStream: ProducerConsumer {
     }
     
     public enum Delta: Equatable, CustomDebugStringConvertible {
-        case addedElements(index: Int)
-        case updatedElements(index: Int, updatedIndexes: MinMaxIndex)
-        case completedElements(index: Int)
+        case addedBezier(index: Int)
+        case updatedBezier(index: Int, updatedIndexes: MinMaxIndex)
+        case completedBezier(index: Int)
         case unhandled(event: DrawEvent)
         
         public var debugDescription: String {
             switch self {
-            case .addedElements(let index):
-                return "addedElements(\(index))"
-            case .updatedElements(let index, let indexSet):
-                return "updatedElements(\(index), \(indexSet)"
-            case .completedElements(let index):
-                return "completedElements(\(index))"
+            case .addedBezier(let index):
+                return "addedBezier(\(index))"
+            case .updatedBezier(let index, let indexSet):
+                return "updatedBezier(\(index), \(indexSet)"
+            case .completedBezier(let index):
+                return "completedBezier(\(index))"
             case .unhandled(let event):
                 return "unhandledEvent(\(event.identifier))"
             }
@@ -116,22 +124,22 @@ open class BezierElementStream: ProducerConsumer {
                 let builderIndex = builders.count
                 indexToIndex[lineIndex] = builderIndex
                 builders.append(builder)
-                deltas.append(.addedElements(index: builderIndex))
+                deltas.append(.addedBezier(index: builderIndex))
             case .updatedPolyline(let lineIndex, let updatedIndexes):
                 let line = input.lines[lineIndex]
                 guard let builderIndex = indexToIndex[lineIndex] else { assertionFailure("path at \(lineIndex) does not exist"); continue }
                 let builder = builders[builderIndex]
                 let updateElementIndexes = builder.update(with: line, at: updatedIndexes)
-                deltas.append(.updatedElements(index: builderIndex, updatedIndexes: updateElementIndexes))
+                deltas.append(.updatedBezier(index: builderIndex, updatedIndexes: updateElementIndexes))
             case .completedPolyline(let lineIndex):
                 guard let index = indexToIndex[lineIndex] else { assertionFailure("path at \(lineIndex) does not exist"); continue }
-                deltas.append(.completedElements(index: index))
+                deltas.append(.completedBezier(index: index))
             case .unhandled(let event):
                 deltas.append(.unhandled(event: event))
             }
         }
         
-        let output = Produces(elements: builders.map({ $0.elements }), deltas: deltas)
+        let output = Produces(beziers: builders.map({ Bezier(elements: $0.elements) }), deltas: deltas)
         consumers.forEach({ $0.process(output) })
         return output
     }

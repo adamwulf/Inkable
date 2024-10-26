@@ -86,21 +86,21 @@ open class BezierPathStream: ProducerConsumer {
 
         for delta in input.deltas {
             switch delta {
-            case .addedElements(let index):
+            case .addedBezier(let index):
                 let path = UIBezierPath()
-                for element in input.elements[index] {
+                for element in input.beziers[index].elements {
                     path.append(element)
                 }
                 paths.append(path)
                 deltas.append(.addedBezierPath(index: index))
-            case .updatedElements(let index, let updatedIndexes):
+            case .updatedBezier(let index, let updatedIndexes):
                 let path = paths[index]
                 path.removeAllPoints()
-                for element in input.elements[index] {
+                for element in input.beziers[index].elements {
                     path.append(element)
                 }
                 deltas.append(.updatedBezierPath(index: index, updatedIndexes: updatedIndexes))
-            case .completedElements(let index):
+            case .completedBezier(let index):
                 deltas.append(.completedBezierPath(index: index))
             case .unhandled(let event):
                 deltas.append(.unhandled(event: event))
