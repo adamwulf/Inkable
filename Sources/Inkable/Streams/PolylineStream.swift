@@ -97,9 +97,9 @@ open class PolylineStream: ProducerConsumer {
                 lines.append(smoothStroke)
                 deltas.append(.addedPolyline(index: index))
             case .updatedTouchPath(let pathIndex, let indexSet):
-                let line = input.paths[pathIndex]
+                let inputLine = input.paths[pathIndex]
                 if let index = indexToIndex[pathIndex] {
-                    let updates = lines[index].update(with: line, indexSet: indexSet)
+                    let updates = lines[index].update(with: inputLine, indexSet: indexSet)
                     deltas.append(.updatedPolyline(index: index, updatedIndexes: updates))
                 }
             case .completedTouchPath(let pointCollectionIndex):

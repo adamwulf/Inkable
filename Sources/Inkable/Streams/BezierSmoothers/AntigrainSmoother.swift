@@ -51,7 +51,7 @@ open class AntigrainSmoother: Smoother {
         return Swift.max(0, lastIndex - 1) + (line.points.count > 2 && line.isComplete ? 1 : 0)
     }
 
-    public func elementIndexes(for line: Polyline, at lineIndexes: MinMaxIndex, with bezier: UIBezierPath) -> MinMaxIndex {
+    public func elementIndexes(for line: Polyline, at lineIndexes: MinMaxIndex, with bezier: BezierElementStream.Bezier) -> MinMaxIndex {
         var curveIndexes = MinMaxIndex()
 
         for index in lineIndexes {
@@ -61,7 +61,7 @@ open class AntigrainSmoother: Smoother {
         return curveIndexes
     }
 
-    public func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: UIBezierPath) -> MinMaxIndex {
+    public func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: BezierElementStream.Bezier) -> MinMaxIndex {
         var ret = MinMaxIndex()
         elementIndexes(for: line, at: lineIndex, with: bezier, into: &ret)
         return ret
@@ -76,23 +76,23 @@ open class AntigrainSmoother: Smoother {
     // 5 => 7, 6, 5, 4
     // 6 => 8, 7, 6, 5
     // 7 => 9, 8, 7, 6
-    private func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: UIBezierPath, into indexes: inout MinMaxIndex) {
+    private func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: BezierElementStream.Bezier, into indexes: inout MinMaxIndex) {
         guard lineIndex >= 0 else {
             return
         }
         let max = maxIndex(for: line)
 
         if lineIndex > 1,
-           (lineIndex - 1 <= max) || (lineIndex - 1 < bezier.elementCount) {
+           (lineIndex - 1 <= max) || (lineIndex - 1 < bezier.elements.count) {
             indexes.insert(lineIndex - 1)
         }
-        if (lineIndex <= max) || (lineIndex < bezier.elementCount) {
+        if (lineIndex <= max) || (lineIndex < bezier.elements.count) {
             indexes.insert(lineIndex)
         }
-        if (lineIndex + 1 <= max) || (lineIndex + 1 < bezier.elementCount) {
+        if (lineIndex + 1 <= max) || (lineIndex + 1 < bezier.elements.count) {
             indexes.insert(lineIndex + 1)
         }
-        if (lineIndex + 2 <= max) || (lineIndex + 2 < bezier.elementCount) {
+        if (lineIndex + 2 <= max) || (lineIndex + 2 < bezier.elements.count) {
             indexes.insert(lineIndex + 2)
         }
     }

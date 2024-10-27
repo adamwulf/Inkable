@@ -31,8 +31,8 @@ class AntigrainSmootherTests: XCTestCase {
 
         XCTAssertEqual(polylineOutput.lines.count, 1)
         XCTAssertEqual(polylineOutput.lines[0].points.count, 2)
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: UIBezierPath()), MinMaxIndex([0]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: UIBezierPath()), MinMaxIndex())
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: BezierElementStream.Bezier()), MinMaxIndex([0]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: BezierElementStream.Bezier()), MinMaxIndex())
     }
 
     func testOnePoints() throws {
@@ -50,7 +50,7 @@ class AntigrainSmootherTests: XCTestCase {
         XCTAssertEqual(polylineOutput.lines.count, 1)
         XCTAssertEqual(polylineOutput.lines[0].points.count, 1)
         XCTAssertEqual(smoother.maxIndex(for: polylineOutput.lines[0]), 0)
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: UIBezierPath()), MinMaxIndex([0]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: BezierElementStream.Bezier()), MinMaxIndex([0]))
     }
 
     func testTwoPoints() throws {
@@ -69,8 +69,8 @@ class AntigrainSmootherTests: XCTestCase {
         XCTAssertEqual(polylineOutput.lines.count, 1)
         XCTAssertEqual(polylineOutput.lines[0].points.count, 2)
         XCTAssertEqual(smoother.maxIndex(for: polylineOutput.lines[0]), 0)
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: UIBezierPath()), MinMaxIndex([0]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: UIBezierPath()), MinMaxIndex())
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: BezierElementStream.Bezier()), MinMaxIndex([0]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: BezierElementStream.Bezier()), MinMaxIndex())
     }
 
     func testThreePoints() throws {
@@ -90,9 +90,9 @@ class AntigrainSmootherTests: XCTestCase {
         XCTAssertEqual(polylineOutput.lines.count, 1)
         XCTAssertEqual(polylineOutput.lines[0].points.count, 3)
         XCTAssertEqual(smoother.maxIndex(for: polylineOutput.lines[0]), 2)
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: UIBezierPath()), MinMaxIndex([0, 1, 2]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: UIBezierPath()), MinMaxIndex([1, 2]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: UIBezierPath()), MinMaxIndex([1, 2]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: BezierElementStream.Bezier()), MinMaxIndex([0, 1, 2]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2]))
     }
 
     func testFourPoints() throws {
@@ -113,10 +113,10 @@ class AntigrainSmootherTests: XCTestCase {
         XCTAssertEqual(polylineOutput.lines.count, 1)
         XCTAssertEqual(polylineOutput.lines[0].points.count, 4)
         XCTAssertEqual(smoother.maxIndex(for: polylineOutput.lines[0]), 3)
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: UIBezierPath()), MinMaxIndex([0, 1, 2]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: UIBezierPath()), MinMaxIndex([1, 2, 3]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: UIBezierPath()), MinMaxIndex([1, 2, 3]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 3, with: UIBezierPath()), MinMaxIndex([2, 3]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: BezierElementStream.Bezier()), MinMaxIndex([0, 1, 2]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2, 3]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2, 3]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 3, with: BezierElementStream.Bezier()), MinMaxIndex([2, 3]))
     }
 
     func testFivePoints() throws {
@@ -138,11 +138,11 @@ class AntigrainSmootherTests: XCTestCase {
         XCTAssertEqual(polylineOutput.lines.count, 1)
         XCTAssertEqual(polylineOutput.lines[0].points.count, 5)
         XCTAssertEqual(smoother.maxIndex(for: polylineOutput.lines[0]), 4)
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: UIBezierPath()), MinMaxIndex([0, 1, 2]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: UIBezierPath()), MinMaxIndex([1, 2, 3]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: UIBezierPath()), MinMaxIndex([1, 2, 3, 4]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 3, with: UIBezierPath()), MinMaxIndex([2, 3, 4]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 4, with: UIBezierPath()), MinMaxIndex([3, 4]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: BezierElementStream.Bezier()), MinMaxIndex([0, 1, 2]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2, 3]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2, 3, 4]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 3, with: BezierElementStream.Bezier()), MinMaxIndex([2, 3, 4]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 4, with: BezierElementStream.Bezier()), MinMaxIndex([3, 4]))
     }
 
     func testSixPoints() throws {
@@ -165,12 +165,12 @@ class AntigrainSmootherTests: XCTestCase {
         XCTAssertEqual(polylineOutput.lines.count, 1)
         XCTAssertEqual(polylineOutput.lines[0].points.count, 6)
         XCTAssertEqual(smoother.maxIndex(for: polylineOutput.lines[0]), 5)
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: UIBezierPath()), MinMaxIndex([0, 1, 2]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: UIBezierPath()), MinMaxIndex([1, 2, 3]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: UIBezierPath()), MinMaxIndex([1, 2, 3, 4]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 3, with: UIBezierPath()), MinMaxIndex([2, 3, 4, 5]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 4, with: UIBezierPath()), MinMaxIndex([3, 4, 5]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 5, with: UIBezierPath()), MinMaxIndex([4, 5]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: BezierElementStream.Bezier()), MinMaxIndex([0, 1, 2]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2, 3]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2, 3, 4]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 3, with: BezierElementStream.Bezier()), MinMaxIndex([2, 3, 4, 5]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 4, with: BezierElementStream.Bezier()), MinMaxIndex([3, 4, 5]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 5, with: BezierElementStream.Bezier()), MinMaxIndex([4, 5]))
     }
 
     func testSevenPoints() throws {
@@ -194,13 +194,13 @@ class AntigrainSmootherTests: XCTestCase {
         XCTAssertEqual(polylineOutput.lines.count, 1)
         XCTAssertEqual(polylineOutput.lines[0].points.count, 7)
         XCTAssertEqual(smoother.maxIndex(for: polylineOutput.lines[0]), 6)
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: UIBezierPath()), MinMaxIndex([0, 1, 2]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: UIBezierPath()), MinMaxIndex([1, 2, 3]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: UIBezierPath()), MinMaxIndex([1, 2, 3, 4]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 3, with: UIBezierPath()), MinMaxIndex([2, 3, 4, 5]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 4, with: UIBezierPath()), MinMaxIndex([3, 4, 5, 6]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 5, with: UIBezierPath()), MinMaxIndex([4, 5, 6]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 6, with: UIBezierPath()), MinMaxIndex([5, 6]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: BezierElementStream.Bezier()), MinMaxIndex([0, 1, 2]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2, 3]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2, 3, 4]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 3, with: BezierElementStream.Bezier()), MinMaxIndex([2, 3, 4, 5]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 4, with: BezierElementStream.Bezier()), MinMaxIndex([3, 4, 5, 6]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 5, with: BezierElementStream.Bezier()), MinMaxIndex([4, 5, 6]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 6, with: BezierElementStream.Bezier()), MinMaxIndex([5, 6]))
     }
 
     func testEightPoints() throws {
@@ -226,17 +226,17 @@ class AntigrainSmootherTests: XCTestCase {
 
         XCTAssertEqual(polylineOutput.lines.count, 1)
         XCTAssertEqual(polylineOutput.lines[0].points.count, 8)
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: UIBezierPath()), MinMaxIndex([0, 1, 2]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: UIBezierPath()), MinMaxIndex([1, 2, 3]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: UIBezierPath()), MinMaxIndex([1, 2, 3, 4]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 3, with: UIBezierPath()), MinMaxIndex([2, 3, 4, 5]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 4, with: UIBezierPath()), MinMaxIndex([3, 4, 5, 6]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 5, with: UIBezierPath()), MinMaxIndex([4, 5, 6, 7]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 6, with: UIBezierPath()), MinMaxIndex([5, 6, 7]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 7, with: UIBezierPath()), MinMaxIndex([6, 7]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: MinMaxIndex([0, 7]), with: UIBezierPath()), MinMaxIndex([0, 1, 2, 6, 7]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: MinMaxIndex([6, 7]), with: UIBezierPath()), MinMaxIndex([5, 6, 7]))
-        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: MinMaxIndex([3, 4]), with: UIBezierPath()), MinMaxIndex([2, 3, 4, 5, 6]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: BezierElementStream.Bezier()), MinMaxIndex([0, 1, 2]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2, 3]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2, 3, 4]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 3, with: BezierElementStream.Bezier()), MinMaxIndex([2, 3, 4, 5]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 4, with: BezierElementStream.Bezier()), MinMaxIndex([3, 4, 5, 6]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 5, with: BezierElementStream.Bezier()), MinMaxIndex([4, 5, 6, 7]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 6, with: BezierElementStream.Bezier()), MinMaxIndex([5, 6, 7]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 7, with: BezierElementStream.Bezier()), MinMaxIndex([6, 7]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: MinMaxIndex([0, 7]), with: BezierElementStream.Bezier()), MinMaxIndex([0, 1, 2, 6, 7]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: MinMaxIndex([6, 7]), with: BezierElementStream.Bezier()), MinMaxIndex([5, 6, 7]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: MinMaxIndex([3, 4]), with: BezierElementStream.Bezier()), MinMaxIndex([2, 3, 4, 5, 6]))
     }
 
     func testThreePointsElement() throws {

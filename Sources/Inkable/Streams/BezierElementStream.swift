@@ -29,7 +29,11 @@ open class BezierElementStream: ProducerConsumer {
     
     public struct Bezier: Equatable {
         public var elements: [Element]
-        
+
+        init() {
+            self.elements = []
+        }
+
         init(elements: [Element]) {
             self.elements = elements
         }
@@ -175,18 +179,21 @@ open class BezierElementStream: ProducerConsumer {
         
         @discardableResult
         func update(with line: Polyline, at lineIndexes: MinMaxIndex) -> MinMaxIndex {
-            var updatedElementIndexes = smoother.elementIndexes(for: line, at: lineIndexes, with: UIBezierPath())
+            var updatedElementIndexes = smoother.elementIndexes(for: line, at: lineIndexes, with: Bezier(elements: elements))
             guard
                 let min = updatedElementIndexes.first,
                 let max = updatedElementIndexes.last
             else {
                 return updatedElementIndexes
             }
-            
+
+            var indexesToRemove: [Int] = []
+
             for elementIndex in min ... max {
                 if updatedElementIndexes.contains(elementIndex) {
                     if elementIndex > smoother.maxIndex(for: line) {
                         // skip this element, it was deleted
+                        indexesToRemove.append(elementIndex)
                     } else {
                         let element = smoother.element(for: line, at: elementIndex)
                         if elementIndex == elements.count {
@@ -198,9 +205,9 @@ open class BezierElementStream: ProducerConsumer {
                 }
             }
 
-            while elements.count > smoother.maxIndex(for: line) {
-                elements.removeLast()
-                updatedElementIndexes.insert(elements.count)
+            for index in indexesToRemove.reversed() {
+                updatedElementIndexes.insert(index)
+                elements.remove(at: index)
             }
 
             return updatedElementIndexes
