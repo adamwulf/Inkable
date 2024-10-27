@@ -7,12 +7,28 @@
 
 import Foundation
 import UIKit
-
-// This algorithm is described at http://www.elvenprogrammer.org/projects/bezier/reference/index.html
+/// A smoother that implements the Antigrain algorithm for converting polylines to smooth Bézier curves.
+///
+/// This algorithm is based on the method described at [Elvenprogrammer's Bezier Interpolation](http://www.elvenprogrammer.org/projects/bezier/reference/index.html).
+/// It provides a simple and efficient way to create smooth curves that pass through all points of the original polyline.
+///
+/// The smoothness of the curve can be adjusted using the `smoothFactor` parameter.
 open class AntigrainSmoother: Smoother {
 
+    /// The factor that determines the smoothness of the resulting curve.
+    ///
+    /// Values should be in the range [0...1]. A value closer to 1 results in a smoother curve,
+    /// while a value closer to 0 produces a curve that more closely follows the original polyline.
     let smoothFactor: CGFloat
 
+    /// Initializes a new AntigrainSmoother with the specified smooth factor.
+    ///
+    /// - Parameter smoothFactor: The smoothness factor for the curve. Defaults to 0.7.
+    ///   Valid values range from 0 to 1, inclusive.
+    ///   - A value of 0 produces a curve that closely follows the original polyline, with sharp corners.
+    ///   - A value of 1 creates the smoothest possible curve, which may deviate significantly from the original points.
+    ///   - Values between 0 and 1 provide a balance between smoothness and fidelity to the original shape.
+    ///   - Values outside the [0, 1] range are not recommended as they may produce unexpected results.
     public init(smoothFactor: CGFloat = 0.7) {
         self.smoothFactor = smoothFactor
     }
@@ -97,7 +113,18 @@ open class AntigrainSmoother: Smoother {
         }
     }
 
-    // MARK: - Helper
+    /// Generates a new smooth Bézier curve element using the Antigrain algorithm.
+    ///
+    /// This method calculates the control points for a cubic Bézier curve segment
+    /// that smoothly connects p1 to p2, taking into account the neighboring points p0 and p3.
+    ///
+    /// - Parameters:
+    ///   - smoothFactor: The smoothness factor to apply.
+    ///   - p0: The point before p1, used to influence the curve's entry direction (optional).
+    ///   - p1: The starting point of this curve segment.
+    ///   - p2: The ending point of this curve segment.
+    ///   - p3: The point after p2, used to influence the curve's exit direction.
+    /// - Returns: A `BezierElementStream.Element` representing the calculated smooth curve from p1 to p2.
 
     private static func newCurve(smoothFactor: CGFloat,
                                  p0: CGPoint? = nil,

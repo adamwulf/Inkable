@@ -8,6 +8,16 @@
 import Foundation
 import UIKit
 
+/// A smoother that converts a `Polyline` into a series of straight line Bézier elements.
+///
+/// The `LineSmoother` is a simple implementation of the `Smoother` protocol that
+/// creates a series of straight line Bézier elements from the points in a `Polyline`.
+/// It does not perform any actual smoothing or curve fitting, but rather creates
+/// a direct line-to-line representation of the input points.
+///
+/// Use this smoother when you want to preserve the exact shape of the input polyline
+/// without any smoothing or curve fitting. It provides a one-to-one mapping between
+/// input points and output line segments.
 open class LineSmoother: Smoother {
 
     public init() {
