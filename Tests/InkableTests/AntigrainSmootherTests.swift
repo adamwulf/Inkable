@@ -95,6 +95,40 @@ class AntigrainSmootherTests: XCTestCase {
         XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: BezierElementStream.Bezier()), MinMaxIndex([1, 2]))
     }
 
+    // This tests sending a longer bezier to the smoother with a shorter input Polyline. This should
+    // include the removed bezier elements in the bezier path.
+    // Behavior here can be compared to testThreePoints() above, where this test shows the removed bezier element indexes being returned.
+    func testReduceLengthOfBezier() throws {
+        let touchId: UITouchIdentifier = UUID().uuidString
+        let completeEvents = [Event(id: touchId, loc: CGPoint(x: 100, y: 100)),
+                              Event(id: touchId, loc: CGPoint(x: 100, y: 100)),
+                              Event(id: touchId, loc: CGPoint(x: 100, y: 100))]
+        let events = TouchEvent.newFrom(completeEvents)
+
+        let touchStream = TouchPathStream()
+        let polylineStream = PolylineStream()
+
+        let touchOutput = touchStream.produce(with: events)
+        let polylineOutput = polylineStream.produce(with: touchOutput)
+        let smoother = AntigrainSmoother()
+
+        let point = polylineOutput.lines[0].points.first!
+        let oldBezier = BezierElementStream.Bezier(elements: [
+            .moveTo(point: point),
+            .lineTo(point: point),
+            .lineTo(point: point),
+            .lineTo(point: point)
+        ])
+
+        XCTAssertEqual(polylineOutput.lines.count, 1)
+        XCTAssertEqual(polylineOutput.lines[0].points.count, 3)
+        XCTAssertEqual(smoother.maxIndex(for: polylineOutput.lines[0]), 2)
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 0, with: oldBezier), MinMaxIndex([0, 1, 2]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 1, with: oldBezier), MinMaxIndex([1, 2, 3]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: 2, with: oldBezier), MinMaxIndex([1, 2, 3]))
+        XCTAssertEqual(smoother.elementIndexes(for: polylineOutput.lines[0], at: MinMaxIndex([0, 2]), with: oldBezier), MinMaxIndex([0, 1, 2, 3]))
+    }
+
     func testFourPoints() throws {
         let touchId: UITouchIdentifier = UUID().uuidString
         let completeEvents = [Event(id: touchId, loc: CGPoint(x: 100, y: 100)),
