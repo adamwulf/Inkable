@@ -92,7 +92,12 @@ open class AntigrainSmoother: Smoother {
     // 5 => 7, 6, 5, 4
     // 6 => 8, 7, 6, 5
     // 7 => 9, 8, 7, 6
-    private func elementIndexes(for line: Polyline, at lineIndex: Int, with bezier: BezierElementStream.Bezier, into indexes: inout MinMaxIndex) {
+    private func elementIndexes(
+        for line: Polyline,
+        at lineIndex: Int,
+        with bezier: BezierElementStream.Bezier,
+        into indexes: inout MinMaxIndex
+    ) {
         guard lineIndex >= 0 else {
             return
         }
@@ -126,11 +131,13 @@ open class AntigrainSmoother: Smoother {
     ///   - p3: The point after p2, used to influence the curve's exit direction.
     /// - Returns: A `BezierElementStream.Element` representing the calculated smooth curve from p1 to p2.
 
-    private static func newCurve(smoothFactor: CGFloat,
-                                 p0: CGPoint? = nil,
-                                 p1: CGPoint,
-                                 p2: Polyline.Point,
-                                 p3: CGPoint) -> BezierElementStream.Element {
+    private static func newCurve(
+        smoothFactor: CGFloat,
+        p0: CGPoint? = nil,
+        p1: CGPoint,
+        p2: Polyline.Point,
+        p3: CGPoint
+    ) -> BezierElementStream.Element {
         let p0 = p0 ?? p1
 
         let c1 = CGPoint(x: (p0.x + p1.x) / 2.0, y: (p0.y + p1.y) / 2.0)
